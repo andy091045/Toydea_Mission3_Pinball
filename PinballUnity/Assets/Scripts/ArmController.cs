@@ -18,6 +18,8 @@ public class ArmController : MonoBehaviour
 
     public float damper;
 
+    float gravity_ => GameManager.Instance.Gravity;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +34,8 @@ public class ArmController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        LeftArm.GetComponent<Rigidbody>().AddForce(new Vector3(0,0, GameManager.Instance.Gravity*Time.deltaTime));
-        RightArm.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, GameManager.Instance.Gravity * Time.deltaTime));
+        LeftArm.GetComponent<Rigidbody>().AddForce(new Vector3(0,0, gravity_ *Time.deltaTime));
+        RightArm.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, gravity_ * Time.deltaTime));
     }
 
     /// <summary>

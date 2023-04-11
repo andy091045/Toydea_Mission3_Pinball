@@ -5,6 +5,7 @@ using UnityEngine;
 public class ball : MonoBehaviour
 {
     Vector3 startPosition_;
+    float gravity_ => GameManager.Instance.Gravity;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,6 @@ public class ball : MonoBehaviour
 
     private void FixedUpdate()
     {
-       GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, GameManager.Instance.Gravity * Time.deltaTime));
+       GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, gravity_ * Time.deltaTime));
     }
 }
