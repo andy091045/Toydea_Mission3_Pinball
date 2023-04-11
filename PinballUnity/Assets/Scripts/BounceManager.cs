@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AccelerateManagerNamespace
+namespace BounceManagerNamespace
 {
-    public class AccelerateManager : MonoBehaviour
+    public class BounceManager : MonoBehaviour
     {
-        public static AccelerateManager Instance;
-        public AccelerateManagerExtra controller;
+        public static BounceManager Instance;
+        public BounceManagerExtra controller;
         private void Awake()
         {
             Instance = this;
@@ -25,12 +25,11 @@ namespace AccelerateManagerNamespace
     }
 
     [Serializable]
-    public class AccelerateManagerExtra
+    public class BounceManagerExtra
     {
         /// <summary>
-        /// tag = "accelerateRegion_" Groups
+        /// tag = "bounceObject_" Groups
         /// </summary>
-        public GameObject[] accelerateObjects;
-        public float acceleration = 1000.0f;
+        public GameObject[] bounceObjects;
     }
 }
