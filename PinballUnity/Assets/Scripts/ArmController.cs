@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameManagerNamespace;
 
 public class ArmController : MonoBehaviour
 {
@@ -18,12 +19,12 @@ public class ArmController : MonoBehaviour
 
     public float damper;
 
-    float gravity_ => GameManager.Instance.Gravity;
+    float gravity_ => GameManager.Instance.controller.Gravity;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -35,7 +36,7 @@ public class ArmController : MonoBehaviour
     private void FixedUpdate()
     {
         LeftArm.GetComponent<Rigidbody>().AddForce(new Vector3(0,0, gravity_ *Time.deltaTime));
-        RightArm.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, gravity_ * Time.deltaTime));
+        RightArm.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, gravity_ * Time.deltaTime));        
     }
 
     /// <summary>

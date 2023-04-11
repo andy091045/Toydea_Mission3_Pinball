@@ -1,31 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace GameManagerNamespace
 {
-    public static GameManager Instance;
+    public class GameManager : MonoBehaviour
+    {
+        public static GameManager Instance;
+        public GameManagerExtra controller;
 
-    /// <summary>
-    /// 重力
-    /// </summary>
-    public float Gravity = -5.0f;
-   
-    void Awake()
-    {
-        Instance = this;
-    }
-    
-    void Start()
-    {
         
+
+        void Awake()
+        {
+            Instance = this;
+        }
+
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    [Serializable]
+    public class GameManagerExtra{
+        /// <summary>
+        /// 重力
+        /// </summary>
+        public float Gravity = -5000.0f;
     }
 
-    
 }
