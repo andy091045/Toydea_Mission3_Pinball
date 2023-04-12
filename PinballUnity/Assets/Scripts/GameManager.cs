@@ -36,7 +36,7 @@ namespace GameManagerNamespace
         /// <summary>
         /// ­«¤O
         /// </summary>
-        public float Gravity = -5000.0f;
+        public float Gravity = -25.0f;
     }
 
 }

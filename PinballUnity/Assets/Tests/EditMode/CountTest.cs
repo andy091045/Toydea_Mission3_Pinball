@@ -30,7 +30,7 @@ public class GameManagerTest
 {
     [Test]
     //試験重力値
-    [TestCase(-5000)]
+    [TestCase(-25)]
 
     //[TestCase(-10)]
 
@@ -49,9 +49,9 @@ public class AccelerateManagerTest
 {
     [Test]
     //tag
-    [TestCase(1000.0f)]
+    [TestCase(100.0f)]
    
-    public void GameManager_Test(float f)
+    public void AccelerateManager_Test(float f)
     {
         var accelerateManager_ = new AccelerateManagerExtra();
 

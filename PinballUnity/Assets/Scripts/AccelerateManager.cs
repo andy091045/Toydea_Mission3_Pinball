@@ -31,6 +31,6 @@ namespace AccelerateManagerNamespace
         /// tag = "accelerateRegion_" Groups
         /// </summary>
         public GameObject[] accelerateObjects;
-        public float acceleration = 1000.0f;
+        public float acceleration = 100.0f;
     }
 }

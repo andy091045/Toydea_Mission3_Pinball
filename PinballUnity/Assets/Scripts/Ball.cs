@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameManagerNamespace;
 using AccelerateManagerNamespace;
+using BounceManagerNamespace;
 
 namespace BallNamespace
 {
     public class Ball : MonoBehaviour
     {
-        public float bounce;
-        public float bounce2;
+        float bounce => BounceManager.Instance.controller.bounceForce_;
+        float bounce2 => BounceManager.Instance.controller.bounceForce_2;
         public BallExtra controller;
         Vector3 startPosition_;
         float gravity_ => GameManager.Instance.controller.Gravity;

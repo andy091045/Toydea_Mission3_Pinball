@@ -6,7 +6,7 @@ using UnityEngine;
 namespace BounceManagerNamespace
 {
     public class BounceManager : MonoBehaviour
-    {
+    {        
         public static BounceManager Instance;
         public BounceManagerExtra controller;
         private void Awake()
@@ -31,5 +31,20 @@ namespace BounceManagerNamespace
         /// tag = "bounceObject_" Groups
         /// </summary>
         public GameObject[] bounceObjects;
+
+        /// <summary>
+        /// tag = "bounceObject_2" Groups
+        /// </summary>
+        public GameObject[] bounceObjects2;
+
+        /// <summary>
+        /// tag = "bounceObject_" bounceForce
+        /// </summary>
+        public float bounceForce_;
+
+        /// <summary>
+        /// tag = "bounceObject_2" bounceForce
+        /// </summary>
+        public float bounceForce_2;
     }
 }
