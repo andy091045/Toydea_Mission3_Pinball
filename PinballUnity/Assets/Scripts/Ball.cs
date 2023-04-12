@@ -8,7 +8,8 @@ namespace BallNamespace
 {
     public class Ball : MonoBehaviour
     {
-        public float bounce = 1.5f;
+        public float bounce;
+        public float bounce2;
         public BallExtra controller;
         Vector3 startPosition_;
         float gravity_ => GameManager.Instance.controller.Gravity;
@@ -47,6 +48,17 @@ namespace BallNamespace
                 Vector3 normal = collision.contacts[0].normal;
                 Vector3 bounceDirection = Vector3.Reflect(normalize, normal);
                 float bounceSpeed = velocity.magnitude * bounce;
+
+                Vector3 newVelocity = bounceDirection * bounceSpeed;
+                rb.velocity = newVelocity;
+            }
+
+            if (collision.gameObject.tag == "bounceObject_2")
+            {
+                Rigidbody rb1 = GetComponent<Rigidbody>();
+                Vector3 normal = collision.contacts[0].normal;
+                Vector3 bounceDirection = Vector3.Reflect(normalize, normal);
+                float bounceSpeed = velocity.magnitude * bounce2;
 
                 Vector3 newVelocity = bounceDirection * bounceSpeed;
                 rb.velocity = newVelocity;

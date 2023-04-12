@@ -19,6 +19,10 @@ public class ArmController : MonoBehaviour
 
     public float damper;
 
+    public float rotateAngle_;
+
+    const float startAngle_ = 30.0f;
+
     float gravity_ => GameManager.Instance.controller.Gravity;
 
     // Start is called before the first frame update
@@ -55,20 +59,20 @@ public class ArmController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            leftJoint.targetPosition = 0;
+            leftJoint.targetPosition = -(rotateAngle_ - startAngle_);
         }
         else
         {
-            leftJoint.targetPosition = 30;
+            leftJoint.targetPosition = startAngle_;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            rightJoint.targetPosition = 0;
+            rightJoint.targetPosition = rotateAngle_ - startAngle_;
         }
         else
         {
-            rightJoint.targetPosition = -30;
+            rightJoint.targetPosition = -startAngle_;
         }
         LeftArm.GetComponent<HingeJoint>().spring = leftJoint;
         RightArm.GetComponent<HingeJoint>().spring = rightJoint;
