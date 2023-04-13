@@ -9,12 +9,14 @@ namespace BallNamespace
 {
     public class Ball : MonoBehaviour
     {
-        float bounce => BounceManager.Instance.controller.bounceForce_;
-        float bounce2 => BounceManager.Instance.controller.bounceForce_2;
         public BallExtra controller;
         Vector3 startPosition_;
         float gravity_ => GameManager.Instance.controller.Gravity;
         float acceleration => AccelerateManager.Instance.controller.acceleration;
+
+        float bounceMinSpeed_ => BounceManager.Instance.controller.bounceMinSpeed_;
+
+        float bounceMaxSpeed_ => BounceManager.Instance.controller.bounceMinSpeed_;
 
         Rigidbody rb;
         Vector3 velocity;
@@ -48,22 +50,12 @@ namespace BallNamespace
                 Rigidbody rb1 = GetComponent<Rigidbody>();
                 Vector3 normal = collision.contacts[0].normal;
                 Vector3 bounceDirection = Vector3.Reflect(normalize, normal);
-                float bounceSpeed = velocity.magnitude * bounce;
-
+                //float bounceSpeed = velocity.magnitude * bounce;
+                float bounceSpeed = Mathf.Clamp(velocity.magnitude, bounceMinSpeed_, bounceMaxSpeed_);
+                Debug.Log(bounceSpeed);
                 Vector3 newVelocity = bounceDirection * bounceSpeed;
                 rb.velocity = newVelocity;
-            }
-
-            if (collision.gameObject.tag == "bounceObject_2")
-            {
-                Rigidbody rb1 = GetComponent<Rigidbody>();
-                Vector3 normal = collision.contacts[0].normal;
-                Vector3 bounceDirection = Vector3.Reflect(normalize, normal);
-                float bounceSpeed = velocity.magnitude * bounce2;
-
-                Vector3 newVelocity = bounceDirection * bounceSpeed;
-                rb.velocity = newVelocity;
-            }
+            }            
         }
 
         private void OnTriggerEnter(Collider collision)
@@ -79,7 +71,7 @@ namespace BallNamespace
             if (collision.gameObject.tag == "accelerateRegion_")
             {
                 isInsideAccelerate_ = true;
-                Debug.Log(isInsideAccelerate_);
+                //Debug.Log(isInsideAccelerate_);
             }
         }
 
@@ -89,7 +81,7 @@ namespace BallNamespace
             {
                 isInsideAccelerate_ = false;
                 Physics.IgnoreCollision(collision, GetComponent<Collider>(), false);
-                Debug.Log(isInsideAccelerate_);
+                //Debug.Log(isInsideAccelerate_);
             }
         }
 

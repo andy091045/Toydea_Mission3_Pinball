@@ -38,13 +38,13 @@ namespace BounceManagerNamespace
         public GameObject[] bounceObjects2;
 
         /// <summary>
-        /// tag = "bounceObject_" bounceForce
+        /// tag = "bounceObject_" MaxSpeed
         /// </summary>
-        public float bounceForce_;
+        public float bounceMaxSpeed_;
 
         /// <summary>
-        /// tag = "bounceObject_2" bounceForce
+        /// tag = "bounceObject_" MinSpeed
         /// </summary>
-        public float bounceForce_2;
+        public float bounceMinSpeed_;
     }
 }

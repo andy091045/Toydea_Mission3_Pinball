@@ -1246,7 +1246,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-331750
+  m_Name: pb_Mesh-1314
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2176,7 +2176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 533393461}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.7, y: 1.13, z: 29.59}
+  m_LocalPosition: {x: 16.6, y: 1.13, z: 8.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3110,7 +3110,7 @@ GameObject:
   - component: {fileID: 915163525}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: bounceObject_2
+  m_TagString: bounceObject_
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3369,8 +3369,8 @@ MonoBehaviour:
     bounceObjects:
     - {fileID: 0}
     bounceObjects2: []
-    bounceForce_: 1.1
-    bounceForce_2: 1.5
+    bounceMaxSpeed_: 60
+    bounceMinSpeed_: 50
 --- !u!1 &1019993856
 GameObject:
   m_ObjectHideFlags: 0
@@ -3386,7 +3386,7 @@ GameObject:
   - component: {fileID: 1019993858}
   m_Layer: 0
   m_Name: Cube (4)
-  m_TagString: bounceObject_2
+  m_TagString: bounceObject_
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3849,6 +3849,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 223694300}
+    - target: {fileID: 7940240126003963764, guid: 49c0f60de7136f14aa3178ecceb61940, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: d413b342cae548648b2c8c1b6add57ec, type: 2}
     - target: {fileID: 8031535503130982169, guid: 49c0f60de7136f14aa3178ecceb61940, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -4064,7 +4068,7 @@ GameObject:
   - component: {fileID: 1190844522}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: bounceObject_2
+  m_TagString: bounceObject_
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5068,7 +5072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1816804415
 Transform:
   m_ObjectHideFlags: 0
@@ -5487,7 +5491,7 @@ GameObject:
   - component: {fileID: 1956683143}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: bounceObject_2
+  m_TagString: bounceObject_
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5680,7 +5684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a658745745846478de19dd0a564680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 12000
+  force: 13000
 --- !u!54 &1978523762
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5779,7 +5783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2061078263
 Transform:
   m_ObjectHideFlags: 0
