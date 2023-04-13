@@ -7,36 +7,16 @@ namespace GameManagerNamespace
 {
     public class GameManager : MonoBehaviour
     {
-        public static GameManager Instance;
-        public GameManagerExtra controller;
+        /// <summary>
+        /// 重力
+        /// </summary>
+        public float gravity_ = -25.0f;
 
-        
+        public static GameManager Instance;        
 
         void Awake()
         {
             Instance = this;
         }
-
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
-
     }
-
-    [Serializable]
-    public class GameManagerExtra{
-        /// <summary>
-        /// 重力
-        /// </summary>
-        public float Gravity = -25.0f;
-    }
-
 }

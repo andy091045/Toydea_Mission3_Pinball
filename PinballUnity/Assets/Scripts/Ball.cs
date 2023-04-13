@@ -12,8 +12,8 @@ namespace BallNamespace
     {
         public BallExtra controller;
         Vector3 startPosition_;
-        float gravity_ => GameManager.Instance.controller.Gravity;
-        float acceleration => AccelerateManager.Instance.controller.acceleration;
+        float gravity_ => GameManager.Instance.gravity_;
+        float acceleration => AccelerateManager.Instance.acceleration_;
 
         float bounceMinSpeed_ => BounceManager.Instance.controller.bounceMinSpeed_;
 

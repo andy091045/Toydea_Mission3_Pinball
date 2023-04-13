@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using MissionNamespace;
+using ScoreManagerNamespace;
 
 public class MissionManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class MissionManager : MonoBehaviour
     public List<Mission> activeMissions_ = new List<Mission>();
     //public List<Mission> completedMissions_ = new List<Mission>();
     public int completeNumber_ = 999999;
+    ScoreManagerExtra scoreManagerExtra;
     private void Awake()
     {
         Instance = this;
@@ -20,6 +22,8 @@ public class MissionManager : MonoBehaviour
 
     void Start()
     {
+        scoreManagerExtra = new ScoreManagerExtra();
+
         // 讀取 MissionData 中的任務資料
         Mission[] missions = missionData.missions;
 
@@ -48,18 +52,24 @@ public class MissionManager : MonoBehaviour
     }
 
     public void CompleteMission(int number)
-    {        
-        if (mission_[number].nextNumber_ != completeNumber_) { 
+    {
+        if (mission_[number].nextNumber_ != completeNumber_)
+        {
             ExecuteMission(mission_[number].nextNumber_);
         }
+
+        ScoreManager.Instance.totalScore_ = scoreManagerExtra.Add(ScoreManager.Instance.totalScore_, mission_[number].score_);
+        Debug.Log(ScoreManager.Instance.totalScore_);
+
         for (int i = 0; i < activeMissions_.Count; i++)
         {
             if (activeMissions_[i].number_ == number)
             {
                 //completedMissions_.Add(mission_[number]);
-                activeMissions_.Remove(mission_[number]);                
+                activeMissions_.Remove(mission_[number]);
             }
         }
+
         if (activeMissions_.Count == 0)
         {
             // 所有任務都已完成

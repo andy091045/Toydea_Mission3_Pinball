@@ -8,7 +8,7 @@ namespace AccelerateManagerNamespace
     public class AccelerateManager : MonoBehaviour
     {
         public static AccelerateManager Instance;
-        public AccelerateManagerExtra controller;
+        public float acceleration_ = 100.0f;
         private void Awake()
         {
             Instance = this;
@@ -22,15 +22,5 @@ namespace AccelerateManagerNamespace
         {
 
         }
-    }
-
-    [Serializable]
-    public class AccelerateManagerExtra
-    {
-        /// <summary>
-        /// tag = "accelerateRegion_" Groups
-        /// </summary>
-        public GameObject[] accelerateObjects;
-        public float acceleration = 100.0f;
     }
 }

@@ -23,7 +23,7 @@ public class ArmController : MonoBehaviour
 
     const float startAngle_ = 30.0f;
 
-    float gravity_ => GameManager.Instance.controller.Gravity;
+    float gravity_ => GameManager.Instance.gravity_;
 
     // Start is called before the first frame update
     void Start()
