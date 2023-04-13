@@ -6,6 +6,7 @@ using UnityEngine.TestTools;
 using Count;
 using GameManagerNamespace;
 using AccelerateManagerNamespace;
+using MissionNamespace;
 
 public class CountTest
 {
@@ -59,4 +60,19 @@ public class AccelerateManagerTest
         Assert.That(acceleration, Is.EqualTo(f));        
     }
 
+}
+
+public class MissionDataTest
+{   
+    [Test]    
+    [TestCase()]
+    public void MissionData_Test()
+    {
+        var mission1 = new Mission();
+        Assert.IsInstanceOf(typeof(int), mission1.number_);
+        Assert.IsInstanceOf(typeof(string), mission1.description_);
+        Assert.IsInstanceOf(typeof(int), mission1.nextNumber_);
+        Assert.IsInstanceOf(typeof(int), mission1.score_);
+        Assert.IsInstanceOf(typeof(Vector3), mission1.position_);
+    }
 }

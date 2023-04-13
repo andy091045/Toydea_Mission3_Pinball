@@ -4,6 +4,7 @@ using UnityEngine;
 using GameManagerNamespace;
 using AccelerateManagerNamespace;
 using BounceManagerNamespace;
+using System.Threading.Tasks;
 
 namespace BallNamespace
 {
@@ -52,7 +53,6 @@ namespace BallNamespace
                 Vector3 bounceDirection = Vector3.Reflect(normalize, normal);
                 //float bounceSpeed = velocity.magnitude * bounce;
                 float bounceSpeed = Mathf.Clamp(velocity.magnitude, bounceMinSpeed_, bounceMaxSpeed_);
-                Debug.Log(bounceSpeed);
                 Vector3 newVelocity = bounceDirection * bounceSpeed;
                 rb.velocity = newVelocity;
             }            
@@ -63,6 +63,14 @@ namespace BallNamespace
             if (collision.gameObject.tag == "accelerateRegion_")
             {
                 Physics.IgnoreCollision(collision, GetComponent<Collider>(), true);
+            }else if(collision.gameObject.tag == "task")
+            {
+                int number_ = collision.gameObject.GetComponent<ExecutingMission>().number_;                
+
+                if (number_ != MissionManager.Instance.completeNumber_) {
+                    MissionManager.Instance.CompleteMission(number_);
+                    Destroy(collision.gameObject);
+                }             
             }
         }
 

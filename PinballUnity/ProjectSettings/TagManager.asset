@@ -7,6 +7,7 @@ TagManager:
   - accelerateRegion_
   - bounceObject_
   - bounceObject_2
+  - task
   layers:
   - Default
   - TransparentFX
