@@ -3292,8 +3292,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BounceObjects: []
   BounceObjects2: []
-  BounceMaxForce: 50
-  BounceMinForce: 55
+  BounceMaxForce: 45
+  BounceMinForce: 50
 --- !u!1 &1019993856
 GameObject:
   m_ObjectHideFlags: 0

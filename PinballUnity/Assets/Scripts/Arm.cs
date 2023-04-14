@@ -4,56 +4,66 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
 
-public class Arm : MonoBehaviour
+namespace ArmNamespace
 {
-    public ArmType armtype;
-
-    public float Damper;
-
-    public float RotateAngle;
-
-    const float START_ANGLE = 30.0f;
-
-    Rigidbody rb_;
-
-    HingeJoint hingeJoint_;
-
-    JointSpring jointSpring_;
-    float gravity_ => GameManager.Instance.Gravity;
-
-    void Start()
+    public class Arm : MonoBehaviour
     {
-        rb_ = GetComponent<Rigidbody>();
-        hingeJoint_ = GetComponent<HingeJoint>();
-        jointSpring_ = new JointSpring();
-        jointSpring_.spring = Damper;
-    }
+        public ArmType armtype;
 
-    // Update is called once per frame
-    void Update()
-    {
-        ControllArm();
-    }
+        public float Damper;
 
-    private void FixedUpdate()
-    {
-        rb_.AddForce(new Vector3(0, 0, gravity_ * Time.deltaTime));
-    }
+        public float RotateAngle;
 
-    public enum ArmType
-    {
-        LeftArm, RightArm
-    }
+        const float START_ANGLE = 30.0f;
 
-    void ControllArm()
-    {        
-        if (armtype == ArmType.LeftArm) {            
-            jointSpring_.targetPosition = Input.GetKey(KeyCode.A) ? -(RotateAngle - START_ANGLE) : START_ANGLE;
-        }
-        else
+        Rigidbody rb_;
+
+        HingeJoint hingeJoint_;
+
+        JointSpring jointSpring_;
+        float gravity_ => GameManager.Instance.Gravity;
+
+        void Start()
         {
-            jointSpring_.targetPosition = Input.GetKey(KeyCode.D) ? RotateAngle - START_ANGLE : -START_ANGLE;
+            rb_ = GetComponent<Rigidbody>();
+            hingeJoint_ = GetComponent<HingeJoint>();
+            jointSpring_ = new JointSpring();
+            jointSpring_.spring = Damper;
         }
-        hingeJoint_.spring = jointSpring_;
+
+        // Update is called once per frame
+        void Update()
+        {
+            ControllArm();
+        }
+
+        private void FixedUpdate()
+        {
+            rb_.AddForce(new Vector3(0, 0, gravity_ * Time.deltaTime));
+        }
+
+        public enum ArmType
+        {
+            LeftArm, RightArm
+        }
+
+        void ControllArm()
+        {
+            if (TypeIsLeftArm(armtype))
+            {
+                jointSpring_.targetPosition = Input.GetKey(KeyCode.A) ? -(RotateAngle - START_ANGLE) : START_ANGLE;
+            }
+            else
+            {
+                jointSpring_.targetPosition = Input.GetKey(KeyCode.D) ? RotateAngle - START_ANGLE : -START_ANGLE;
+            }
+            hingeJoint_.spring = jointSpring_;
+        }
+
+        public bool TypeIsLeftArm(ArmType armtype)
+        {
+            return armtype == ArmType.LeftArm ? true : false;
+        }
     }
 }
+
