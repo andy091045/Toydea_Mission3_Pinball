@@ -1,3 +1,4 @@
+using HD.Singleton;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,18 +6,11 @@ using UnityEngine;
 
 namespace GameManagerNamespace
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : TSingletonMonoBehavior<GameManager>
     {
         /// <summary>
         /// ­«¤O
         /// </summary>
-        public float gravity_ = -25.0f;
-
-        public static GameManager Instance;        
-
-        void Awake()
-        {
-            Instance = this;
-        }
+        public float Gravity = -25.0f;
     }
 }

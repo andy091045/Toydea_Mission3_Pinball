@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-93534
+  m_Name: pb_Mesh-66264
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -329,7 +329,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-93464
+  m_Name: pb_Mesh-66194
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -702,7 +702,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-93562
+  m_Name: pb_Mesh-66292
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1020,7 +1020,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-93492
+  m_Name: pb_Mesh-66222
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1246,7 +1246,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-93548
+  m_Name: pb_Mesh-66278
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1557,11 +1557,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4dd94bb1759a12458532247306c90a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskPrefab_: {fileID: 362283232061589004, guid: f09e045e77eec814bb3b263c4fa7fc10, type: 3}
-  missionData: {fileID: 11400000, guid: 4a32b4df7c2af994e847b79914034c41, type: 2}
-  mission_: []
-  activeMissions_: []
-  completeNumber_: 999999
+  TaskPrefab: {fileID: 362283232061589004, guid: f09e045e77eec814bb3b263c4fa7fc10, type: 3}
+  MissionData: {fileID: 11400000, guid: 4a32b4df7c2af994e847b79914034c41, type: 2}
 --- !u!4 &278529837
 Transform:
   m_ObjectHideFlags: 0
@@ -1586,7 +1583,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 290771565}
-  - component: {fileID: 290771566}
   m_Layer: 0
   m_Name: Arm
   m_TagString: Untagged
@@ -1611,30 +1607,13 @@ Transform:
   m_Father: {fileID: 8328854}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &290771566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 290771564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d3d184ad12ce00499025f31436c577d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LeftArm: {fileID: 1507318331}
-  RightArm: {fileID: 669832447}
-  force: 0.1
-  damper: 500000
-  rotateAngle_: 45
 --- !u!43 &295187512
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-93576
+  m_Name: pb_Mesh-66306
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1918,10 +1897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241314b10a2a21f4785b9bfab659cc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller:
-    accelerateObjects:
-    - {fileID: 1390284728}
-    acceleration: 100
+  Acceleration: 500
 --- !u!4 &360024529
 Transform:
   m_ObjectHideFlags: 0
@@ -2225,7 +2201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 533393461}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.13, z: 8.4}
+  m_LocalPosition: {x: 16.6, y: 1.13, z: 1.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2260,6 +2236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba94c0df64caa248b5dba8f183a27b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BallLeave: {x: 0, y: 0, z: -35}
 --- !u!1 &585227254
 GameObject:
   m_ObjectHideFlags: 0
@@ -2363,7 +2340,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-93520
+  m_Name: pb_Mesh-66250
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2632,6 +2609,7 @@ GameObject:
   - component: {fileID: 669832451}
   - component: {fileID: 669832450}
   - component: {fileID: 669832449}
+  - component: {fileID: 669832454}
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
@@ -2713,7 +2691,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669832447}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 22a539cdb51e04745ac78cca5d473b21, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2769,13 +2747,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669832447}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &669832454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669832447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 262a81bc4a4756c47980e424d3fdae90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armtype: 1
+  Damper: 500000
+  RotateAngle: 45
 --- !u!43 &676070339
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-93506
+  m_Name: pb_Mesh-66236
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3297,12 +3290,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d96bdcd00dd21d4490695e7e5660424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller:
-    bounceObjects:
-    - {fileID: 0}
-    bounceObjects2: []
-    bounceMaxSpeed_: 60
-    bounceMinSpeed_: 50
+  BounceObjects: []
+  BounceObjects2: []
+  BounceMaxForce: 50
+  BounceMinForce: 55
 --- !u!1 &1019993856
 GameObject:
   m_ObjectHideFlags: 0
@@ -3615,7 +3606,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068498524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.37, y: 1.94, z: 23.52}
+  m_LocalPosition: {x: -14.37, y: 1.94, z: 22}
   m_LocalScale: {x: 3.5, y: 1.3, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4209,7 +4200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936305dfad254454685f9f8a9623461a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalScore_: 0
+  TotalScore: 0
 --- !u!4 &1212871691
 Transform:
   m_ObjectHideFlags: 0
@@ -4231,7 +4222,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-93478
+  m_Name: pb_Mesh-66208
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4584,6 +4575,7 @@ GameObject:
   - component: {fileID: 1507318335}
   - component: {fileID: 1507318334}
   - component: {fileID: 1507318333}
+  - component: {fileID: 1507318338}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -4665,7 +4657,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507318331}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 22a539cdb51e04745ac78cca5d473b21, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -4721,6 +4713,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507318331}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1507318338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507318331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 262a81bc4a4756c47980e424d3fdae90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armtype: 0
+  Damper: 500000
+  RotateAngle: 45
 --- !u!1 &1754657695
 GameObject:
   m_ObjectHideFlags: 0
@@ -5481,8 +5488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ad2ca0d9b2e6d468959ae5d9404e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller:
-    Gravity: -25
+  Gravity: -25
 --- !u!4 &1957137754
 Transform:
   m_ObjectHideFlags: 0
@@ -5546,7 +5552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a658745745846478de19dd0a564680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 13000
+  Force: 10000
 --- !u!54 &1978523762
 Rigidbody:
   m_ObjectHideFlags: 0

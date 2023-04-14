@@ -4,66 +4,63 @@ using System.Reflection;
 using UnityEngine;
 using MissionNamespace;
 using ScoreManagerNamespace;
+using HD.Singleton;
+using UnityEngine.SocialPlatforms.Impl;
 
-public class MissionManager : MonoBehaviour
+public class MissionManager : TSingletonMonoBehavior<MissionManager>
 {
-    public static MissionManager Instance;
-    public GameObject taskPrefab_;
-    public MissionData missionData;
-    public List<Mission> mission_ = new List<Mission>();
-    public List<Mission> activeMissions_ = new List<Mission>();
+    public GameObject TaskPrefab;
+    public MissionData MissionData;
+    
     //public List<Mission> completedMissions_ = new List<Mission>();
-    public int completeNumber_ = 999999;
-    ScoreManagerExtra scoreManagerExtra;
-    private void Awake()
-    {
-        Instance = this;
-    }
+    public const int COMPLETE_NUMBER = 999999;
+
+    List<Mission> mission_ = new List<Mission>();
+    List<Mission> activeMissions_ = new List<Mission>();
 
     void Start()
     {
-        scoreManagerExtra = new ScoreManagerExtra();
+        // ≈™®ÅEMissionData §§™∫•Ù∞»∏ÅE∆
+        Mission[] missions = MissionData.Missions;
 
-        // ≈™®˙ MissionData §§™∫•Ù∞»∏ÍÆ∆
-        Mission[] missions = missionData.missions;
-
-        // ±N•Ù∞»∏ÍÆ∆•[§J activeMissions List
+        // ±N•Ù∞»∏ÅE∆•[§J activeMissions List
         foreach (Mission mission in missions)
         {
             activeMissions_.Add(mission);
             mission_.Add(mission);
         }
 
-        ExecuteMission(mission_[0].number_);
+        ExecuteMission(mission_[0].Number);
     }
 
     public void ExecuteMission(int number)
     {
-        // •Õ¶®•Ù∞»™´•Û
-        GameObject executingObject_ = Instantiate(taskPrefab_, mission_[number].position_, Quaternion.identity);
-        executingObject_.GetComponent<ExecutingMission>().number_ = mission_[number].number_;
-        executingObject_.GetComponent<ExecutingMission>().description_ = mission_[number].description_;
-        executingObject_.GetComponent<ExecutingMission>().nextNumber_ = mission_[number].nextNumber_;
-        executingObject_.GetComponent<ExecutingMission>().score_ = mission_[number].score_;
-        executingObject_.GetComponent<ExecutingMission>().position_ = mission_[number].position_;
+        // •Õ¶®•Ù∞»™´•ÅE
+        GameObject executingObject_ = Instantiate(TaskPrefab, mission_[number].Position, Quaternion.identity);  
+        var MissionClass = executingObject_.GetComponent<ExecutingMission>();
+        MissionClass.Number = mission_[number].Number;
+        MissionClass.Description = mission_[number].Description;
+        MissionClass.NextNumber = mission_[number].NextNumber;
+        MissionClass.Score = mission_[number].Score;
+        MissionClass.Position = mission_[number].Position;       
 
-        // ±N•Ù∞»•[§J•Ù∞»≤M≥Ê
+        // ±N•Ù∞»•[§J•Ù∞»≤M≥ÅE
         //missions.Add(mission);
     }
 
     public void CompleteMission(int number)
     {
-        if (mission_[number].nextNumber_ != completeNumber_)
+        if (mission_[number].NextNumber != COMPLETE_NUMBER)
         {
-            ExecuteMission(mission_[number].nextNumber_);
+            ExecuteMission(mission_[number].NextNumber);
         }
 
-        ScoreManager.Instance.totalScore_ = scoreManagerExtra.Add(ScoreManager.Instance.totalScore_, mission_[number].score_);
-        Debug.Log(ScoreManager.Instance.totalScore_);
+        ScoreManager.Instance.TotalScoreAdd(mission_[number].Score);
+        Debug.Log(ScoreManager.Instance.TotalScore);
 
         for (int i = 0; i < activeMissions_.Count; i++)
         {
-            if (activeMissions_[i].number_ == number)
+            if (activeMissions_[i].Number == number)
             {
                 //completedMissions_.Add(mission_[number]);
                 activeMissions_.Remove(mission_[number]);

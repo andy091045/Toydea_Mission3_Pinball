@@ -10,109 +10,122 @@ namespace BallNamespace
 {
     public class Ball : MonoBehaviour
     {
-        public BallExtra controller;
+        public Vector3 BallLeave = new Vector3(0, 0, -35);
+        float gravity_ => GameManager.Instance.Gravity;
+        float acceleration_ => AccelerateManager.Instance.Acceleration;
+
+        float bounceMinForce_ => BounceManager.Instance.BounceMinForce;
+
+        float bounceMaxForce_ => BounceManager.Instance.BounceMinForce;
+        
+        Rigidbody rb_;
         Vector3 startPosition_;
-        float gravity_ => GameManager.Instance.gravity_;
-        float acceleration => AccelerateManager.Instance.acceleration_;
+        Vector3 normalize_;
+        bool isInsideAccelerate_ = false;
 
-        float bounceMinSpeed_ => BounceManager.Instance.controller.bounceMinSpeed_;
+        /// <summary>
+        /// ボールの重力ボーナス
+        /// </summary>
+        const float BALL_PLUS = 130;
 
-        float bounceMaxSpeed_ => BounceManager.Instance.controller.bounceMinSpeed_;
-
-        Rigidbody rb;
-        Vector3 velocity;
-        Vector3 normalize;
-
-        private bool isInsideAccelerate_ = false;
+        float ballForce_;
 
         // Start is called before the first frame update
         void Start()
         {
-            rb = GetComponent<Rigidbody>();
-            controller = new BallExtra();
-            startPosition_ = this.transform.position;
+            rb_ = GetComponent<Rigidbody>();
+            startPosition_ = transform.position;
+            ballForce_ = BALL_PLUS * gravity_;
         }
 
         // Update is called once per frame
         void Update()
         {
-            //Debug.Log("rb.velocity: " + rb.velocity);
-            if (this.transform.position.z <= -35)
-            {
-                this.transform.position = startPosition_;
-                GetComponent<Rigidbody>().Sleep();
-            }
+            //Debug.Log("rb.velocity: " + rb.velocity);            
+            ResetBallPos();
+        }
+
+        private void FixedUpdate()
+        {
+            rb_.AddForce(new Vector3(0, 0, ballForce_ * Time.deltaTime));
+            normalize_ = rb_.velocity.normalized;
+
+            TryAccelerate();
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.tag == "bounceObject_")
+            if (collision.gameObject.CompareTag("bounceObject_"))
             {
-                Rigidbody rb1 = GetComponent<Rigidbody>();
-                Vector3 normal = collision.contacts[0].normal;
-                Vector3 bounceDirection = Vector3.Reflect(normalize, normal);
-                //float bounceSpeed = velocity.magnitude * bounce;
-                float bounceSpeed = Mathf.Clamp(velocity.magnitude, bounceMinSpeed_, bounceMaxSpeed_);
-                Vector3 newVelocity = bounceDirection * bounceSpeed;
-                rb.velocity = newVelocity;
+                CollideBounceObjectReflect(collision);
             }            
         }
 
         private void OnTriggerEnter(Collider collision)
         {
-            if (collision.gameObject.tag == "accelerateRegion_")
+            if (collision.CompareTag("accelerateRegion_"))
             {
                 Physics.IgnoreCollision(collision, GetComponent<Collider>(), true);
-            }else if(collision.gameObject.tag == "task")
+            }else if(collision.CompareTag("task"))
             {
-                int number_ = collision.gameObject.GetComponent<ExecutingMission>().number_;                
-
-                if (number_ != MissionManager.Instance.completeNumber_) {
-                    MissionManager.Instance.CompleteMission(number_);
-                    Destroy(collision.gameObject);
-                }             
+                CompleteTask(collision);
             }
         }
 
         private void OnTriggerStay(Collider collision)
         {
-            if (collision.gameObject.tag == "accelerateRegion_")
+            if (collision.CompareTag("accelerateRegion_"))
             {
                 isInsideAccelerate_ = true;
-                //Debug.Log(isInsideAccelerate_);
             }
         }
 
         private void OnTriggerExit(Collider collision)
         {
-            if (collision.gameObject.tag == "accelerateRegion_")
+            if (collision.CompareTag("accelerateRegion_"))
             {
                 isInsideAccelerate_ = false;
                 Physics.IgnoreCollision(collision, GetComponent<Collider>(), false);
-                //Debug.Log(isInsideAccelerate_);
+            }
+        }
+
+        private void ResetBallPos()
+        {
+            if (transform.position.z <= BallLeave.z)
+            {
+                transform.position = startPosition_;
+                rb_.Sleep();
             }
         }
 
 
-
-        private void FixedUpdate()
+        private void TryAccelerate()
         {
-            velocity = rb.velocity;
-            velocity.z += gravity_ * Time.deltaTime;
-            rb.velocity = velocity;
-            normalize = rb.velocity.normalized;
-            //GetComponent<Rigidbody>().AddForce(new Vector3(0, 0,  gravity_ * Time.deltaTime));
             if (isInsideAccelerate_)
             {
-                Rigidbody rb = GetComponent<Rigidbody>();
-                rb.AddForce(rb.velocity.normalized * acceleration, ForceMode.Force);
+                rb_.AddForce(rb_.velocity.normalized * acceleration_, ForceMode.Force);
             }
         }
+
+        private void CompleteTask(Collider collision)
+        {
+            int number = collision.gameObject.GetComponent<ExecutingMission>().Number;
+            if (number != MissionManager.COMPLETE_NUMBER)
+            {
+                MissionManager.Instance.CompleteMission(number);
+                Destroy(collision.gameObject);
+            }
+        }
+
+        private void CollideBounceObjectReflect(Collision collision)
+        {
+            Vector3 normal = collision.contacts[0].normal;
+            Vector3 bounceDirection = Vector3.Reflect(normalize_, normal);
+            float bounceSpeed = Mathf.Clamp(rb_.velocity.magnitude, bounceMinForce_, bounceMaxForce_);
+            Vector3 newVelocity = bounceDirection * bounceSpeed;
+            rb_.velocity = newVelocity;
+        }
+
+        
     }
-
-    public class BallExtra
-    {
-
-    }
-
 }

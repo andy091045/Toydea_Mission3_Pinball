@@ -1,3 +1,4 @@
+using HD.Singleton;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,14 +6,29 @@ using UnityEngine;
 
 namespace BounceManagerNamespace
 {
-    public class BounceManager : MonoBehaviour
+    public class BounceManager : TSingletonMonoBehavior<BounceManager>
     {        
-        public static BounceManager Instance;
-        public BounceManagerExtra controller;
-        private void Awake()
-        {
-            Instance = this;
-        }
+        /// <summary>
+        /// tag = "bounceObject_" Groups
+        /// </summary>
+        public GameObject[] BounceObjects;
+
+        /// <summary>
+        /// tag = "bounceObject_2" Groups
+        /// </summary>
+        public GameObject[] BounceObjects2;
+
+        /// <summary>
+        /// tag = "bounceObject_" MaxSpeed
+        /// </summary>
+        public float BounceMaxForce;
+
+        /// <summary>
+        /// tag = "bounceObject_" MinSpeed
+        /// </summary>
+        public float BounceMinForce;
+
+
         void Start()
         {
         }
@@ -22,29 +38,5 @@ namespace BounceManagerNamespace
         {
 
         }
-    }
-
-    [Serializable]
-    public class BounceManagerExtra
-    {
-        /// <summary>
-        /// tag = "bounceObject_" Groups
-        /// </summary>
-        public GameObject[] bounceObjects;
-
-        /// <summary>
-        /// tag = "bounceObject_2" Groups
-        /// </summary>
-        public GameObject[] bounceObjects2;
-
-        /// <summary>
-        /// tag = "bounceObject_" MaxSpeed
-        /// </summary>
-        public float bounceMaxSpeed_;
-
-        /// <summary>
-        /// tag = "bounceObject_" MinSpeed
-        /// </summary>
-        public float bounceMinSpeed_;
     }
 }

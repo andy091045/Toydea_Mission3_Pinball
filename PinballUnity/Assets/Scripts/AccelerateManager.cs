@@ -2,25 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HD.Singleton;
+using UnityEngine.Pool;
 
 namespace AccelerateManagerNamespace
 {
-    public class AccelerateManager : MonoBehaviour
+    public class AccelerateManager : TSingletonMonoBehavior<AccelerateManager>
     {
-        public static AccelerateManager Instance;
-        public float acceleration_ = 100.0f;
-        private void Awake()
-        {
-            Instance = this;
-        }
-        void Start()
-        {
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        public float Acceleration = 100.0f; 
     }
 }

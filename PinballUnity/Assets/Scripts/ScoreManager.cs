@@ -1,4 +1,5 @@
 using AccelerateManagerNamespace;
+using HD.Singleton;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,27 +7,17 @@ using UnityEngine;
 
 namespace ScoreManagerNamespace
 {
-    public class ScoreManager : MonoBehaviour
+    public class ScoreManager : TSingletonMonoBehavior<ScoreManager>
     {
-        public static ScoreManager Instance;
-        public ScoreManagerExtra controller;
-        public int totalScore_ = 0;
+        public int TotalScore = 0;
 
-        private void Awake()
-        {
-            Instance = this;
-        }
-
-    }
-
-    public class ScoreManagerExtra
-    {
         public int Add(object a, object b)
         {
-            if (a is int && b is int) 
+            if (a is int && b is int)
             {
-                return (int)a + (int)b; 
-            }else if(a is float || b is float)
+                return (int)a + (int)b;
+            }
+            else if (a is float || b is float)
             {
                 throw new ArgumentException("Both parameters must be integers, not float");
             }
@@ -35,5 +26,11 @@ namespace ScoreManagerNamespace
                 throw new ArgumentException("Both parameters must be integers");
             }
         }
+
+        public void TotalScoreAdd(int score)
+        {
+            TotalScore = Add(TotalScore, score);
+        }
+
     }
 }

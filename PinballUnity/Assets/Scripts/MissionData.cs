@@ -4,17 +4,17 @@ namespace MissionNamespace
     [CreateAssetMenu(fileName = "NewMissionData", menuName = "Mission Data", order = 1)]
     public class MissionData : ScriptableObject
     {
-        public Mission[] missions;
+        public Mission[] Missions;
     }
 
     [System.Serializable]
     public class Mission
     {
-        public int number_;
-        public string description_ = "";
-        public int nextNumber_;
-        public int score_;
-        public Vector3 position_;
+        public int Number;
+        public string Description = "";
+        public int NextNumber;
+        public int Score;
+        public Vector3 Position;
 
     }
 }
