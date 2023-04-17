@@ -4,12 +4,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
+using UnityEngine.SocialPlatforms.Impl;
 
 namespace ScoreManagerNamespace
 {
     public class ScoreManager : TSingletonMonoBehavior<ScoreManager>
     {
         public int TotalScore = 0;
+        private void Start()
+        {
+            FindObjectOfType<MissionManager>().MissionCompleted += TotalScoreAdd;
+        }
 
         public int Add(object a, object b)
         {
@@ -27,8 +33,8 @@ namespace ScoreManagerNamespace
             }
         }
 
-        public void TotalScoreAdd(int score)
-        {
+        public void TotalScoreAdd(int number, string des, int nextNumber, int score, Vector3 pos)
+        {            
             TotalScore = Add(TotalScore, score);
         }
 

@@ -18,6 +18,9 @@ public class MissionManager : TSingletonMonoBehavior<MissionManager>
     List<Mission> mission_ = new List<Mission>();
     List<Mission> activeMissions_ = new List<Mission>();
 
+    public delegate void MissionCompleteEventHandler(int number, string des, int nextNumber, int score, Vector3 pos);
+    public event MissionCompleteEventHandler MissionCompleted;
+
     void Start()
     {
         // ≈™®ÅEMissionData §§™∫•Ù∞»∏ÅE∆
@@ -48,15 +51,13 @@ public class MissionManager : TSingletonMonoBehavior<MissionManager>
         //missions.Add(mission);
     }
 
+    
     public void CompleteMission(int number)
     {
         if (mission_[number].NextNumber != COMPLETE_NUMBER)
         {
             ExecuteMission(mission_[number].NextNumber);
-        }
-
-        ScoreManager.Instance.TotalScoreAdd(mission_[number].Score);
-        Debug.Log(ScoreManager.Instance.TotalScore);
+        }       
 
         for (int i = 0; i < activeMissions_.Count; i++)
         {
@@ -72,5 +73,18 @@ public class MissionManager : TSingletonMonoBehavior<MissionManager>
             // ©“¶≥•Ù∞»≥£§wßπ¶®
             Debug.Log("All missions completed!");
         }
+    }
+    
+    public void TriggerBall(int number, string des, int nextNumber, int score, Vector3 pos)
+    {
+        if (MissionCompleted != null)
+        {
+            MissionCompleted(number, des, nextNumber, score, pos);
+        }
+        if(number != COMPLETE_NUMBER)
+        {
+            Debug.Log("TriggerBall");
+            CompleteMission(number);
+        }        
     }
 }

@@ -66,9 +66,6 @@ namespace BallNamespace
             if (collision.CompareTag("accelerateRegion_"))
             {
                 Physics.IgnoreCollision(collision, GetComponent<Collider>(), true);
-            }else if(collision.CompareTag("task"))
-            {
-                CompleteTask(collision);
             }
         }
 
@@ -112,7 +109,7 @@ namespace BallNamespace
             int number = collision.gameObject.GetComponent<ExecutingMission>().Number;
             if (number != MissionManager.COMPLETE_NUMBER)
             {
-                MissionManager.Instance.CompleteMission(number);
+                //MissionManager.Instance.CompleteMission(number);
                 Destroy(collision.gameObject);
             }
         }

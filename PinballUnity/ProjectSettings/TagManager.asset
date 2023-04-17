@@ -8,6 +8,7 @@ TagManager:
   - bounceObject_
   - bounceObject_2
   - task
+  - ball
   layers:
   - Default
   - TransparentFX
