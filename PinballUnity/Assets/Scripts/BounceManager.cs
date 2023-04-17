@@ -7,7 +7,10 @@ using UnityEngine;
 namespace BounceManagerNamespace
 {
     public class BounceManager : TSingletonMonoBehavior<BounceManager>
-    {        
+    {
+        public delegate void OccurBounceEventHandler(int score);
+        public event OccurBounceEventHandler OccurBounce;
+
         /// <summary>
         /// tag = "bounceObject_" MaxSpeed
         /// </summary>
@@ -17,5 +20,11 @@ namespace BounceManagerNamespace
         /// tag = "bounceObject_" MinSpeed
         /// </summary>
         public float BounceMinForce;
+
+        public void CollideEnterBall(int score)
+        {
+            OccurBounce(score);
+        }
     }
+
 }

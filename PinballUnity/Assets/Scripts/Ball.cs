@@ -104,16 +104,6 @@ namespace BallNamespace
             }
         }
 
-        private void CompleteTask(Collider collision)
-        {
-            int number = collision.gameObject.GetComponent<ExecutingMission>().Number;
-            if (number != MissionManager.COMPLETE_NUMBER)
-            {
-                //MissionManager.Instance.CompleteMission(number);
-                Destroy(collision.gameObject);
-            }
-        }
-
         private void CollideBounceObjectReflect(Collision collision)
         {
             Vector3 normal = collision.contacts[0].normal;

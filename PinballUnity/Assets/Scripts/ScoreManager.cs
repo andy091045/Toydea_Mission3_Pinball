@@ -1,11 +1,8 @@
-using AccelerateManagerNamespace;
+using BounceManagerNamespace;
 using HD.Singleton;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
-using UnityEngine.SocialPlatforms.Impl;
+
 
 namespace ScoreManagerNamespace
 {
@@ -14,7 +11,8 @@ namespace ScoreManagerNamespace
         public int TotalScore = 0;
         private void Start()
         {
-            FindObjectOfType<MissionManager>().MissionCompleted += TotalScoreAdd;
+            MissionManager.Instance.MissionCompleted += TotalScoreAdd;
+            BounceManager.Instance.OccurBounce += TotalScoreAdd;
         }
 
         public int Add(object a, object b)
@@ -36,6 +34,13 @@ namespace ScoreManagerNamespace
         public void TotalScoreAdd(int number, string des, int nextNumber, int score, Vector3 pos)
         {            
             TotalScore = Add(TotalScore, score);
+            Debug.Log(TotalScore);
+        }
+
+        public void TotalScoreAdd(int score)
+        {
+            TotalScore = Add(TotalScore, score);
+            Debug.Log(TotalScore);
         }
 
     }

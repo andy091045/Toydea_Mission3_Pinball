@@ -83,7 +83,6 @@ public class MissionManager : TSingletonMonoBehavior<MissionManager>
         }
         if(number != COMPLETE_NUMBER)
         {
-            Debug.Log("TriggerBall");
             CompleteMission(number);
         }        
     }
