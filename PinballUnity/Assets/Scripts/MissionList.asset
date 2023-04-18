@@ -17,9 +17,9 @@ MonoBehaviour:
     Description: 123
     NextNumber: 1
     Score: 20
-    Position: {x: 0, y: 1.8, z: 0}
+    Position: {x: 0, y: -128, z: 88}
   - Number: 1
     Description: 321
     NextNumber: 999999
     Score: 30
-    Position: {x: 3, y: 1.8, z: 0}
+    Position: {x: -81, y: -128, z: 158}

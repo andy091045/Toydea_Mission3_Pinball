@@ -2,37 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Plunger : MonoBehaviour
+public class Plunger : CollisionObject
 {
-    public float Force;
-    float totalForce_ = 0;
-    GameObject ball_;
-    float fMin_ = 1;
-    float fMax_ = 6;
-    // Start is called before the first frame update
+    [SerializeField] private float force_;
+
+    private float totalForce_ = 0;
+
+    private GameObject ball_;
+
+    /// <summary>
+    /// totalForce_‚Ìmin_force
+    /// </summary>
+    private float fMin_ = 0.5f;
+
+    /// <summary>
+    /// totalForce_‚Ìmax_force
+    /// </summary>
+    private float fMax_ = 6;
+
     void Start()
     {
         ball_ = null;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        totalForce_ += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            totalForce_ += Time.deltaTime;
+            totalForce_ = 0;            
         }
         if (Input.GetKeyUp(KeyCode.Space) && ball_ != null)
         {
-            ball_.GetComponent<Rigidbody>().AddForce(new Vector3(0,0, Mathf.Clamp(totalForce_, fMin_, fMax_) * Force));
+            ball_.GetComponent<Rigidbody>().AddForce(new Vector3(0,0, Mathf.Clamp(totalForce_, fMin_, fMax_) * force_));
             totalForce_ = 0;
         }
+        //Debug.Log(totalForce_);
     }
-    private void OnCollisionEnter(Collision collision)
+
+    protected override void onCollisionEnterTag(Collision collision)
     {
         ball_ = collision.transform.gameObject;
     }
-    private void OnCollisionExit(Collision collision)
+    protected override void onCollisionExitTag(Collision collision)
     {
         ball_ = null;
     }

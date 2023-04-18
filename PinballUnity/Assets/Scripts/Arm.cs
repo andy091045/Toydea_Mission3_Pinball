@@ -1,4 +1,5 @@
 using GameManagerNamespace;
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,25 +11,27 @@ namespace ArmNamespace
     {
         public ArmType armtype;
 
-        public float Damper;
+        [Label("Arm‚Ì’e«")]
+        [SerializeField] private float damper_ = 1000000;
 
-        public float RotateAngle;
+        [Label("Arm‚Ì‰ñ“]”ÍˆÍ")]
+        [SerializeField] private float rotateAngle_ = 45;       
 
-        const float START_ANGLE = 30.0f;
+        private Rigidbody rb_;
 
-        Rigidbody rb_;
+        private HingeJoint hingeJoint_;
 
-        HingeJoint hingeJoint_;
-
-        JointSpring jointSpring_;
+        private JointSpring jointSpring_;
         float gravity_ => GameManager.Instance.Gravity;
+
+        private const float START_ANGLE = 30.0f;
 
         void Start()
         {
             rb_ = GetComponent<Rigidbody>();
             hingeJoint_ = GetComponent<HingeJoint>();
             jointSpring_ = new JointSpring();
-            jointSpring_.spring = Damper;
+            jointSpring_.spring = damper_;
         }
 
         // Update is called once per frame
@@ -51,11 +54,11 @@ namespace ArmNamespace
         {
             if (TypeIsLeftArm(armtype))
             {
-                jointSpring_.targetPosition = Input.GetKey(KeyCode.A) ? -(RotateAngle - START_ANGLE) : START_ANGLE;
+                jointSpring_.targetPosition = Input.GetKey(KeyCode.A) ? -(rotateAngle_ - START_ANGLE) : START_ANGLE;
             }
             else
             {
-                jointSpring_.targetPosition = Input.GetKey(KeyCode.D) ? RotateAngle - START_ANGLE : -START_ANGLE;
+                jointSpring_.targetPosition = Input.GetKey(KeyCode.D) ? rotateAngle_ - START_ANGLE : -START_ANGLE;
             }
             hingeJoint_.spring = jointSpring_;
         }

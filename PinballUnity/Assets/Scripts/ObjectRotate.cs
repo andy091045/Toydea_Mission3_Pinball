@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using NaughtyAttributes;
 
 public class ObjectRotate : MonoBehaviour
 {
+    [Label("回転速度")]
     [SerializeField] float yAngleSpeed_ = 50.0f;
 
+    [Label("プレスSpace速度倍率")]
     [SerializeField] float yAngleSpeedMultiply_ = 3;
 
     void Start()

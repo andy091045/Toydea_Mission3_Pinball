@@ -2,35 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GameManagerNamespace;
-using AccelerateManagerNamespace;
 using BounceManagerNamespace;
 using System.Threading.Tasks;
+using NaughtyAttributes;
 
 namespace BallNamespace
 {
     public class Ball : MonoBehaviour
     {
-        public Vector3 BallLeave = new Vector3(0, 0, -35);
-        float gravity_ => GameManager.Instance.Gravity;
-        float acceleration_ => AccelerateManager.Instance.Acceleration;
+        [Label("Pinball fall out pinball table")]
+        [SerializeField] private Vector3 ballLeaveTable_ = new Vector3(0, 0, -35);
+        private float gravity_ => GameManager.Instance.Gravity;
+        private float accelerateForce_ => GameManager.Instance.AccelerateForce;
 
-        float bounceMinForce_ => BounceManager.Instance.BounceMinForce;
+        private float bounceMinForce_ => GameManager.Instance.BounceManager.BounceMinForce;
 
-        float bounceMaxForce_ => BounceManager.Instance.BounceMinForce;
+        private float bounceMaxForce_ => GameManager.Instance.BounceManager.BounceMinForce;
         
-        Rigidbody rb_;
-        Vector3 startPosition_;
-        Vector3 normalize_;
-        bool isInsideAccelerate_ = false;
+        private Rigidbody rb_;
+        private Vector3 startPosition_;
+        private Vector3 normalize_;
+        private bool isInsideAccelerate_ = false;       
 
         /// <summary>
         /// ボールの重力ボーナス
         /// </summary>
-        const float BALL_PLUS = 130;
+        private const float BALL_PLUS = 130;
 
-        float ballForce_;
+        /// <summary>
+        /// BALL_PLUS * gravity_
+        /// </summary>
+        private float ballForce_;
 
-        // Start is called before the first frame update
         void Start()
         {
             rb_ = GetComponent<Rigidbody>();
@@ -38,7 +41,6 @@ namespace BallNamespace
             ballForce_ = BALL_PLUS * gravity_;
         }
 
-        // Update is called once per frame
         void Update()
         {
             //Debug.Log("rb.velocity: " + rb.velocity);            
@@ -64,16 +66,9 @@ namespace BallNamespace
         private void OnTriggerEnter(Collider collision)
         {
             if (collision.CompareTag("accelerateRegion_"))
-            {
+            {             
+                isInsideAccelerate_ = true;                
                 Physics.IgnoreCollision(collision, GetComponent<Collider>(), true);
-            }
-        }
-
-        private void OnTriggerStay(Collider collision)
-        {
-            if (collision.CompareTag("accelerateRegion_"))
-            {
-                isInsideAccelerate_ = true;
             }
         }
 
@@ -88,7 +83,7 @@ namespace BallNamespace
 
         private void ResetBallPos()
         {
-            if (transform.position.z <= BallLeave.z)
+            if (transform.position.z <= ballLeaveTable_.z)
             {
                 transform.position = startPosition_;
                 rb_.Sleep();
@@ -100,7 +95,7 @@ namespace BallNamespace
         {
             if (isInsideAccelerate_)
             {
-                rb_.AddForce(rb_.velocity.normalized * acceleration_, ForceMode.Force);
+                rb_.AddForce(rb_.velocity.normalized * accelerateForce_, ForceMode.Force);
             }
         }
 

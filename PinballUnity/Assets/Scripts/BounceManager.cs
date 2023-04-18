@@ -3,10 +3,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 namespace BounceManagerNamespace
 {
-    public class BounceManager : TSingletonMonoBehavior<BounceManager>
+    public class BounceManager : MonoBehaviour
     {
         public delegate void OccurBounceEventHandler(int score);
         public event OccurBounceEventHandler OccurBounce;
@@ -14,12 +15,15 @@ namespace BounceManagerNamespace
         /// <summary>
         /// tag = "bounceObject_" MaxSpeed
         /// </summary>
-        public float BounceMaxForce;
+        public float BounceMaxForce = 200;
 
         /// <summary>
         /// tag = "bounceObject_" MinSpeed
         /// </summary>
-        public float BounceMinForce;
+        public float BounceMinForce = 150;
+        
+        [Label("バウンススコア")]
+        public int oneBounceScore_ = 1000;
 
         public void CollideEnterBall(int score)
         {

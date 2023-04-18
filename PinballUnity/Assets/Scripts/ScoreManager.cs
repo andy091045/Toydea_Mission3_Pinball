@@ -1,18 +1,17 @@
-using BounceManagerNamespace;
+using GameManagerNamespace;
 using HD.Singleton;
 using System;
 using UnityEngine;
 
-
 namespace ScoreManagerNamespace
 {
-    public class ScoreManager : TSingletonMonoBehavior<ScoreManager>
+    public class ScoreManager : MonoBehaviour
     {
-        public int TotalScore = 0;
+        [SerializeField] private int TotalScore = 0;
         private void Start()
         {
-            MissionManager.Instance.MissionCompleted += TotalScoreAdd;
-            BounceManager.Instance.OccurBounce += TotalScoreAdd;
+            GameManager.Instance.MissionManager.MissionCompleted += TotalScoreAdd;
+            GameManager.Instance.BounceManager.OccurBounce += TotalScoreAdd;
         }
 
         public int Add(object a, object b)
@@ -34,13 +33,13 @@ namespace ScoreManagerNamespace
         public void TotalScoreAdd(int number, string des, int nextNumber, int score, Vector3 pos)
         {            
             TotalScore = Add(TotalScore, score);
-            Debug.Log(TotalScore);
+            Debug.Log("ã`•ª: " + TotalScore);
         }
 
         public void TotalScoreAdd(int score)
         {
             TotalScore = Add(TotalScore, score);
-            Debug.Log(TotalScore);
+            Debug.Log("ã`•ª: " + TotalScore);
         }
 
     }

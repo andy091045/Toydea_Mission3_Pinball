@@ -1,21 +1,29 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameManagerNamespace;
 
-public class ExecutingMission : MonoBehaviour
+public class ExecutingMission : TriggerObject
 {
+    [Label("タスクコード")]
     public int Number = 0;
+
+    [Label("説明")]
     public string Description = "no";
+
+    [Label("次のタスクコード")]
     public int NextNumber = 0;
+
+    [Label("分数")]
     public int Score = 0;
+
+    [Label("位置")]
     public Vector3 Position = new Vector3(0, 0, 0);
 
-    private void OnTriggerEnter(Collider other)
+    protected override void onTriggerEnterTag(Collider other)
     {
-        if (other.CompareTag("ball"))
-        {
-            MissionManager.Instance.TriggerBall(Number, Description, NextNumber, Score, Position);
-        }
+        GameManager.Instance.MissionManager.TriggerBall(Number, Description, NextNumber, Score, Position);
         Destroy(gameObject);
     }
 }

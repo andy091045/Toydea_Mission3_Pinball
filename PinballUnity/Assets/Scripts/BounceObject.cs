@@ -1,28 +1,14 @@
-using BounceManagerNamespace;
+using GameManagerNamespace;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BounceObject : MonoBehaviour
+public class BounceObject : CollisionObject
 {
-    public int OneBounceScore = 1000;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private int oneBounceScore_ => GameManager.Instance.BounceManager.oneBounceScore_;
 
-    // Update is called once per frame
-    void Update()
+    protected override void onCollisionEnterTag(Collision collision)
     {
-        
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("ball"))
-        {
-            BounceManager.Instance.CollideEnterBall(OneBounceScore);
-        }
+        GameManager.Instance.BounceManager.CollideEnterBall(oneBounceScore_);
     }
 }
