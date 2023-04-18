@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GameManagerNamespace;
@@ -24,7 +24,7 @@ namespace BallNamespace
         bool isInsideAccelerate_ = false;
 
         /// <summary>
-        /// ƒ{[ƒ‹‚Ìd—Íƒ{[ƒiƒX
+        /// ãƒœãƒ¼ãƒ«ã®é‡åŠ›ãƒœãƒ¼ãƒŠã‚¹
         /// </summary>
         const float BALL_PLUS = 130;
 
@@ -112,7 +112,5 @@ namespace BallNamespace
             Vector3 newVelocity = bounceDirection * bounceSpeed;
             rb_.velocity = newVelocity;
         }
-
-        
     }
 }
