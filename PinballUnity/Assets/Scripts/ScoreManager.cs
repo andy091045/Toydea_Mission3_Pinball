@@ -10,7 +10,7 @@ namespace ScoreManagerNamespace
         public delegate void MissionScoreEventHandler(int score);
         public event MissionScoreEventHandler OccurAddScore;
 
-        [SerializeField] private int TotalScore = 0;
+        public int TotalScore = 0;
         private void Start()
         {
             GameManager.Instance.MissionManager.MissionCompleted += TotalScoreAdd;

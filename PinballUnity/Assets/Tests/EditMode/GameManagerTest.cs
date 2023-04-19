@@ -22,17 +22,6 @@ public class GameManagerTest
 
         Assert.That(gravity_, Is.EqualTo(x));
     }
-
-    [TestCase(500.0f)]
-    public void GameManager_AccelerateForce_Test(float x)
-    {
-        var gameObject = new GameObject();
-        var gameManager_ = gameObject.AddComponent<GameManager>();
-
-        var gravity_ = gameManager_.AccelerateForce;
-
-        Assert.That(gravity_, Is.EqualTo(x));
-    }
 }
 
 

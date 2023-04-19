@@ -6,6 +6,8 @@ namespace AccelerateManagerNamespace
 {
     public class AccelerateManager : MonoBehaviour
     {
+        public float AccelerateForce = 500.0f;
+
         public delegate void OccurAccelerateEventHandler(bool isInAccelerateRegion, float AccelerateAddForce, Collider collider);
         public event OccurAccelerateEventHandler OccurAccelerate;
 

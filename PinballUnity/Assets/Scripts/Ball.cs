@@ -13,7 +13,7 @@ namespace BallNamespace
         [Label("Pinball fall out pinball table")]
         [SerializeField] private Vector3 ballLeaveTable_ = new Vector3(0, 0, -35);
         private float gravity_ => GameManager.Instance.Gravity;
-        private float accelerateForce_ => GameManager.Instance.AccelerateForce;
+        private float accelerateForce_ => GameManager.Instance.AccelerateManager.AccelerateForce;
 
         private float bounceMinForce_ => GameManager.Instance.BounceManager.BounceMinForce;
 

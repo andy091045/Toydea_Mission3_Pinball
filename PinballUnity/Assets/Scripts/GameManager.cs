@@ -9,6 +9,7 @@ using MissionNamespace;
 using ScoreManagerNamespace;
 using AccelerateManagerNamespace;
 using NaughtyAttributes;
+using StateManagerNamespace;
 
 namespace GameManagerNamespace
 {
@@ -27,12 +28,12 @@ namespace GameManagerNamespace
         private GameObject AccelerateManagerGameObject;
         public AccelerateManager AccelerateManager { get; private set; }
 
+        private GameObject StateManagerGameObject;
+        public StateManager StateManager { get; private set; }
         /// <summary>
         /// ­«¤O
         /// </summary>
-        public float Gravity = -50.0f;
-
-        public float AccelerateForce = 500.0f;
+        public float Gravity = -50.0f;        
 
         public GameObject TaskPrefab;
 
@@ -45,6 +46,9 @@ namespace GameManagerNamespace
 
         protected override void init()
         {
+            StateManagerGameObject = new GameObject("StateManager");
+            StateManager = StateManagerGameObject.AddComponent<StateManager>();
+
             BounceManagerGameObject = new GameObject("BounceManager");
             BounceManager = BounceManagerGameObject.AddComponent<BounceManager>();
 
