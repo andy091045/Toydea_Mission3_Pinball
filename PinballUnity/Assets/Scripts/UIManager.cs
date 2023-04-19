@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public Text Score;
-    public Text MissionDes;
+    public Text Des;
     private bool isAllComplete_ => GameManager.Instance.MissionManager.isAllMissionComplete;
     private void Awake()
     {
@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     {
         if (isAllComplete_)
         {
-            MissionDes.text = "All missions completed!";
+            Des.text = "All missions completed!";
         }
     }
 
@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
         
         if (!isAllComplete_)
         {            
-            MissionDes.text = "Mission" + number + ": " + des + " ";
+            Des.text = "Mission" + number + ": " + des + " ";
         }        
     }
 }

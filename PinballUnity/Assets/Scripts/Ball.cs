@@ -58,6 +58,7 @@ namespace BallNamespace
         {
             if (transform.position.z <= ballLeaveTable_.z)
             {
+                GameManager.Instance.LifeManager.LifeCount(1,'-');
                 transform.position = startPosition_;
                 rb_.Sleep();
             }

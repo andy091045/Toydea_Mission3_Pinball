@@ -42,7 +42,7 @@ namespace StateManagerNamespace
                     break;
                 default:
                     break;
-            }
+            }          
 
         }
 
@@ -61,7 +61,7 @@ namespace StateManagerNamespace
 
         public enum State_Enum
         {
-            stage1, stage2, stage3, stage4
+            stage1, stage2, stage3, stage4, finish
         }
     }
 }

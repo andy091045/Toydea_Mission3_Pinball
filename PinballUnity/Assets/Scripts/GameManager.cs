@@ -10,6 +10,7 @@ using ScoreManagerNamespace;
 using AccelerateManagerNamespace;
 using NaughtyAttributes;
 using StateManagerNamespace;
+using LifeManagerNamespace;
 
 namespace GameManagerNamespace
 {
@@ -18,7 +19,6 @@ namespace GameManagerNamespace
         private GameObject BounceManagerGameObject;
         public BounceManager BounceManager { get; private set; }
 
-
         private GameObject MissionManagerGameObject;
         public MissionManager MissionManager { get; private set; }
 
@@ -26,10 +26,14 @@ namespace GameManagerNamespace
         public ScoreManager ScoreManager { get; private set; }
 
         private GameObject AccelerateManagerGameObject;
-        public AccelerateManager AccelerateManager { get; private set; }
+        public AccelerateManager AccelerateManager { get; private set; }        
+
+        private GameObject LifeManagerGameObject;
+        public LifeManager LifeManager { get; private set; }
 
         private GameObject StateManagerGameObject;
         public StateManager StateManager { get; private set; }
+
         /// <summary>
         /// ­«¤O
         /// </summary>
@@ -46,8 +50,8 @@ namespace GameManagerNamespace
 
         protected override void init()
         {
-            StateManagerGameObject = new GameObject("StateManager");
-            StateManager = StateManagerGameObject.AddComponent<StateManager>();
+            //StateManagerGameObject = new GameObject("StateManager");
+            //StateManager = StateManagerGameObject.AddComponent<StateManager>();
 
             BounceManagerGameObject = new GameObject("BounceManager");
             BounceManager = BounceManagerGameObject.AddComponent<BounceManager>();
@@ -62,6 +66,9 @@ namespace GameManagerNamespace
 
             AccelerateManagerGameObject = new GameObject("AccelerateManager");
             AccelerateManager = AccelerateManagerGameObject.AddComponent<AccelerateManager>();
+
+            LifeManagerGameObject = new GameObject("AccelerateManager");
+            LifeManager = LifeManagerGameObject.AddComponent<LifeManager>();
         }
     }
 }
