@@ -7,9 +7,9 @@ namespace StateManagerNamespace
 {
     public class StateManager : MonoBehaviour
     {
-        public IState CurrentState;
+        public StateBase CurrentState;
 
-        private Dictionary<State_Enum, IState> status_ = new Dictionary<State_Enum, IState>();
+        private Dictionary<State_Enum, StateBase> status_ = new Dictionary<State_Enum, StateBase>();
         private float Score = GameManager.Instance.ScoreManager.TotalScore;
         private void Awake()
         {

@@ -2,26 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using StateManagerNamespace;
-public class Finish : IState
+public class Finish : StateBase
 {
-    private StateManager stateManager;
-
-    public Finish(StateManager stateManager)
+    public Finish(StateManager m) : base(m)
     {
-        this.stateManager = stateManager;
     }
 
-    public void OnEnter()
+    public override void OnEnter()
     {
 
     }
 
-    public void OnExit()
+    public override void OnExit()
     {
 
     }
 
-    public void OnUpdate()
+    public override void OnUpdate()
     {
 
     }

@@ -1,12 +1,28 @@
+using StateManagerNamespace;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IState 
+public abstract class StateBase
 {
-    void OnEnter();
+    protected StateManager stateManager;
+    public StateBase(StateManager m)
+    {
+        stateManager = m;
+    }
 
-    void OnUpdate();
+    public virtual void OnEnter()
+    {
 
-    void OnExit();
+    }
+
+    public virtual void OnUpdate()
+    {
+
+    }
+
+    public virtual void OnExit()
+    {
+
+    }
 }

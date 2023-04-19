@@ -2,27 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using StateManagerNamespace;
-public class Stage2 : IState
+public class Stage2 : StateBase
 {
-    private StateManager stateManager;
-
-    public Stage2(StateManager stateManager)
+    public Stage2(StateManager m) : base(m)
     {
-        this.stateManager = stateManager;
     }
 
-    public void OnEnter()
-    {
-
-    }
-
-    public void OnExit()
-    {
-
-    }
-
-    public void OnUpdate()
+    public override void OnEnter()
     {
         //啟動可以加血量的道具以及系統
+    }
+
+    public override void OnExit()
+    {
+
+    }
+
+    public override void OnUpdate()
+    {
+
     }
 }

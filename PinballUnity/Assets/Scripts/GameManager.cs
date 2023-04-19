@@ -50,9 +50,6 @@ namespace GameManagerNamespace
 
         protected override void init()
         {
-            //StateManagerGameObject = new GameObject("StateManager");
-            //StateManager = StateManagerGameObject.AddComponent<StateManager>();
-
             BounceManagerGameObject = new GameObject("BounceManager");
             BounceManager = BounceManagerGameObject.AddComponent<BounceManager>();
 
@@ -63,6 +60,9 @@ namespace GameManagerNamespace
 
             ScoreManagerGameObject = new GameObject("ScoreManager");
             ScoreManager = ScoreManagerGameObject.AddComponent<ScoreManager>();
+
+            StateManagerGameObject = new GameObject("StateManager");
+            StateManager = StateManagerGameObject.AddComponent<StateManager>();
 
             AccelerateManagerGameObject = new GameObject("AccelerateManager");
             AccelerateManager = AccelerateManagerGameObject.AddComponent<AccelerateManager>();
