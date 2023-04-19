@@ -7,6 +7,9 @@ namespace ScoreManagerNamespace
 {
     public class ScoreManager : MonoBehaviour
     {
+        public delegate void MissionScoreEventHandler(int score);
+        public event MissionScoreEventHandler OccurAddScore;
+
         [SerializeField] private int TotalScore = 0;
         private void Start()
         {
@@ -34,12 +37,14 @@ namespace ScoreManagerNamespace
         {            
             TotalScore = Add(TotalScore, score);
             Debug.Log("ã`•ª: " + TotalScore);
+            OccurAddScore(TotalScore);
         }
 
         public void TotalScoreAdd(int score)
         {
             TotalScore = Add(TotalScore, score);
             Debug.Log("ã`•ª: " + TotalScore);
+            OccurAddScore(TotalScore);
         }
 
     }

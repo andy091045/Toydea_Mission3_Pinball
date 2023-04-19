@@ -20,6 +20,12 @@ namespace MissionManagerNamespace
         public delegate void MissionCompleteEventHandler(int number, string des, int nextNumber, int score, Vector3 pos);
         public event MissionCompleteEventHandler MissionCompleted;
 
+        public delegate void MissionExecuteEventHandler(int number, string des, int nextNumber, int score);
+        public event MissionExecuteEventHandler OccurMissionExecute;
+
+        public bool isAllMissionComplete = false;
+
+        public ExecutingMission MissionClass;
         void Start()
         {
             // ﾅｪｨ・MissionData ､､ｪｺ･ﾈｸ・ﾆ
@@ -39,13 +45,15 @@ namespace MissionManagerNamespace
         {
             // ･ﾍｦｨ･ﾈｪｫ･・
             GameObject executingObject_ = Instantiate(TaskPrefab, mission_[number].Position, Quaternion.identity);
-            var MissionClass = executingObject_.GetComponent<ExecutingMission>();
+            MissionClass = executingObject_.GetComponent<ExecutingMission>();
             MissionClass.Number = mission_[number].Number;
             MissionClass.Description = mission_[number].Description;
             MissionClass.NextNumber = mission_[number].NextNumber;
             MissionClass.Score = mission_[number].Score;
             MissionClass.Position = mission_[number].Position;
-
+        
+            OccurMissionExecute(MissionClass.Number, MissionClass.Description, MissionClass.NextNumber, MissionClass.Score);
+            
             // ｱN･ﾈ･[､J･ﾈｲMｳ・
             //missions.Add(mission);
         }
@@ -70,6 +78,7 @@ namespace MissionManagerNamespace
             if (activeMissions_.Count == 0)
             {
                 // ｩﾒｦｳ･ﾈｳ｣､wｧｹｦｨ
+                isAllMissionComplete = true;
                 Debug.Log("All missions completed!");
             }
         }

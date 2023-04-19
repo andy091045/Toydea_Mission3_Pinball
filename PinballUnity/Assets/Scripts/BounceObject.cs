@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BounceObject : CollisionObject
 {
-    private int oneBounceScore_ => GameManager.Instance.BounceManager.oneBounceScore_;
+    private int oneBounceScore_ => GameManager.Instance.BounceScore;
 
     protected override void onCollisionEnterTag(Collision collision)
     {

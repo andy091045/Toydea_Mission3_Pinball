@@ -23,10 +23,7 @@ namespace BounceManagerNamespace
         /// <summary>
         /// tag = "bounceObject_" MinSpeed
         /// </summary>
-        public float BounceMinForce = 150;
-        
-        [Label("バウンススコア")]
-        public int oneBounceScore_ = 1000;
+        public float BounceMinForce = 150;        
 
         public void CollideEnterBall(int score, Collision collision)
         {

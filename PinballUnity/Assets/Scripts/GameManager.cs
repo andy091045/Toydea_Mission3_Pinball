@@ -8,6 +8,7 @@ using MissionManagerNamespace;
 using MissionNamespace;
 using ScoreManagerNamespace;
 using AccelerateManagerNamespace;
+using NaughtyAttributes;
 
 namespace GameManagerNamespace
 {
@@ -36,6 +37,11 @@ namespace GameManagerNamespace
         public GameObject TaskPrefab;
 
         public MissionData MissionData;
+
+        [Label("バウンススコア")]
+        public int BounceScore = 100;
+
+        public int MissionScore = 1000;
 
         protected override void init()
         {
