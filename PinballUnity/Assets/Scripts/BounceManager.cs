@@ -9,8 +9,11 @@ namespace BounceManagerNamespace
 {
     public class BounceManager : MonoBehaviour
     {
-        public delegate void OccurBounceEventHandler(int score);
-        public event OccurBounceEventHandler OccurBounce;
+        public delegate void BounceAddScoreEventHandler(int score);
+        public event BounceAddScoreEventHandler OccurBounceAddScore;
+
+        public delegate void BouncePhysicEventHandler(Collision collision);
+        public event BouncePhysicEventHandler OccurBouncePhysic;
 
         /// <summary>
         /// tag = "bounceObject_" MaxSpeed
@@ -25,9 +28,10 @@ namespace BounceManagerNamespace
         [Label("バウンススコア")]
         public int oneBounceScore_ = 1000;
 
-        public void CollideEnterBall(int score)
+        public void CollideEnterBall(int score, Collision collision)
         {
-            OccurBounce(score);
+            OccurBounceAddScore(score);
+            OccurBouncePhysic(collision);
         }
     }
 

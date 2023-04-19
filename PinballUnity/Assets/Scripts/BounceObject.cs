@@ -9,6 +9,6 @@ public class BounceObject : CollisionObject
 
     protected override void onCollisionEnterTag(Collision collision)
     {
-        GameManager.Instance.BounceManager.CollideEnterBall(oneBounceScore_);
+        GameManager.Instance.BounceManager.CollideEnterBall(oneBounceScore_, collision);
     }
 }

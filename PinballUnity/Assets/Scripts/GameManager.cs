@@ -7,6 +7,7 @@ using BounceManagerNamespace;
 using MissionManagerNamespace;
 using MissionNamespace;
 using ScoreManagerNamespace;
+using AccelerateManagerNamespace;
 
 namespace GameManagerNamespace
 {
@@ -22,6 +23,9 @@ namespace GameManagerNamespace
         private GameObject ScoreManagerGameObject;
         public ScoreManager ScoreManager { get; private set; }
 
+        private GameObject AccelerateManagerGameObject;
+        public AccelerateManager AccelerateManager { get; private set; }
+
         /// <summary>
         /// ­«¤O
         /// </summary>
@@ -33,7 +37,7 @@ namespace GameManagerNamespace
 
         public MissionData MissionData;
 
-        private void Start()
+        protected override void init()
         {
             BounceManagerGameObject = new GameObject("BounceManager");
             BounceManager = BounceManagerGameObject.AddComponent<BounceManager>();
@@ -45,6 +49,9 @@ namespace GameManagerNamespace
 
             ScoreManagerGameObject = new GameObject("ScoreManager");
             ScoreManager = ScoreManagerGameObject.AddComponent<ScoreManager>();
+
+            AccelerateManagerGameObject = new GameObject("AccelerateManager");
+            AccelerateManager = AccelerateManagerGameObject.AddComponent<AccelerateManager>();
         }
     }
 }

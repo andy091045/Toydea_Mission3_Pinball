@@ -21,8 +21,7 @@ namespace BallNamespace
         
         private Rigidbody rb_;
         private Vector3 startPosition_;
-        private Vector3 normalize_;
-        private bool isInsideAccelerate_ = false;       
+        private Vector3 normalize_;    
 
         /// <summary>
         /// ボールの重力ボーナス
@@ -39,6 +38,8 @@ namespace BallNamespace
             rb_ = GetComponent<Rigidbody>();
             startPosition_ = transform.position;
             ballForce_ = BALL_PLUS * gravity_;
+            GameManager.Instance.AccelerateManager.OccurAccelerate += AccelerateAddForce;
+            GameManager.Instance.BounceManager.OccurBouncePhysic += BounceAddForce;
         }
 
         void Update()
@@ -51,35 +52,7 @@ namespace BallNamespace
         {
             rb_.AddForce(new Vector3(0, 0, ballForce_ * Time.deltaTime));
             normalize_ = rb_.velocity.normalized;
-
-            TryAccelerate();
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (collision.gameObject.CompareTag("bounceObject_"))
-            {
-                CollideBounceObjectReflect(collision);
-            }            
-        }
-
-        private void OnTriggerEnter(Collider collision)
-        {
-            if (collision.CompareTag("accelerateRegion_"))
-            {             
-                isInsideAccelerate_ = true;                
-                Physics.IgnoreCollision(collision, GetComponent<Collider>(), true);
-            }
-        }
-
-        private void OnTriggerExit(Collider collision)
-        {
-            if (collision.CompareTag("accelerateRegion_"))
-            {
-                isInsideAccelerate_ = false;
-                Physics.IgnoreCollision(collision, GetComponent<Collider>(), false);
-            }
-        }
+        }        
 
         private void ResetBallPos()
         {
@@ -90,22 +63,21 @@ namespace BallNamespace
             }
         }
 
-
-        private void TryAccelerate()
-        {
-            if (isInsideAccelerate_)
-            {
-                rb_.AddForce(rb_.velocity.normalized * accelerateForce_, ForceMode.Force);
-            }
-        }
-
-        private void CollideBounceObjectReflect(Collision collision)
+        private void BounceAddForce(Collision collision)
         {
             Vector3 normal = collision.contacts[0].normal;
             Vector3 bounceDirection = Vector3.Reflect(normalize_, normal);
             float bounceSpeed = Mathf.Clamp(rb_.velocity.magnitude, bounceMinForce_, bounceMaxForce_);
             Vector3 newVelocity = bounceDirection * bounceSpeed;
             rb_.velocity = newVelocity;
+        }
+
+        private void AccelerateAddForce(bool isInAccelerateRegion, float AccelerateAddForce, Collider collider)
+        {
+            if (isInAccelerateRegion)
+            {
+                rb_.AddForce(rb_.velocity.normalized * accelerateForce_, ForceMode.Force);
+            }
         }
     }
 }
