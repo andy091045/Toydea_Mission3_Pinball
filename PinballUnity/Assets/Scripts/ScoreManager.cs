@@ -13,7 +13,7 @@ namespace ScoreManagerNamespace
         public int TotalScore = 0;
         private void Start()
         {
-            GameManager.Instance.MissionManager.MissionCompleted += TotalScoreAdd;
+            GameManager.Instance.MissionManager.OccurMissionCompleted += TotalScoreAdd;
             GameManager.Instance.BounceManager.OccurBounceAddScore += TotalScoreAdd;
         }
 
@@ -36,14 +36,14 @@ namespace ScoreManagerNamespace
         public void TotalScoreAdd(int number, string des, int nextNumber, int score, Vector3 pos)
         {            
             TotalScore = Add(TotalScore, score);
-            Debug.Log("ã`•ª: " + TotalScore);
+            //Debug.Log("ã`•ª: " + TotalScore);
             OccurAddScore(TotalScore);
         }
 
         public void TotalScoreAdd(int score)
         {
             TotalScore = Add(TotalScore, score);
-            Debug.Log("ã`•ª: " + TotalScore);
+            //Debug.Log("ã`•ª: " + TotalScore);
             OccurAddScore(TotalScore);
         }
 

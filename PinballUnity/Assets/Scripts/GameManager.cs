@@ -16,30 +16,21 @@ namespace GameManagerNamespace
 {
     public class GameManager : TSingletonMonoBehavior<GameManager>
     {
-        private GameObject BounceManagerGameObject;
         public BounceManager BounceManager { get; private set; }
-
-        private GameObject MissionManagerGameObject;
         public MissionManager MissionManager { get; private set; }
-
-        private GameObject ScoreManagerGameObject;
         public ScoreManager ScoreManager { get; private set; }
-
-        private GameObject AccelerateManagerGameObject;
-        public AccelerateManager AccelerateManager { get; private set; }        
-
-        private GameObject LifeManagerGameObject;
+        public AccelerateManager AccelerateManager { get; private set; }
         public LifeManager LifeManager { get; private set; }
-
-        private GameObject StateManagerGameObject;
         public StateManager StateManager { get; private set; }
 
         /// <summary>
         /// ­«¤O
         /// </summary>
-        public float Gravity = -50.0f;        
+        public float Gravity = -50.0f;
 
         public GameObject TaskPrefab;
+
+        public GameObject HeartPrefab;
 
         public MissionData MissionData;
 
@@ -47,6 +38,20 @@ namespace GameManagerNamespace
         public int BounceScore = 100;
 
         public int MissionScore = 1000;
+
+        public GameObject PositionData;
+
+        private GameObject BounceManagerGameObject;
+
+        private GameObject MissionManagerGameObject;        
+
+        private GameObject ScoreManagerGameObject;        
+
+        private GameObject AccelerateManagerGameObject;               
+
+        private GameObject LifeManagerGameObject;        
+
+        private GameObject StateManagerGameObject;        
 
         protected override void init()
         {
@@ -57,6 +62,7 @@ namespace GameManagerNamespace
             MissionManager = MissionManagerGameObject.AddComponent<MissionManager>();
             MissionManager.MissionData = MissionData;
             MissionManager.TaskPrefab = TaskPrefab;
+            MissionManager.HeartPrefab = HeartPrefab;
 
             ScoreManagerGameObject = new GameObject("ScoreManager");
             ScoreManager = ScoreManagerGameObject.AddComponent<ScoreManager>();
@@ -69,6 +75,11 @@ namespace GameManagerNamespace
 
             LifeManagerGameObject = new GameObject("AccelerateManager");
             LifeManager = LifeManagerGameObject.AddComponent<LifeManager>();
+        }
+
+        public List<Vector3> GetPositionVector3()
+        {
+            return PositionData.GetComponent<SaveLocationList>().PositionsVector3;
         }
     }
 }

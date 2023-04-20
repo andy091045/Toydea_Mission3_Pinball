@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using StateManagerNamespace;
+using GameManagerNamespace;
 public class Stage2 : StateBase
 {
     public Stage2(StateManager m) : base(m)
@@ -11,6 +12,7 @@ public class Stage2 : StateBase
     public override void OnEnter()
     {
         //啟動可以加血量的道具以及系統
+        GameManager.Instance.MissionManager.IsGiftMissionStart = true;
     }
 
     public override void OnExit()

@@ -4,12 +4,18 @@ using System.Reflection;
 using UnityEngine;
 using MissionNamespace;
 using HD.Singleton;
+using GameManagerNamespace;
+using NaughtyAttributes;
+using Codice.Client.BaseCommands;
+using UnityEngine.UIElements;
 
 namespace MissionManagerNamespace
 {    public class MissionManager : MonoBehaviour
     {
+        public GameObject HeartPrefab;
         public GameObject TaskPrefab;
         public MissionData MissionData;
+        public bool IsGiftMissionStart = false;
 
         //public List<Mission> completedMissions_ = new List<Mission>();
         public const int COMPLETE_NUMBER = 999999;
@@ -18,16 +24,38 @@ namespace MissionManagerNamespace
         List<Mission> activeMissions_ = new List<Mission>();
 
         public delegate void MissionCompleteEventHandler(int number, string des, int nextNumber, int score, Vector3 pos);
-        public event MissionCompleteEventHandler MissionCompleted;
+        public event MissionCompleteEventHandler OccurMissionCompleted;
+
+        public delegate void HeartCompleteEventHandler(int number, char pointer);
+        public event HeartCompleteEventHandler OccurHeartCompleted;
 
         public delegate void MissionExecuteEventHandler(int number, string des, int nextNumber, int score);
         public event MissionExecuteEventHandler OccurMissionExecute;
 
         public bool isAllMissionComplete = false;
 
-        public ExecutingMission MissionClass;
+        public MissionObject MissionClass;
+
+        [Label("最小ビルド時間")]
+        [SerializeField] private const float CREATE_TIME_MIN = 1.0f;
+
+        [Label("最大ビルド時間")]
+        [SerializeField] private const float CREATE_TIME_MAX = 2.0f;
+
+        private List<Vector3> positions_ => GameManager.Instance.GetPositionVector3();
+
+        private List<Vector3> positionsIsNotCreated_ = new List<Vector3>();
+
+        private List<Vector3> positionsIsCreated_ = new List<Vector3>();
+
+        private IEnumerator coroutine_;
+
+        private bool isCreatingHeart = false;
+
         void Start()
         {
+            positionsIsNotCreated_ = positions_;
+
             // ﾅｪｨ・MissionData ､､ｪｺ･ﾈｸ・ﾆ
             Mission[] missions = MissionData.Missions;
 
@@ -41,11 +69,16 @@ namespace MissionManagerNamespace
             ExecuteMission(mission_[0].Number);
         }
 
+        private void Update()
+        {
+            HeartMission();
+        }
+
         public void ExecuteMission(int number)
         {
             // ･ﾍｦｨ･ﾈｪｫ･・
             GameObject executingObject_ = Instantiate(TaskPrefab, mission_[number].Position, Quaternion.identity);
-            MissionClass = executingObject_.GetComponent<ExecutingMission>();
+            MissionClass = executingObject_.GetComponent<MissionObject>();
             MissionClass.Number = mission_[number].Number;
             MissionClass.Description = mission_[number].Description;
             MissionClass.NextNumber = mission_[number].NextNumber;
@@ -85,15 +118,63 @@ namespace MissionManagerNamespace
 
         public void TriggerBall(int number, string des, int nextNumber, int score, Vector3 pos)
         {
-            if (MissionCompleted != null)
+            if (OccurMissionCompleted != null)
             {
-                MissionCompleted(number, des, nextNumber, score, pos);
+                OccurMissionCompleted(number, des, nextNumber, score, pos);
             }
             if (number != COMPLETE_NUMBER)
             {
                 CompleteMission(number);
             }
         }
+
+        public void TriggerHeart(int num, char pointer)
+        {
+            if(OccurHeartCompleted != null)
+            {
+                OccurHeartCompleted(num, pointer);
+            }
+        }
+
+        
+        private void HeartMission()
+        {
+            if (IsGiftMissionStart && !isCreatingHeart && positionsIsNotCreated_.Count !=0 )
+            {
+                isCreatingHeart = true;
+                Debug.Log("開始禮物系統");
+                float createTime = Random.Range(CREATE_TIME_MIN, CREATE_TIME_MAX) ;
+                int i = Random.Range(0, positionsIsNotCreated_.Count);
+                Vector3 pos = positionsIsNotCreated_[i];
+                positionsIsNotCreated_.Remove(positionsIsNotCreated_[i]);                
+                Debug.Log("positionsIsNotCreated_.Count: " + positionsIsNotCreated_.Count);
+                foreach (Vector3 position in positionsIsNotCreated_)
+                {
+                    Debug.Log(position);
+                }
+                Debug.Log("------------------------------");
+                positionsIsCreated_.Add(pos);
+                coroutine_ = WaitAndCreate(createTime, pos);
+                StartCoroutine(coroutine_);
+            }
+        }
+        
+        public void ReturnPosition(Vector3 pos)
+        {
+            positionsIsCreated_.Remove(pos);
+            positionsIsNotCreated_.Add(pos);
+        }
+
+        private IEnumerator WaitAndCreate(float waitTime, Vector3 createPos)
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(waitTime);
+                Instantiate(HeartPrefab, createPos, Quaternion.identity);
+                isCreatingHeart = false;
+            }
+        }
+
     }
 }
 
