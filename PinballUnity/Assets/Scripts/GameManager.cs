@@ -26,7 +26,7 @@ namespace GameManagerNamespace
         /// <summary>
         /// ­«¤O
         /// </summary>
-        public float Gravity = -50.0f;
+        public float Gravity = -75.0f;
 
         public GameObject TaskPrefab;
 

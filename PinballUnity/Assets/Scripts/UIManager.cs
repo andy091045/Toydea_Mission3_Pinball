@@ -8,11 +8,13 @@ public class UIManager : MonoBehaviour
 {
     public Text Score;
     public Text Des;
+    public Text Life;
     private bool isAllComplete_ => GameManager.Instance.MissionManager.isAllMissionComplete;
     private void Awake()
     {
         GameManager.Instance.ScoreManager.OccurAddScore += ChangeScoreText;
         GameManager.Instance.MissionManager.OccurMissionExecute += ChangeMissionText;
+        GameManager.Instance.LifeManager.OccurLifeChange += ChangeLifeText;
     }
 
     private void Update()
@@ -26,6 +28,11 @@ public class UIManager : MonoBehaviour
     private void ChangeScoreText(int score)
     {
         Score.text = score + " ";
+    }
+
+    private void ChangeLifeText(int life)
+    {
+        Life.text = life + " ";
     }
 
     private void ChangeMissionText(int number, string des, int nextNumber, int score)

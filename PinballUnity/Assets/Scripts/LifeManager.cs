@@ -9,6 +9,9 @@ namespace LifeManagerNamespace
     {
         public int Lifetimes = 5;
 
+        public delegate void MissionLifeEventHandler(int life);
+        public event MissionLifeEventHandler OccurLifeChange;
+
         private void Start()
         {
             GameManager.Instance.MissionManager.OccurHeartCompleted += LifeCount;
@@ -27,6 +30,7 @@ namespace LifeManagerNamespace
                 default:
                     break;
             }
+            OccurLifeChange(Lifetimes);
             Debug.Log("¶–½™”‰º" + Lifetimes + "Ÿ");
         }
     }

@@ -12,7 +12,7 @@ public class GameManagerTest
 {
     [Test]
     //試験重力値
-    [TestCase(-50)]
+    [TestCase(-75)]
     public void GameManager_Gravity_Test(float x)
     {
         var gameObject = new GameObject();

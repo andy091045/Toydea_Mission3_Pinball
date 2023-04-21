@@ -11,6 +11,8 @@ public class ObjectRotate : MonoBehaviour
     [Label("ƒvƒŒƒXSpace‘¬“x”{—¦")]
     [SerializeField] float yAngleSpeedMultiply_ = 3;
 
+    public ObjectType objectType;
+
     void Start()
     {
         
@@ -20,11 +22,22 @@ public class ObjectRotate : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            gameObject.transform.RotateAround(gameObject.transform.position, Vector3.up, yAngleSpeedMultiply_ * yAngleSpeed_ * Time.deltaTime);
+            if(objectType == ObjectType.WallObject)
+            {
+                gameObject.transform.RotateAround(gameObject.transform.position, Vector3.up, yAngleSpeedMultiply_ * yAngleSpeed_ * Time.deltaTime);
+            }            
         }
         else
         {
-            gameObject.transform.RotateAround(gameObject.transform.position, Vector3.up, yAngleSpeed_ * Time.deltaTime);
+            if (objectType == ObjectType.MissionObject)
+            {
+                gameObject.transform.RotateAround(gameObject.transform.position, new Vector3(0, 0, 1), yAngleSpeed_ * Time.deltaTime);
+            }
         }
+    }
+
+    public enum ObjectType
+    {
+        MissionObject, WallObject
     }
 }
