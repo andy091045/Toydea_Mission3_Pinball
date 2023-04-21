@@ -1,10 +1,11 @@
 using GameManagerNamespace;
+using HD.Singleton;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class UIManager : TSingletonMonoBehavior<UIManager>
 {
     public Text Score;
     public Text Des;

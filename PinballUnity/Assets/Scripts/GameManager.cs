@@ -11,6 +11,7 @@ using AccelerateManagerNamespace;
 using NaughtyAttributes;
 using StateManagerNamespace;
 using LifeManagerNamespace;
+using UnityEngine.SceneManagement;
 
 namespace GameManagerNamespace
 {
@@ -51,7 +52,8 @@ namespace GameManagerNamespace
 
         private GameObject LifeManagerGameObject;        
 
-        private GameObject StateManagerGameObject;        
+        private GameObject StateManagerGameObject;
+
 
         protected override void init()
         {
@@ -80,6 +82,15 @@ namespace GameManagerNamespace
         public List<Vector3> GetPositionVector3()
         {
             return PositionData.GetComponent<SaveLocationList>().PositionsVector3;
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                //print H return to the Scene "Home" 
+                SceneManager.LoadScene(0);
+            }
         }
     }
 }

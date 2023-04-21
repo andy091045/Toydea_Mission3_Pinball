@@ -1,3 +1,5 @@
+using GameManagerNamespace;
+using HD.Singleton;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,7 +26,7 @@ public class PositionData
     }
 }
 
-public class SaveLocationList : MonoBehaviour
+public class SaveLocationList : TSingletonMonoBehavior<SaveLocationList>
 {
     public GameObject Target;
 

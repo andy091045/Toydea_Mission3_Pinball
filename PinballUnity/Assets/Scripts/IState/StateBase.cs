@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class StateBase
 {
     protected StateManager stateManager;
+
     public StateBase(StateManager m)
     {
         stateManager = m;
