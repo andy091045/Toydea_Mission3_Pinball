@@ -13,4 +13,12 @@ public class HeartObject : TriggerObject
         GameManager.Instance.MissionManager.ReturnPosition(transform.position);
         Destroy(gameObject);
     }
+
+    private void Update()
+    {
+        if (!GameManager.Instance.MissionManager.IsHeartMissionStart)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

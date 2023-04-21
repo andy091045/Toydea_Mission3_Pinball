@@ -15,7 +15,9 @@ namespace MissionManagerNamespace
         public GameObject HeartPrefab;
         public GameObject TaskPrefab;
         public MissionData MissionData;
-        public bool IsGiftMissionStart = false;
+        public bool IsHeartMissionStart = false;
+        public bool IsStage3MissionStart = false;
+        public bool IsStage4MissionStart = false;
 
         //public List<Mission> completedMissions_ = new List<Mission>();
         public const int COMPLETE_NUMBER = 999999;
@@ -48,9 +50,9 @@ namespace MissionManagerNamespace
 
         private List<Vector3> positionsIsCreated_ = new List<Vector3>();
 
-        private IEnumerator coroutine_;
-
         private bool isCreatingHeart = false;
+
+        private Vector3 pos;
 
         void Start()
         {
@@ -139,13 +141,13 @@ namespace MissionManagerNamespace
         
         private void HeartMission()
         {
-            if (IsGiftMissionStart && !isCreatingHeart && positionsIsNotCreated_.Count !=0 )
+            if (IsHeartMissionStart && !isCreatingHeart && positionsIsNotCreated_.Count !=0 )
             {
                 isCreatingHeart = true;
                 Debug.Log("äJén‚Xï®ånìù");
                 float createTime = Random.Range(CREATE_TIME_MIN, CREATE_TIME_MAX) ;
                 int i = Random.Range(0, positionsIsNotCreated_.Count);
-                Vector3 pos = positionsIsNotCreated_[i];
+                pos = positionsIsNotCreated_[i];
                 positionsIsNotCreated_.Remove(positionsIsNotCreated_[i]);                
                 Debug.Log("positionsIsNotCreated_.Count: " + positionsIsNotCreated_.Count);
                 foreach (Vector3 position in positionsIsNotCreated_)
@@ -154,8 +156,7 @@ namespace MissionManagerNamespace
                 }
                 Debug.Log("------------------------------");
                 positionsIsCreated_.Add(pos);
-                coroutine_ = WaitAndCreate(createTime, pos);
-                StartCoroutine(coroutine_);
+                Invoke("WaitAndCreate", createTime);
             }
         }
         
@@ -165,15 +166,11 @@ namespace MissionManagerNamespace
             positionsIsNotCreated_.Add(pos);
         }
 
-        private IEnumerator WaitAndCreate(float waitTime, Vector3 createPos)
+        private void WaitAndCreate()
         {
-            while (true)
-            {
-                yield return new WaitForSeconds(waitTime);
-                Instantiate(HeartPrefab, createPos, Quaternion.identity);
-                isCreatingHeart = false;
-            }
-        }
+            Instantiate(HeartPrefab, pos, Quaternion.identity);
+            isCreatingHeart = false;
+         }
 
     }
 }

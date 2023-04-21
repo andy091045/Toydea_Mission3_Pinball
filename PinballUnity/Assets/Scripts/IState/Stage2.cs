@@ -12,7 +12,7 @@ public class Stage2 : StateBase
     public override void OnEnter()
     {
         //啟動可以加血量的道具以及系統
-        GameManager.Instance.MissionManager.IsGiftMissionStart = true;
+        GameManager.Instance.MissionManager.IsHeartMissionStart = true;
     }
 
     public override void OnExit()

@@ -9,10 +9,10 @@ namespace StateManagerNamespace
     {
         public StateBase CurrentState;
         private Dictionary<State_Enum, StateBase> status_ = new Dictionary<State_Enum, StateBase>();
-        [SerializeField] private float score_ => GameManager.Instance.ScoreManager.TotalScore;
+        [SerializeField] private int score_ => GameManager.Instance.ScoreManager.TotalScore;
         [SerializeField] private int lifeTimes_ => GameManager.Instance.LifeManager.Lifetimes;
 
-        [SerializeField] private int[] ChanegeStateScore = new int[3] {1000, 15000, 30000};
+        [SerializeField] private int[] ChanegeStateScore = new int[3] {1000, 2000, 3000};
 
         [Header("Stage Trigger")]
         [SerializeField] private bool isStage1Trigger_ = false;
@@ -36,23 +36,31 @@ namespace StateManagerNamespace
         void Update()
         {
             CurrentState.OnUpdate();
-  
-            if(score_ >= ChanegeStateScore[0] && score_ < ChanegeStateScore[1] && lifeTimes_ != 0)
-            {                
+
+            StageDecide(score_);
+        }
+
+        public void StageDecide(int score)
+        {
+            if (score >= ChanegeStateScore[0] && score < ChanegeStateScore[1] && lifeTimes_ != 0)
+            {
                 TryTransitionState(State_Enum.stage2);
-            }else if(score_ >= ChanegeStateScore[1] && score_ < ChanegeStateScore[2] && lifeTimes_ != 0) {
+            }
+            else if (score >= ChanegeStateScore[1] && score < ChanegeStateScore[2] && lifeTimes_ != 0)
+            {
                 //Debug.Log("‰Áã“ï“xŒn“");
                 TryTransitionState(State_Enum.stage3);
-            }else if (score_ >= ChanegeStateScore[2] && lifeTimes_ != 0)
+            }
+            else if (score >= ChanegeStateScore[2] && lifeTimes_ != 0)
             {
                 //Debug.Log("‰Áã•ÄŠï‰õ•ñœEŒn“");
                 TryTransitionState(State_Enum.stage4);
-            }else if(lifeTimes_ == 0)
+            }
+            else if (lifeTimes_ == 0)
             {
                 //Debug.Log("—VE¸”s");
                 TryTransitionState(State_Enum.finish);
             }
-
         }
 
         public void TryTransitionState(State_Enum type)

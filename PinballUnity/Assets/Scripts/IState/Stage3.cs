@@ -2,24 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using StateManagerNamespace;
+using GameManagerNamespace;
+
 public class Stage3 : StateBase
 {
+    private float recordOriginGravity_;
+
+    private float recordOriginBounceMaxForce_;
+
+    private float recordOriginBounceMinForce_;
+
     public Stage3(StateManager m) : base(m)
     {
     }
 
     public override void OnEnter()
     {
-        //天氣開始下雨了，加上下雨天特效 所有的力變大一點
+        //所有的力變大一點
+        recordOriginGravity_ = GameManager.Instance.Gravity;
+        GameManager.Instance.Gravity = recordOriginGravity_ * 2.0f;
+
+        recordOriginBounceMaxForce_ = GameManager.Instance.BounceManager.BounceMaxForce;
+        GameManager.Instance.BounceManager.BounceMaxForce = recordOriginBounceMaxForce_ * 1.3f;
+
+        recordOriginBounceMinForce_ = GameManager.Instance.BounceManager.BounceMinForce;
+        GameManager.Instance.BounceManager.BounceMinForce = recordOriginBounceMinForce_ * 1.3f;
+
+        //天氣開始下雨了，加上下雨天特效
 
         //有時候會有天上掉下來的雜物或鳥的禮物(大便)，加上墨汁系統
+        GameManager.Instance.MissionManager.IsStage3MissionStart = true;
     }
 
     public override void OnExit()
     {
+        //還原所有的力
+        GameManager.Instance.Gravity = recordOriginGravity_;
+
+        GameManager.Instance.BounceManager.BounceMaxForce = recordOriginBounceMaxForce_;
+
+        GameManager.Instance.BounceManager.BounceMinForce = recordOriginBounceMinForce_;
+
         //關閉下雨天特效 
 
         //關閉墨汁系統        
+        GameManager.Instance.MissionManager.IsStage3MissionStart = false;
     }
 
     public override void OnUpdate()
