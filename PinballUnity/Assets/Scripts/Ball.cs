@@ -9,6 +9,9 @@ namespace BallNamespace
 {
     public class Ball : MonoBehaviour
     {
+        public delegate void BallFallOutEventHandler(int num, char pointer);
+        public static BallFallOutEventHandler OccurBallFallOut;
+
         [Label("Pinball fall out pinball table")]
         [SerializeField] private Vector3 ballLeaveTable_ = new Vector3(0, 0, -35);
         public float Gravity => GameInput.Instance.Gravity;
@@ -55,9 +58,9 @@ namespace BallNamespace
         private void ResetBallPos()
         {
             if (transform.position.z <= ballLeaveTable_.z)
-            {
-                GameManager.Instance.LifeManager.LifeCount(1,'-');
+            {                               
                 transform.position = startPosition_;
+                OccurBallFallOut(1, '-');
                 rb_.Sleep();
             }
         }
@@ -77,6 +80,11 @@ namespace BallNamespace
             {
                 rb_.AddForce(rb_.velocity.normalized * obj.accelerateAddForce_, ForceMode.Force);
             }
+        }
+
+        private void OnDestroy()
+        {
+            OccurBallFallOut = null;
         }
     }
 }

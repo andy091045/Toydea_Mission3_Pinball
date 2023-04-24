@@ -25,7 +25,7 @@ namespace MissionManagerNamespace
         List<Mission> mission_ = new List<Mission>();
         List<Mission> activeMissions_ = new List<Mission>();
 
-        public delegate void MissionCompleteEventHandler(int number, string des, int nextNumber, int score, Vector3 pos);
+        public delegate void MissionCompleteEventHandler(int score);
         public static MissionCompleteEventHandler OccurMissionCompleted;
 
         public delegate void HeartCompleteEventHandler(int number, char pointer);
@@ -75,6 +75,8 @@ namespace MissionManagerNamespace
 
             ExecuteMission(mission_[0].Number);
         }
+
+         
 
         private void Update()
         {
@@ -127,7 +129,7 @@ namespace MissionManagerNamespace
         {
             if (OccurMissionCompleted != null)
             {
-                OccurMissionCompleted(obj.Number, obj.Description, obj.NextNumber, obj.Score, pos);
+                OccurMissionCompleted(obj.Score);
             }
             if (obj.Number != COMPLETE_NUMBER)
             {
@@ -180,10 +182,12 @@ namespace MissionManagerNamespace
 
         private void OnDestroy()
         {
+            MissionObject.OccurTriggerMissionObject -= TriggerMissionObject;
             OccurMissionCompleted = null;
             OccurHeartCompleted = null;
             OccurMissionExecute = null;
             AllMissionCompleted = null;
+
         }
     }
 }

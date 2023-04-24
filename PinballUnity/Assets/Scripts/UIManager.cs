@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using MissionManagerNamespace;
+using ScoreManagerNamespace;
+using LifeManagerNamespace;
 
 public class UIManager : TSingletonMonoBehavior<UIManager>
 {
@@ -14,9 +16,8 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
     private bool isAllComplete_ = false;
     private void Awake()
     {
-        GameManager.Instance.ScoreManager.OccurAddScore += ChangeScoreText;
-        
-        GameManager.Instance.LifeManager.OccurLifeChange += ChangeLifeText;
+        ScoreManager.OccurAddScore += ChangeScoreText;        
+        LifeManager.OccurLifeChange += ChangeLifeText;
         MissionManager.OccurMissionExecute += ChangeMissionText;
     }
 

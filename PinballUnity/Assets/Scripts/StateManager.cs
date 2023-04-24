@@ -9,8 +9,8 @@ namespace StateManagerNamespace
     {
         public StateBase CurrentState;
         private Dictionary<State_Enum, StateBase> status_ = new Dictionary<State_Enum, StateBase>();
-        [SerializeField] private int score_ => GameManager.Instance.ScoreManager.TotalScore;
-        [SerializeField] private int lifeTimes_ => GameManager.Instance.LifeManager.Lifetimes;
+        [SerializeField] private int score_ => GameInput.Instance.TotalScore;
+        [SerializeField] private int lifeTimes_ => GameInput.Instance.Lifetimes;
 
         [SerializeField] private int[] ChanegeStateScore = new int[3] {1000, 2000, 3000};
 

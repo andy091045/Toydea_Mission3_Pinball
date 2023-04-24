@@ -20,4 +20,8 @@ public class GameInput : TSingletonMonoBehavior<GameInput>
 
     [Label("バウンススコア")]
     public int BounceScore = 100;
+
+    public int TotalScore = 0;
+
+    public int Lifetimes = 5;
 }

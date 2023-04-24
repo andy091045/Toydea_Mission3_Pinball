@@ -9,13 +9,18 @@ namespace ScoreManagerNamespace
     public class ScoreManager : MonoBehaviour
     {
         public delegate void MissionScoreEventHandler(int score);
-        public event MissionScoreEventHandler OccurAddScore;
+        public static MissionScoreEventHandler OccurAddScore;
 
-        public int TotalScore = 0;
-        private void Start()
+        public int TotalScore
         {
-            MissionManager.OccurMissionCompleted += TotalScoreAdd;
-            BounceObject.OccurBounceAddScore += TotalScoreAdd;
+            get => GameInput.Instance.TotalScore;
+            set => GameInput.Instance.TotalScore = value;
+        }
+
+        private void Awake()
+        {
+            MissionManager.OccurMissionCompleted += TotalMissionScoreAdd;
+            BounceObject.OccurBounceAddScore += TotalBounceScoreAdd;
         }
 
         public int Add(object a, object b)
@@ -34,18 +39,23 @@ namespace ScoreManagerNamespace
             }
         }
 
-        public void TotalScoreAdd(int number, string des, int nextNumber, int score, Vector3 pos)
-        {            
+        public void TotalMissionScoreAdd(int score)
+        {
             TotalScore = Add(TotalScore, score);
             //Debug.Log("ã`•ª: " + TotalScore);
             OccurAddScore(TotalScore);
         }
 
-        public void TotalScoreAdd(int score)
+        public void TotalBounceScoreAdd(int score)
         {
             TotalScore = Add(TotalScore, score);
             //Debug.Log("ã`•ª: " + TotalScore);
             OccurAddScore(TotalScore);
+        }
+
+        private void OnDestroy()
+        {
+            OccurAddScore = null;
         }
 
     }

@@ -27,10 +27,5 @@ public class MissionObject : TriggerObject
     {
         OccurTriggerMissionObject(this);       
         Destroy(gameObject);
-    }
-
-    private void OnDestroy()
-    {
-        OccurTriggerMissionObject = null;
-    }
+    }    
 }
