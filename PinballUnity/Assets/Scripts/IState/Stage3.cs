@@ -19,14 +19,14 @@ public class Stage3 : StateBase
     public override void OnEnter()
     {
         //所有的力變大一點
-        recordOriginGravity_ = GameManager.Instance.Gravity;
-        GameManager.Instance.Gravity = recordOriginGravity_ * 2.0f;
+        recordOriginGravity_ = GameInput.Instance.Gravity;
+        GameInput.Instance.Gravity = recordOriginGravity_ * 2.0f;
 
-        recordOriginBounceMaxForce_ = GameManager.Instance.BounceManager.BounceMaxForce;
-        GameManager.Instance.BounceManager.BounceMaxForce = recordOriginBounceMaxForce_ * 1.3f;
+        recordOriginBounceMaxForce_ = GameInput.Instance.BounceMaxForce;
+        GameInput.Instance.BounceMaxForce = recordOriginBounceMaxForce_ * 1.3f;
 
-        recordOriginBounceMinForce_ = GameManager.Instance.BounceManager.BounceMinForce;
-        GameManager.Instance.BounceManager.BounceMinForce = recordOriginBounceMinForce_ * 1.3f;
+        recordOriginBounceMinForce_ = GameInput.Instance.BounceMinForce;
+        GameInput.Instance.BounceMinForce = recordOriginBounceMinForce_ * 1.3f;
 
         //天氣開始下雨了，加上下雨天特效
 
@@ -37,11 +37,11 @@ public class Stage3 : StateBase
     public override void OnExit()
     {
         //還原所有的力
-        GameManager.Instance.Gravity = recordOriginGravity_;
+        GameInput.Instance.Gravity = recordOriginGravity_;
 
-        GameManager.Instance.BounceManager.BounceMaxForce = recordOriginBounceMaxForce_;
+        GameInput.Instance.BounceMaxForce = recordOriginBounceMaxForce_;
 
-        GameManager.Instance.BounceManager.BounceMinForce = recordOriginBounceMinForce_;
+        GameInput.Instance.BounceMinForce = recordOriginBounceMinForce_;
 
         //關閉下雨天特效 
 

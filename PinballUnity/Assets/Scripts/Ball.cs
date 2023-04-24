@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GameManagerNamespace;
-using BounceManagerNamespace;
 using System.Threading.Tasks;
 using NaughtyAttributes;
 
@@ -14,9 +13,9 @@ namespace BallNamespace
         [SerializeField] private Vector3 ballLeaveTable_ = new Vector3(0, 0, -35);
         public float Gravity => GameInput.Instance.Gravity;
 
-        private float bounceMinForce_ => GameManager.Instance.BounceManager.BounceMinForce;
+        private float bounceMinForce_ => GameInput.Instance.BounceMinForce;
 
-        private float bounceMaxForce_ => GameManager.Instance.BounceManager.BounceMinForce;
+        private float bounceMaxForce_ => GameInput.Instance.BounceMinForce;
         
         private Rigidbody rb_;
         private Vector3 startPosition_;
@@ -38,7 +37,7 @@ namespace BallNamespace
             startPosition_ = transform.position;
             ballForce_ = BALL_PLUS * Gravity;
             AccelerateObject.OccurAccelerate += GetAccelerateForce;
-            //BounceManager.OccurBouncePhysic += BounceAddForce;
+            BounceObject.OccurBouncePhysic += BounceAddForce;
         }
 
         void Update()

@@ -2,20 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using HD.Singleton;
+using NaughtyAttributes;
 
 public class GameInput : TSingletonMonoBehavior<GameInput>
 {
     public float Gravity = -75.0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    /// <summary>
+    /// tag = "bounceObject_" MaxSpeed
+    /// </summary>
+    public float BounceMaxForce = 200;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    /// <summary>
+    /// tag = "bounceObject_" MinSpeed
+    /// </summary>
+    public float BounceMinForce = 150;
+
+    [Label("バウンススコア")]
+    public int BounceScore = 100;
 }

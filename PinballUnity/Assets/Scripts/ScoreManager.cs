@@ -14,7 +14,7 @@ namespace ScoreManagerNamespace
         private void Start()
         {
             GameManager.Instance.MissionManager.OccurMissionCompleted += TotalScoreAdd;
-            GameManager.Instance.BounceManager.OccurBounceAddScore += TotalScoreAdd;
+            BounceObject.OccurBounceAddScore += TotalScoreAdd;
         }
 
         public int Add(object a, object b)

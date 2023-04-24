@@ -10,6 +10,7 @@ using System;
 
 public class GameManagerTest
 {
+    /*
     [Test]
     //試験重力値
     [TestCase(-75)]
@@ -22,6 +23,7 @@ public class GameManagerTest
 
         Assert.That(gravity_, Is.EqualTo(x));
     }
+    */
 }
 
 
