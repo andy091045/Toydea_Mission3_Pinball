@@ -20,7 +20,6 @@ namespace GameManagerNamespace
         public BounceManager BounceManager { get; private set; }
         public MissionManager MissionManager { get; private set; }
         public ScoreManager ScoreManager { get; private set; }
-        public AccelerateManager AccelerateManager { get; private set; }
         public LifeManager LifeManager { get; private set; }
         public StateManager StateManager { get; private set; }
 
@@ -46,9 +45,7 @@ namespace GameManagerNamespace
 
         private GameObject MissionManagerGameObject;        
 
-        private GameObject ScoreManagerGameObject;        
-
-        private GameObject AccelerateManagerGameObject;               
+        private GameObject ScoreManagerGameObject;                   
 
         private GameObject LifeManagerGameObject;        
 
@@ -71,9 +68,6 @@ namespace GameManagerNamespace
 
             StateManagerGameObject = new GameObject("StateManager");
             StateManager = StateManagerGameObject.AddComponent<StateManager>();
-
-            AccelerateManagerGameObject = new GameObject("AccelerateManager");
-            AccelerateManager = AccelerateManagerGameObject.AddComponent<AccelerateManager>();
 
             LifeManagerGameObject = new GameObject("AccelerateManager");
             LifeManager = LifeManagerGameObject.AddComponent<LifeManager>();

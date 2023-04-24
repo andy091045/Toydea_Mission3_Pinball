@@ -12,8 +12,7 @@ namespace BallNamespace
     {
         [Label("Pinball fall out pinball table")]
         [SerializeField] private Vector3 ballLeaveTable_ = new Vector3(0, 0, -35);
-        private float gravity_ => GameManager.Instance.Gravity;
-        private float accelerateForce_ => GameManager.Instance.AccelerateManager.AccelerateForce;
+        public float Gravity => GameInput.Instance.Gravity;
 
         private float bounceMinForce_ => GameManager.Instance.BounceManager.BounceMinForce;
 
@@ -37,9 +36,9 @@ namespace BallNamespace
         {
             rb_ = GetComponent<Rigidbody>();
             startPosition_ = transform.position;
-            ballForce_ = BALL_PLUS * gravity_;
-            GameManager.Instance.AccelerateManager.OccurAccelerate += AccelerateAddForce;
-            GameManager.Instance.BounceManager.OccurBouncePhysic += BounceAddForce;
+            ballForce_ = BALL_PLUS * Gravity;
+            AccelerateObject.OccurAccelerate += GetAccelerateForce;
+            //BounceManager.OccurBouncePhysic += BounceAddForce;
         }
 
         void Update()
@@ -73,11 +72,11 @@ namespace BallNamespace
             rb_.velocity = newVelocity;
         }
 
-        private void AccelerateAddForce(bool isInAccelerateRegion, float AccelerateAddForce, Collider collider)
+        private void GetAccelerateForce(AccelerateObject obj)
         {
-            if (isInAccelerateRegion)
+            if (obj.isInAccelerateRegion_)
             {
-                rb_.AddForce(rb_.velocity.normalized * accelerateForce_, ForceMode.Force);
+                rb_.AddForce(rb_.velocity.normalized * obj.accelerateAddForce_, ForceMode.Force);
             }
         }
     }

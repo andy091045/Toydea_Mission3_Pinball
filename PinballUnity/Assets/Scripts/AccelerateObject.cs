@@ -5,20 +5,25 @@ using GameManagerNamespace;
 
 public class AccelerateObject : TriggerObject
 {
-    [SerializeField] bool isInAccelerateRegion_ = false;
-    private Collider accCollider_;
-    private void Start()
-    {
-        accCollider_ = GetComponent<Collider>();
-    }
+    public delegate void OccurAccelerateEventHandler(AccelerateObject obj);
+    public static OccurAccelerateEventHandler OccurAccelerate;
+
+    public float accelerateAddForce_;
+    public bool isInAccelerateRegion_ = false;
+
     protected override void onTriggerStayTag(Collider other)
     {
         isInAccelerateRegion_ = true;
-        GameManager.Instance.AccelerateManager.TryAccelerate(isInAccelerateRegion_, accCollider_);
+        OccurAccelerate(this);
     }
     protected override void onTriggerExitTag(Collider other)
     {
         isInAccelerateRegion_ = false;
-        GameManager.Instance.AccelerateManager.TryAccelerate(isInAccelerateRegion_, accCollider_);
+        OccurAccelerate(this);
     }   
+
+    public void GetAccelerateValue(float accelerateAddForce_)
+    {
+        this.accelerateAddForce_ = accelerateAddForce_;
+    }
 }

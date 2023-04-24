@@ -103,37 +103,26 @@ namespace HD.Singleton
     public class TSingletonMonoBehavior<T> : MonoBehaviour where T : MonoBehaviour
     {
 
-        static T instance = null;
+        public static T Instance => GetInstance();
+        private static T instance = null;
 
-        public static T Instance
+        private static T GetInstance()
         {
-            get { 
-                if (instance != null)
-                {
-                    return instance;
-                }
-
-                var o = FindObjectOfType(typeof(T));
-                if (o != null)
-                {
-                    instance = o as T;
-                    return instance;
-                }
-
-                var newO = new GameObject(nameof(T));
-                Instantiate(newO);
-                instance = newO.AddComponent<T>();
-                return instance;
+            if (instance == null)
+            {
+                var type = typeof(T);
+                var gameObject = new GameObject(type.Name);
+                instance = gameObject.AddComponent<T>();
+                DontDestroyOnLoad(gameObject);
             }
+            return instance;
         }
-        
 
         void Awake()
         {
             if (instance == null) instance = this as T;
             if (instance == this) DontDestroyOnLoad(this);
-            else DestroyImmediate(this);
-
+            else DestroyImmediate(gameObject);
             init();
         }
 

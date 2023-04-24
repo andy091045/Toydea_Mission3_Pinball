@@ -22,7 +22,7 @@ namespace ArmNamespace
         private HingeJoint hingeJoint_;
 
         private JointSpring jointSpring_;
-        float gravity_ => GameManager.Instance.Gravity;
+        float gravity_ => GameInput.Instance.Gravity;
 
         private const float START_ANGLE = 30.0f;
 

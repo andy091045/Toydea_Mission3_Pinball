@@ -6,16 +6,16 @@ namespace AccelerateManagerNamespace
 {
     public class AccelerateManager : MonoBehaviour
     {
-        public float AccelerateForce = 500.0f;
-
-        public delegate void OccurAccelerateEventHandler(bool isInAccelerateRegion, float AccelerateAddForce, Collider collider);
-        public event OccurAccelerateEventHandler OccurAccelerate;
-
         [SerializeField] private float accelerateAddForce_ = 500.0f;
 
-        public void TryAccelerate(bool isInAccelerateRegion, Collider collider)
+        private void Start()
         {
-            OccurAccelerate(isInAccelerateRegion, accelerateAddForce_, collider);
+            AccelerateObject.OccurAccelerate += SetAccelerateValue;
+        }
+
+        void SetAccelerateValue(AccelerateObject obj)
+        {
+            obj.GetAccelerateValue(accelerateAddForce_);
         }
     }
 }
