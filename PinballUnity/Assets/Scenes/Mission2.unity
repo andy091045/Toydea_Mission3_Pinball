@@ -9073,6 +9073,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766699624}
   m_CullTransparentMesh: 1
+--- !u!1 &798356207
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 798356209}
+  - component: {fileID: 798356208}
+  m_Layer: 0
+  m_Name: MissionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &798356208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798356207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4dd94bb1759a12458532247306c90a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HeartPrefab: {fileID: 3995300225855052300, guid: 5b34f2442c5de79418c35ea5497a0a8a, type: 3}
+  TaskPrefab: {fileID: 362283232061589004, guid: f09e045e77eec814bb3b263c4fa7fc10, type: 3}
+  MissionData: {fileID: 11400000, guid: 4a32b4df7c2af994e847b79914034c41, type: 2}
+  IsHeartMissionStart: 0
+  IsStage3MissionStart: 0
+  IsStage4MissionStart: 0
+  isAllMissionComplete: 0
+  MissionClass: {fileID: 0}
+--- !u!4 &798356209
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798356207}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &808890731
 Mesh:
   m_ObjectHideFlags: 0
@@ -10049,11 +10101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ad2ca0d9b2e6d468959ae5d9404e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gravity: -50
   TaskPrefab: {fileID: 362283232061589004, guid: f09e045e77eec814bb3b263c4fa7fc10, type: 3}
   HeartPrefab: {fileID: 3995300225855052300, guid: 5b34f2442c5de79418c35ea5497a0a8a, type: 3}
   MissionData: {fileID: 11400000, guid: 4a32b4df7c2af994e847b79914034c41, type: 2}
-  BounceScore: 100
   MissionScore: 1000
   PositionData: {fileID: 1117268602}
 --- !u!4 &1076846296

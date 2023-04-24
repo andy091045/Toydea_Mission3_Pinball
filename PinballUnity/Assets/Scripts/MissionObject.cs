@@ -2,10 +2,12 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GameManagerNamespace;
 
 public class MissionObject : TriggerObject
 {
+    public delegate void OccurTriggerMissionObjectEventHandler(MissionObject obj);
+    public static OccurTriggerMissionObjectEventHandler OccurTriggerMissionObject;
+
     [Label("タスクコード")]
     public int Number = 0;
 
@@ -23,7 +25,12 @@ public class MissionObject : TriggerObject
 
     protected override void onTriggerEnterTag(Collider other)
     {
-        GameManager.Instance.MissionManager.TriggerBall(Number, Description, NextNumber, Score, Position);
+        OccurTriggerMissionObject(this);       
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        OccurTriggerMissionObject = null;
     }
 }

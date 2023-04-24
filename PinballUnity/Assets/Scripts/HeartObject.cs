@@ -7,18 +7,25 @@ using UnityEngine.UIElements;
 
 public class HeartObject : TriggerObject
 {
+    public delegate void OccurTriggerHeartEventHandler(HeartObject obj);
+    public static OccurTriggerHeartEventHandler OccurTriggerHeart;
     protected override void onTriggerEnterTag(Collider other)
-    {
-        GameManager.Instance.MissionManager.TriggerHeart(1, '+');
-        GameManager.Instance.MissionManager.ReturnPosition(transform.position);
+    {        
         Destroy(gameObject);
     }
 
     private void Update()
     {
+        /*
         if (!GameManager.Instance.MissionManager.IsHeartMissionStart)
         {
             Destroy(gameObject);
         }
+        */
+    }
+
+    private void OnDestroy()
+    {
+        OccurTriggerHeart = null;
     }
 }

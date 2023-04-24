@@ -13,7 +13,6 @@ public class Stage4 : StateBase
     public override void OnEnter()
     {
         //將可以加血量的機制關掉
-        GameManager.Instance.MissionManager.IsHeartMissionStart = false;
 
         //因為米奇要開始跑去其他星球幫米妮買禮物，所以會有些區域有其他星球的重力
 

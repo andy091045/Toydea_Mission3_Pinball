@@ -31,7 +31,6 @@ public class Stage3 : StateBase
         //“VŸ†ŠJn‰º‰J—¹C‰Áã‰º‰J“V“ÁÁ
 
         //—LŒó˜ğ—L“Vã{‰º˜Ò“Iè¶•¨ˆ½’¹“IâX•¨(‘å•Ö)C‰Áã–n`Œn“
-        GameManager.Instance.MissionManager.IsStage3MissionStart = true;
     }
 
     public override void OnExit()
@@ -46,7 +45,7 @@ public class Stage3 : StateBase
         //è•Â‰º‰J“V“ÁÁ 
 
         //è•Â–n`Œn“        
-        GameManager.Instance.MissionManager.IsStage3MissionStart = false;
+       
     }
 
     public override void OnUpdate()

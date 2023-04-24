@@ -3,8 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MissionManagerNamespace;
-using MissionNamespace;
 using ScoreManagerNamespace;
 using StateManagerNamespace;
 using LifeManagerNamespace;
@@ -14,22 +12,13 @@ namespace GameManagerNamespace
 {
     public class GameManager : TSingletonMonoBehavior<GameManager>
     {        
-        public MissionManager MissionManager { get; private set; }
         public ScoreManager ScoreManager { get; private set; }
         public LifeManager LifeManager { get; private set; }
         public StateManager StateManager { get; private set; }
 
-        public GameObject TaskPrefab;
-
-        public GameObject HeartPrefab;
-
-        public MissionData MissionData;        
-
         public int MissionScore = 1000;
 
         public GameObject PositionData;
-
-        private GameObject MissionManagerGameObject;        
 
         private GameObject ScoreManagerGameObject;                   
 
@@ -40,12 +29,6 @@ namespace GameManagerNamespace
 
         protected override void init()
         {
-            MissionManagerGameObject = new GameObject("MissionManager");
-            MissionManager = MissionManagerGameObject.AddComponent<MissionManager>();
-            MissionManager.MissionData = MissionData;
-            MissionManager.TaskPrefab = TaskPrefab;
-            MissionManager.HeartPrefab = HeartPrefab;
-
             ScoreManagerGameObject = new GameObject("ScoreManager");
             ScoreManager = ScoreManagerGameObject.AddComponent<ScoreManager>();
 

@@ -26,13 +26,16 @@ namespace MissionManagerNamespace
         List<Mission> activeMissions_ = new List<Mission>();
 
         public delegate void MissionCompleteEventHandler(int number, string des, int nextNumber, int score, Vector3 pos);
-        public event MissionCompleteEventHandler OccurMissionCompleted;
+        public static MissionCompleteEventHandler OccurMissionCompleted;
 
         public delegate void HeartCompleteEventHandler(int number, char pointer);
-        public event HeartCompleteEventHandler OccurHeartCompleted;
+        public static HeartCompleteEventHandler OccurHeartCompleted;
 
         public delegate void MissionExecuteEventHandler(int number, string des, int nextNumber, int score);
-        public event MissionExecuteEventHandler OccurMissionExecute;
+        public static MissionExecuteEventHandler OccurMissionExecute;
+
+        public delegate void AllMissionCompletedEventHandler();
+        public static AllMissionCompletedEventHandler AllMissionCompleted;
 
         public bool isAllMissionComplete = false;
 
@@ -56,6 +59,8 @@ namespace MissionManagerNamespace
 
         void Start()
         {
+            HeartObject.OccurTriggerHeart += TriggerHeart;
+            MissionObject.OccurTriggerMissionObject += TriggerMissionObject;
             positionsIsNotCreated_ = positions_;
 
             // ≈™®ÅEMissionData §§™∫•Ù∞»∏ÅE∆
@@ -113,29 +118,30 @@ namespace MissionManagerNamespace
             if (activeMissions_.Count == 0)
             {
                 // ©“¶≥•Ù∞»≥£§wßπ¶®
-                isAllMissionComplete = true;
+                AllMissionCompleted();
                 Debug.Log("All missions completed!");
             }
         }
 
-        public void TriggerBall(int number, string des, int nextNumber, int score, Vector3 pos)
+        public void TriggerMissionObject(MissionObject obj)
         {
             if (OccurMissionCompleted != null)
             {
-                OccurMissionCompleted(number, des, nextNumber, score, pos);
+                OccurMissionCompleted(obj.Number, obj.Description, obj.NextNumber, obj.Score, pos);
             }
-            if (number != COMPLETE_NUMBER)
+            if (obj.Number != COMPLETE_NUMBER)
             {
-                CompleteMission(number);
+                CompleteMission(obj.Number);
             }
         }
 
-        public void TriggerHeart(int num, char pointer)
+        public void TriggerHeart(HeartObject obj)
         {
             if(OccurHeartCompleted != null)
             {
-                OccurHeartCompleted(num, pointer);
+                OccurHeartCompleted(1, '+');
             }
+            ReturnPosition(obj.transform.position);
         }
 
         
@@ -172,6 +178,13 @@ namespace MissionManagerNamespace
             isCreatingHeart = false;
          }
 
+        private void OnDestroy()
+        {
+            OccurMissionCompleted = null;
+            OccurHeartCompleted = null;
+            OccurMissionExecute = null;
+            AllMissionCompleted = null;
+        }
     }
 }
 

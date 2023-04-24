@@ -2,6 +2,7 @@ using GameManagerNamespace;
 using HD.Singleton;
 using System;
 using UnityEngine;
+using MissionManagerNamespace;
 
 namespace ScoreManagerNamespace
 {
@@ -13,7 +14,7 @@ namespace ScoreManagerNamespace
         public int TotalScore = 0;
         private void Start()
         {
-            GameManager.Instance.MissionManager.OccurMissionCompleted += TotalScoreAdd;
+            MissionManager.OccurMissionCompleted += TotalScoreAdd;
             BounceObject.OccurBounceAddScore += TotalScoreAdd;
         }
 
