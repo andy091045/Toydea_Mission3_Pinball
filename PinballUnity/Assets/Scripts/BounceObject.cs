@@ -17,10 +17,4 @@ public class BounceObject : CollisionObject
         OccurBounceAddScore(OneBounceScore_ );
         OccurBouncePhysic(collision);
     }
-
-    private void OnDestroy()
-    {
-        OccurBounceAddScore = null;
-        OccurBouncePhysic = null;
-    }
 }

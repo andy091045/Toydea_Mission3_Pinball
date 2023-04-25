@@ -18,6 +18,7 @@ public class Stage3 : StateBase
 
     public override void OnEnter()
     {
+        Debug.Log("i“όstage3");
         //—L“I—ΝΜ‘εκκy
         recordOriginGravity_ = GameInput.Instance.Gravity;
         GameInput.Instance.Gravity = recordOriginGravity_ * 2.0f;

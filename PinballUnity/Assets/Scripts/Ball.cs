@@ -36,11 +36,11 @@ namespace BallNamespace
 
         void Start()
         {
-            rb_ = GetComponent<Rigidbody>();
-            startPosition_ = transform.position;
-            ballForce_ = BALL_PLUS * gravity_;
             AccelerateObject.OccurAccelerate += GetAccelerateForce;
             BounceObject.OccurBouncePhysic += BounceAddForce;
+            rb_ = GetComponent<Rigidbody>();
+            startPosition_ = transform.position;
+            ballForce_ = BALL_PLUS * gravity_;            
         }
 
         void Update()
@@ -84,7 +84,8 @@ namespace BallNamespace
 
         private void OnDestroy()
         {
-            OccurBallFallOut = null;
+            AccelerateObject.OccurAccelerate -= GetAccelerateForce;
+            BounceObject.OccurBouncePhysic -= BounceAddForce;
         }
     }
 }

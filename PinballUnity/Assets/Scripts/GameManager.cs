@@ -10,20 +10,9 @@ namespace GameManagerNamespace
 {
     public class GameManager : TSingletonMonoBehavior<GameManager>
     {        
-        public StateManager StateManager { get; private set; }
-
         public int MissionScore = 1000;
 
-        public GameObject PositionData;                
-
-        private GameObject StateManagerGameObject;
-
-
-        protected override void init()
-        {
-            StateManagerGameObject = new GameObject("StateManager");
-            StateManager = StateManagerGameObject.AddComponent<StateManager>();
-        }
+        public GameObject PositionData;              
 
         public List<Vector3> GetPositionVector3()
         {

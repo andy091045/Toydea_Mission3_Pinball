@@ -50,7 +50,10 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
         }        
     }
     private void OnDestroy()
-    {     
+    {
+        ScoreManager.OccurAddScore -= ChangeScoreText;
         LifeManager.OccurLifeChange -= ChangeLifeText;
+        MissionManager.OccurMissionExecute -= ChangeMissionText;
+        MissionManager.AllMissionCompleted -= AllMissionCompleted;
     }
 }

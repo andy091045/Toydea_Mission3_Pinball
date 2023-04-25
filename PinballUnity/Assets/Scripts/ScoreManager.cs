@@ -55,8 +55,8 @@ namespace ScoreManagerNamespace
 
         private void OnDestroy()
         {
-            OccurAddScore = null;
+            MissionManager.OccurMissionCompleted -= TotalMissionScoreAdd;
+            BounceObject.OccurBounceAddScore -= TotalBounceScoreAdd;
         }
-
     }
 }

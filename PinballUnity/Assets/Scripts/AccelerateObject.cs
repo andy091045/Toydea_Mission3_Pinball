@@ -26,9 +26,4 @@ public class AccelerateObject : TriggerObject
     {
         this.accelerateAddForce_ = accelerateAddForce_;
     }
-
-    private void OnDestroy()
-    {
-        OccurAccelerate = null;
-    }
 }

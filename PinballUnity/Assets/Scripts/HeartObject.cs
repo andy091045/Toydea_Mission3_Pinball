@@ -23,9 +23,4 @@ public class HeartObject : TriggerObject
         }
         */
     }
-
-    private void OnDestroy()
-    {
-        OccurTriggerHeart = null;
-    }
 }

@@ -17,6 +17,11 @@ namespace AccelerateManagerNamespace
         {
             obj.GetAccelerateValue(accelerateAddForce_);
         }
+
+        private void OnDestroy()
+        {
+            AccelerateObject.OccurAccelerate -= SetAccelerateValue;
+        }
     }
 }
 

@@ -183,11 +183,7 @@ namespace MissionManagerNamespace
         private void OnDestroy()
         {
             MissionObject.OccurTriggerMissionObject -= TriggerMissionObject;
-            OccurMissionCompleted = null;
-            OccurHeartCompleted = null;
-            OccurMissionExecute = null;
-            AllMissionCompleted = null;
-
+            HeartObject.OccurTriggerHeart -= TriggerHeart;
         }
     }
 }

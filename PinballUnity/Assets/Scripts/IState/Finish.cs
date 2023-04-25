@@ -10,7 +10,7 @@ public class Finish : StateBase
 
     public override void OnEnter()
     {
-
+        Debug.Log("i“üŒ‹Z");
     }
 
     public override void OnExit()

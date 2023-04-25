@@ -12,6 +12,7 @@ public class Stage4 : StateBase
 
     public override void OnEnter()
     {
+        Debug.Log("進入stage4");
         //將可以加血量的機制關掉
 
         //因為米奇要開始跑去其他星球幫米妮買禮物，所以會有些區域有其他星球的重力

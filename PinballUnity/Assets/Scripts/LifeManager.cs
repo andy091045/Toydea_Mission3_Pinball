@@ -51,6 +51,12 @@ namespace LifeManagerNamespace
             OccurLifeChange(Lifetimes);
             Debug.Log("ê∂ñΩôîâ∫" + Lifetimes + "éü");
         }
+
+        private void OnDestroy()
+        {
+            MissionManager.OccurHeartCompleted -= LifeAdd;
+            Ball.OccurBallFallOut -= LifeDecrease;
+        }
     }
 }
 
