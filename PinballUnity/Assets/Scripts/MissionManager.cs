@@ -15,9 +15,8 @@ namespace MissionManagerNamespace
         public GameObject HeartPrefab;
         public GameObject TaskPrefab;
         public MissionData MissionData;
-        public bool IsHeartMissionStart = false;
-        public bool IsStage3MissionStart = false;
-        public bool IsStage4MissionStart = false;
+        public bool IsHeartMissionStart => GameInput.Instance.IsHeartMissionStart ;
+        public bool IsStage3MissionStart = false;        
 
         public delegate void MissionCompleteEventHandler(int score);
         public static MissionCompleteEventHandler OccurMissionCompleted;
@@ -137,7 +136,7 @@ namespace MissionManagerNamespace
             }
         }
 
-        public void TriggerHeart(HeartObject obj)
+        public void TriggerHeart(GameObject obj)
         {
             if(OccurHeartCompleted != null)
             {

@@ -4,13 +4,15 @@ using UnityEngine;
 using StateManagerNamespace;
 public class Stage1 : StateBase
 {
+    public delegate void Stage1EventHandler(string state);
+    public static Stage1EventHandler OccurStage1;
     public Stage1(StateManager m) : base(m)
     {
     }
 
     public override void OnEnter()
     {
-
+        OccurStage1("OnEnter");
     }
 
     public override void OnExit()

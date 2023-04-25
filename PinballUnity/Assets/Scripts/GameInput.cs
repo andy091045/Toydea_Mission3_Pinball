@@ -24,4 +24,8 @@ public class GameInput : TSingletonMonoBehavior<GameInput>
     public int TotalScore = 0;
 
     public int Lifetimes = 5;
+
+    public bool BallCanMove = true;
+
+    public bool IsHeartMissionStart = false;
 }

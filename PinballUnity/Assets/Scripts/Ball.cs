@@ -47,6 +47,7 @@ namespace BallNamespace
         {
             //Debug.Log("rb.velocity: " + rb.velocity);            
             ResetBallPos();
+            BallTryMove();
         }
 
         private void FixedUpdate()
@@ -79,6 +80,16 @@ namespace BallNamespace
             if (obj.isInAccelerateRegion_)
             {
                 rb_.AddForce(rb_.velocity.normalized * obj.accelerateAddForce_, ForceMode.Force);
+            }
+        }
+
+        private void BallTryMove() {
+            if(GameInput.Instance.BallCanMove) { 
+                rb_.isKinematic = false;
+            }
+            else
+            {
+                rb_.isKinematic = true;
             }
         }
 
