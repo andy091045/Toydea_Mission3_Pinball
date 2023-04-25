@@ -247,7 +247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4682027423658593782, guid: ac45e1fa0fd64c547a366cb239515b3d, type: 3}
       propertyPath: m_Radius
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4682027423658593783, guid: ac45e1fa0fd64c547a366cb239515b3d, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -9197,7 +9197,6 @@ MonoBehaviour:
   IsStage3MissionStart: 0
   IsStage4MissionStart: 0
   isAllMissionComplete: 0
-  MissionClass: {fileID: 0}
 --- !u!4 &798356209
 Transform:
   m_ObjectHideFlags: 0
@@ -26959,7 +26958,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28114
+  m_Name: pb_Mesh28132
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

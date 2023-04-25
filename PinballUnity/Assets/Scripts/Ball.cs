@@ -14,7 +14,7 @@ namespace BallNamespace
 
         [Label("Pinball fall out pinball table")]
         [SerializeField] private Vector3 ballLeaveTable_ = new Vector3(0, 0, -35);
-        public float Gravity => GameInput.Instance.Gravity;
+        private float gravity_ => GameInput.Instance.Gravity;
 
         private float bounceMinForce_ => GameInput.Instance.BounceMinForce;
 
@@ -38,7 +38,7 @@ namespace BallNamespace
         {
             rb_ = GetComponent<Rigidbody>();
             startPosition_ = transform.position;
-            ballForce_ = BALL_PLUS * Gravity;
+            ballForce_ = BALL_PLUS * gravity_;
             AccelerateObject.OccurAccelerate += GetAccelerateForce;
             BounceObject.OccurBouncePhysic += BounceAddForce;
         }

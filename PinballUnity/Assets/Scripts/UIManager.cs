@@ -49,4 +49,8 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
             Des.text = "Mission" + number + ": " + des + " ";
         }        
     }
+    private void OnDestroy()
+    {     
+        LifeManager.OccurLifeChange -= ChangeLifeText;
+    }
 }

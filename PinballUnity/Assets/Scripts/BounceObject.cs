@@ -10,7 +10,7 @@ public class BounceObject : CollisionObject
 
     public delegate void BouncePhysicEventHandler(Collision collision);
     public static BouncePhysicEventHandler OccurBouncePhysic;
-    public int OneBounceScore_ => GameInput.Instance.BounceScore;
+    [SerializeField] private int OneBounceScore_ => GameInput.Instance.BounceScore;
 
     protected override void onCollisionEnterTag(Collision collision)
     {

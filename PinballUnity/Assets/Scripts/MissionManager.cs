@@ -19,12 +19,6 @@ namespace MissionManagerNamespace
         public bool IsStage3MissionStart = false;
         public bool IsStage4MissionStart = false;
 
-        //public List<Mission> completedMissions_ = new List<Mission>();
-        public const int COMPLETE_NUMBER = 999999;
-
-        List<Mission> mission_ = new List<Mission>();
-        List<Mission> activeMissions_ = new List<Mission>();
-
         public delegate void MissionCompleteEventHandler(int score);
         public static MissionCompleteEventHandler OccurMissionCompleted;
 
@@ -37,9 +31,10 @@ namespace MissionManagerNamespace
         public delegate void AllMissionCompletedEventHandler();
         public static AllMissionCompletedEventHandler AllMissionCompleted;
 
-        public bool isAllMissionComplete = false;
+        public bool isAllMissionComplete = false;        
 
-        public MissionObject MissionClass;
+        //public List<Mission> completedMissions_ = new List<Mission>();
+        public const int COMPLETE_NUMBER = 999999;        
 
         [Label("ç≈è¨ÉrÉãÉhéûä‘")]
         [SerializeField] private const float CREATE_TIME_MIN = 1.0f;
@@ -56,6 +51,11 @@ namespace MissionManagerNamespace
         private bool isCreatingHeart = false;
 
         private Vector3 pos;
+
+        private List<Mission> mission_ = new List<Mission>();
+        private List<Mission> activeMissions_ = new List<Mission>();
+
+        private MissionObject MissionClass;
 
         void Start()
         {
