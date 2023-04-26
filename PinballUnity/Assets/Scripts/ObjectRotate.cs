@@ -20,6 +20,11 @@ public class ObjectRotate : MonoBehaviour
 
     void Update()
     {
+        if (objectType == ObjectType.WallObject)
+        {
+            gameObject.transform.RotateAround(gameObject.transform.position, Vector3.up, 10.0f * Time.deltaTime);
+        }
+
         if (Input.GetKey(KeyCode.Space))
         {
             if(objectType == ObjectType.WallObject)

@@ -23,10 +23,15 @@ namespace GameManagerNamespace
         {
             if (Input.GetKeyDown(KeyCode.H))
             {
-                GameInput.Instance.TotalScore = 0;
-                //print H return to the Scene "Home" 
-                SceneManager.LoadScene(0);
+                ReStart();
             }
+        }
+
+        public void ReStart()
+        {
+            GameInput.Instance.TotalScore = 0;
+            GameInput.Instance.Lifetimes = 5;
+            SceneManager.LoadScene(0);
         }
     }
 }

@@ -18,6 +18,7 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
     public Image[] Stage3Bar;
 
     public GameObject[] MickeyIcon;
+    public Transform EndUI;
 
     public Text Score;
     public Text Des;
@@ -32,11 +33,11 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
         Stage1.OccurStage1 += Stage1State;
         Stage2.OccurStage2 += Stage2State;
         Stage3.OccurStage3 += Stage3State;
+        Finish.OccurFinish += FinishState;
     }
 
     private void Start()
-    {
-        
+    {        
         MissionManager.AllMissionCompleted += AllMissionCompleted;
         //DoTweenStageImageMoveIn(Stage1Bar);       
     }
@@ -101,6 +102,14 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
         }
     }
 
+    private void FinishState(string state)
+    {
+        if(state == "OnEnter")
+        {
+            EndUI.DOMove(new Vector3(1000, 600, 0), 1f).SetEase(Ease.OutBounce);
+        }        
+    }
+
     private void DoTweenStageImageMoveIn(Image[] stage)
     {
         Sequence sequence = DOTween.Sequence();
@@ -127,6 +136,9 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
         MissionManager.OccurMissionExecute -= ChangeMissionText;
         MissionManager.AllMissionCompleted -= AllMissionCompleted;
         Stage1.OccurStage1 -= Stage1State;
+        Stage2.OccurStage2 -= Stage2State;
+        Stage3.OccurStage3 -= Stage3State;
+        Finish.OccurFinish -= FinishState;
     }
 
 

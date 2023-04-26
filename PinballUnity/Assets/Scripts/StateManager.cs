@@ -2,6 +2,7 @@ using GameManagerNamespace;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace StateManagerNamespace
 {
@@ -12,13 +13,12 @@ namespace StateManagerNamespace
         [SerializeField] private int score_ => GameInput.Instance.TotalScore;
         [SerializeField] private int lifeTimes_ => GameInput.Instance.Lifetimes;
 
-        [SerializeField] private int[] ChanegeStateScore = new int[3] {1000, 2000, 3000};
+        [SerializeField] private int[] ChanegeStateScore = new int[2] {1000, 2000};
 
         [Header("Stage Trigger")]
         [SerializeField] private bool isStage1Trigger_ = false;
         [SerializeField] private bool isStage2Trigger_ = false;
         [SerializeField] private bool isStage3Trigger_ = false;
-        [SerializeField] private bool isStage4Trigger_ = false;
         [SerializeField] private bool isFinishTrigger_ = false;
 
         private void Start()
@@ -26,7 +26,6 @@ namespace StateManagerNamespace
             status_.Add(State_Enum.stage1, new Stage1(this));
             status_.Add(State_Enum.stage2, new Stage2(this));
             status_.Add(State_Enum.stage3, new Stage3(this));
-            status_.Add(State_Enum.stage4, new Stage4(this));
             status_.Add(State_Enum.finish, new Finish(this));
 
             //start from stage1
@@ -50,11 +49,6 @@ namespace StateManagerNamespace
             {
                 //Debug.Log("‰Áã“ï“xŒn“");
                 TryTransitionState(State_Enum.stage3);
-            }
-            else if (score >= ChanegeStateScore[2] && lifeTimes_ != 0)
-            {
-                //Debug.Log("‰Áã•ÄŠï‰õ•ñœEŒn“");
-                TryTransitionState(State_Enum.stage4);
             }
             else if (lifeTimes_ == 0)
             {
@@ -102,19 +96,7 @@ namespace StateManagerNamespace
                         isStage3Trigger_ = true;
                         TransitionState(type);
                     }
-                    break;
-                case State_Enum.stage4:
-                    if (isStage4Trigger_)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        //Debug.Log("Start " + type);
-                        isStage4Trigger_ = true;
-                        TransitionState(type);
-                    }
-                    break;
+                    break;               
                 case State_Enum.finish:
                     if (isFinishTrigger_)
                     {
@@ -144,10 +126,16 @@ namespace StateManagerNamespace
             CurrentState = status_[type];
             CurrentState.OnEnter();
         }
+        public void ReStart()
+        {
+            GameInput.Instance.TotalScore = 0;
+            GameInput.Instance.Lifetimes = 5;
+            SceneManager.LoadScene(0);
+        }
 
         public enum State_Enum
         {
-            stage1, stage2, stage3, stage4, finish
+            stage1, stage2, stage3, finish
         }
     }
 }
