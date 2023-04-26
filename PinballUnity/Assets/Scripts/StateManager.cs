@@ -13,13 +13,14 @@ namespace StateManagerNamespace
         [SerializeField] private int score_ => GameInput.Instance.TotalScore;
         [SerializeField] private int lifeTimes_ => GameInput.Instance.Lifetimes;
 
-        [SerializeField] private int[] ChanegeStateScore = new int[2] {1000, 2000};
+        [SerializeField] private int[] ChanegeStateScore;
 
         [Header("Stage Trigger")]
         [SerializeField] private bool isStage1Trigger_ = false;
         [SerializeField] private bool isStage2Trigger_ = false;
         [SerializeField] private bool isStage3Trigger_ = false;
         [SerializeField] private bool isFinishTrigger_ = false;
+        [SerializeField] private bool isWeddingTrigger_ = false;
 
         private void Start()
         {
@@ -27,7 +28,7 @@ namespace StateManagerNamespace
             status_.Add(State_Enum.stage2, new Stage2(this));
             status_.Add(State_Enum.stage3, new Stage3(this));
             status_.Add(State_Enum.finish, new Finish(this));
-
+            status_.Add(State_Enum.wedding, new Wedding(this));
             //start from stage1
             TransitionState(State_Enum.stage1);
         }
@@ -49,6 +50,9 @@ namespace StateManagerNamespace
             {
                 //Debug.Log("‰Áã“ï“xŒn“");
                 TryTransitionState(State_Enum.stage3);
+            }else if (score >= ChanegeStateScore[2] && lifeTimes_ != 0)
+            {
+                TryTransitionState(State_Enum.wedding);
             }
             else if (lifeTimes_ == 0)
             {
@@ -96,7 +100,18 @@ namespace StateManagerNamespace
                         isStage3Trigger_ = true;
                         TransitionState(type);
                     }
-                    break;               
+                    break;
+                case State_Enum.wedding:
+                    if (isWeddingTrigger_)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        isWeddingTrigger_ = true;
+                        TransitionState(type);
+                    }
+                    break;
                 case State_Enum.finish:
                     if (isFinishTrigger_)
                     {
@@ -135,7 +150,7 @@ namespace StateManagerNamespace
 
         public enum State_Enum
         {
-            stage1, stage2, stage3, finish
+            stage1, stage2, stage3, finish, wedding
         }
     }
 }

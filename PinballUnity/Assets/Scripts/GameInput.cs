@@ -19,7 +19,7 @@ public class GameInput : TSingletonMonoBehavior<GameInput>
     public float BounceMinForce = 150;
 
     [Label("バウンススコア")]
-    public int BounceScore = 100;
+    public int BounceScore = 10;
 
     public int TotalScore = 0;
 

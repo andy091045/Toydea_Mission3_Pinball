@@ -155,13 +155,15 @@ namespace MissionManagerNamespace
                 float createTime = Random.Range(CREATE_TIME_MIN, CREATE_TIME_MAX) ;
                 int i = Random.Range(0, positionsIsNotCreated_.Count);
                 pos = positionsIsNotCreated_[i];
-                positionsIsNotCreated_.Remove(positionsIsNotCreated_[i]);                
+                positionsIsNotCreated_.Remove(positionsIsNotCreated_[i]);  
+                /*
                 Debug.Log("positionsIsNotCreated_.Count: " + positionsIsNotCreated_.Count);
                 foreach (Vector3 position in positionsIsNotCreated_)
                 {
                     Debug.Log(position);
                 }
                 Debug.Log("------------------------------");
+                */
                 positionsIsCreated_.Add(pos);
                 Invoke("WaitAndCreate", createTime);
             }

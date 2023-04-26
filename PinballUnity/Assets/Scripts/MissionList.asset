@@ -14,12 +14,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Missions:
   - Number: 0
-    Description: 123
+    Description: "\u30DF\u30CB\u30FC\u306E\u305F\u3081\u306B\u663C\u98DF\u3092\u8CB7\u3044\u306B\u884C\u304F
+      (+1000\u7A4D\u5206)"
     NextNumber: 1
-    Score: 20
-    Position: {x: 0, y: -128, z: 88}
+    Score: 1000
+    Position: {x: -9.3, y: -128, z: 151.2}
   - Number: 1
-    Description: 321
-    NextNumber: 999999
-    Score: 30
+    Description: "\u304A\u8336\u3092\u8CB7\u3046 (+500\u7A4D\u5206)"
+    NextNumber: 2
+    Score: 500
+    Position: {x: -103.5, y: -128, z: 148.2}
+  - Number: 2
+    Description: "\u3068\u3053\u308D\u3067\u8336\u5375\u3092\u8CB7\u3046 (+100\u7A4D\u5206)"
+    NextNumber: 3
+    Score: 100
     Position: {x: -81, y: -128, z: 158}
+  - Number: 3
+    Description: "\u30A6\u30A8\u30C7\u30A3\u30F3\u30B0\u30B1\u30FC\u30AD\u3092\u6CE8\u6587\u3059\u308B
+      (+500\u7A4D\u5206)"
+    NextNumber: 4
+    Score: 500
+    Position: {x: 43.4, y: -128, z: 49.8}
+  - Number: 4
+    Description: "\u30DF\u30CB\u30FC\u306E\u305F\u3081\u306B\u5915\u98DF\u3092\u8CB7\u3044\u306B\u884C\u304F
+      (+1000\u7A4D\u5206)"
+    NextNumber: 5
+    Score: 1000
+    Position: {x: 3.4, y: -128, z: 105.5}
+  - Number: 5
+    Description: "\u6CE8\u6587\u3057\u305F\u30A6\u30A8\u30C7\u30A3\u30F3\u30B0\u30B1\u30FC\u30AD\u306E\u53D7\u3051\u53D6\u308A\u306B
+      (+2000\u7A4D\u5206)"
+    NextNumber: 6
+    Score: 2000
+    Position: {x: -68.1, y: -128, z: 91.3}
+  - Number: 6
+    Description: "\u7D50\u5A5A\u6307\u8F2A\u3092\u8CB7\u3046 (+5000\u7A4D\u5206)"
+    NextNumber: 7
+    Score: 5000
+    Position: {x: -54.6, y: -128, z: 52.1}
+  - Number: 7
+    Description: "\u7D50\u5A5A\u3059\u308B (+20000\u7A4D\u5206)"
+    NextNumber: 999999
+    Score: 20000
+    Position: {x: 95.8, y: -128, z: 184.5}
