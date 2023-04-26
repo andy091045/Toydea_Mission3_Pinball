@@ -6,6 +6,9 @@ using GameManagerNamespace;
 
 public class Stage3 : StateBase
 {
+    public delegate void Stage3EventHandler(string state);
+    public static Stage3EventHandler OccurStage3;
+
     private float recordOriginGravity_;
 
     private float recordOriginBounceMaxForce_;
@@ -18,6 +21,8 @@ public class Stage3 : StateBase
 
     public override void OnEnter()
     {
+        GameInput.Instance.BallCanMove = false;
+        OccurStage3("OnEnter");
         Debug.Log("i“üstage3");
         //Š—L“I—ÍÌ‘åˆêêy
         recordOriginGravity_ = GameInput.Instance.Gravity;
@@ -51,6 +56,6 @@ public class Stage3 : StateBase
 
     public override void OnUpdate()
     {
-
+        
     }   
 }

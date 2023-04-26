@@ -28,6 +28,8 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
         LifeManager.OccurLifeChange += ChangeLifeText;
         MissionManager.OccurMissionExecute += ChangeMissionText;
         Stage1.OccurStage1 += Stage1State;
+        Stage2.OccurStage2 += Stage2State;
+        Stage3.OccurStage3 += Stage3State;
     }
 
     private void Start()
@@ -67,6 +69,20 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
             DoTweenStageImageMoveIn(Stage1Bar);
         }
     }
+    private void Stage2State(string state)
+    {
+        if (state == "OnEnter")
+        {
+            DoTweenStageImageMoveIn(Stage2Bar);
+        }
+    }
+    private void Stage3State(string state)
+    {
+        if (state == "OnEnter")
+        {
+            DoTweenStageImageMoveIn(Stage3Bar);
+        }
+    }
 
     private void DoTweenStageImageMoveIn(Image[] stage)
     {
@@ -79,6 +95,12 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
         sequence2.Append(stage[1].rectTransform.DOMove(new Vector3(1300, 500, 0), 1f).SetEase(Ease.OutBounce));
         sequence2.AppendInterval(1);
         sequence2.Append(stage[1].rectTransform.DOMove(new Vector3(-1000, 200, 0), 1f));
+        sequence2.OnComplete(BallCanMove);
+    }
+
+    private void BallCanMove()
+    {
+        GameInput.Instance.BallCanMove = true;
     }
 
     private void OnDestroy()

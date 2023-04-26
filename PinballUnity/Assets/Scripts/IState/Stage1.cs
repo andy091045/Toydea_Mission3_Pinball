@@ -12,6 +12,7 @@ public class Stage1 : StateBase
 
     public override void OnEnter()
     {
+        GameInput.Instance.BallCanMove = false;
         OccurStage1("OnEnter");
     }
 
@@ -22,6 +23,6 @@ public class Stage1 : StateBase
 
     public override void OnUpdate()
     {
-
+        
     }
 }
