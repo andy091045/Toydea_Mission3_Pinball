@@ -10,6 +10,7 @@ public class Finish : StateBase
 
     public override void OnEnter()
     {
+        GameInput.Instance.BallCanMove = false;
         Debug.Log("i“üŒ‹Z");
     }
 

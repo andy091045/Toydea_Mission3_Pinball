@@ -41,6 +41,7 @@ public class Stage3 : StateBase
 
     public override void OnExit()
     {
+        OccurStage3("OnExit");
         //ŠÒŒ´Š—L“I—Í
         GameInput.Instance.Gravity = recordOriginGravity_;
 

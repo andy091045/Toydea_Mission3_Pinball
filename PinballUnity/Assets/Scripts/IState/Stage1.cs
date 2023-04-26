@@ -18,7 +18,7 @@ public class Stage1 : StateBase
 
     public override void OnExit()
     {
-
+        OccurStage1("OnExit");
     }
 
     public override void OnUpdate()

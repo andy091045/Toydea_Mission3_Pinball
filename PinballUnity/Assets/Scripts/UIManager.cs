@@ -17,6 +17,8 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
     public Image[] Stage2Bar;
     public Image[] Stage3Bar;
 
+    public GameObject[] MickeyIcon;
+
     public Text Score;
     public Text Des;
     public Text Life;
@@ -34,6 +36,7 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
 
     private void Start()
     {
+        
         MissionManager.AllMissionCompleted += AllMissionCompleted;
         //DoTweenStageImageMoveIn(Stage1Bar);       
     }
@@ -67,6 +70,10 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
         if (state == "OnEnter")
         {
             DoTweenStageImageMoveIn(Stage1Bar);
+            MickeyIcon[0].SetActive(true);
+        }else if(state == "OnExit")
+        {
+            MickeyIcon[0].SetActive(false);
         }
     }
     private void Stage2State(string state)
@@ -74,6 +81,11 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
         if (state == "OnEnter")
         {
             DoTweenStageImageMoveIn(Stage2Bar);
+            MickeyIcon[1].SetActive(true);
+        }
+        else if (state == "OnExit")
+        {
+            MickeyIcon[1].SetActive(false);
         }
     }
     private void Stage3State(string state)
@@ -81,6 +93,11 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
         if (state == "OnEnter")
         {
             DoTweenStageImageMoveIn(Stage3Bar);
+            MickeyIcon[2].SetActive(true);
+        }
+        else if (state == "OnExit")
+        {
+            MickeyIcon[2].SetActive(false);
         }
     }
 

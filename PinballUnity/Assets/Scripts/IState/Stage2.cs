@@ -22,6 +22,7 @@ public class Stage2 : StateBase
 
     public override void OnExit()
     {
+        OccurStage2("OnExit");
         //將可以加血量的機制關掉
         GameInput.Instance.IsHeartMissionStart = false;
     }
