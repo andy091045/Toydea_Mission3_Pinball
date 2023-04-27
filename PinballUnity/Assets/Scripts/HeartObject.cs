@@ -9,6 +9,7 @@ public class HeartObject : TriggerObject
 {
     public delegate void OccurTriggerHeartEventHandler(GameObject obj);
     public static OccurTriggerHeartEventHandler OccurTriggerHeart;
+
     protected override void onTriggerEnterTag(Collider other)
     {
         OccurTriggerHeart(this.gameObject);
@@ -18,6 +19,7 @@ public class HeartObject : TriggerObject
     private void Update()
     {
         
+
         if (!GameInput.Instance.IsHeartMissionStart)
         {
             Destroy(gameObject);
