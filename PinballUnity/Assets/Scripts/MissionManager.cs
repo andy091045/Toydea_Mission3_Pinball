@@ -36,10 +36,10 @@ namespace MissionManagerNamespace
         public const int COMPLETE_NUMBER = 999999;        
 
         [Label("最小ビルド時間")]
-        [SerializeField] private const float CREATE_TIME_MIN = 1.0f;
+        [SerializeField] private const float CREATE_TIME_MIN = 10.0f;
 
         [Label("最大ビルド時間")]
-        [SerializeField] private const float CREATE_TIME_MAX = 2.0f;
+        [SerializeField] private const float CREATE_TIME_MAX = 20.0f;
 
         private List<Vector3> positions_ => GameManager.Instance.GetPositionVector3();
 
