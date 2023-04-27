@@ -19,12 +19,9 @@ namespace GameManagerNamespace
             return PositionData.GetComponent<SaveLocationList>().PositionsVector3;
         }
 
-        private void Update()
+        private void Start()
         {
-            if (Input.GetKeyDown(KeyCode.H))
-            {
-                ReStart();
-            }
+            GameInput.Instance.onReStartEvent.AddListener(ReStart);
         }
 
         public void ReStart()
@@ -33,5 +30,6 @@ namespace GameManagerNamespace
             GameInput.Instance.Lifetimes = 5;
             SceneManager.LoadScene(0);
         }
+
     }
 }

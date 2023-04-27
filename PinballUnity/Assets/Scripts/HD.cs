@@ -122,13 +122,18 @@ namespace HD.Singleton
         {
             if (instance == null) instance = this as T;
             if (instance == this) DontDestroyOnLoad(this);
-            else DestroyImmediate(gameObject);
+            else { 
+                DestroyImmediate(gameObject);
+                return;
+            }
             init();
         }
 
         protected virtual void init()
         {
         }
+
+        //protected virtual void OnDestroy() => instance = null;
     }
 }
 

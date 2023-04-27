@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using HD.Singleton;
 using NaughtyAttributes;
+using UnityEngine.Events;
 
 public class GameInput : TSingletonMonoBehavior<GameInput>
 {
@@ -30,4 +31,40 @@ public class GameInput : TSingletonMonoBehavior<GameInput>
     public bool IsHeartMissionStart = false;
 
     public int HiddenEndingScore = 20000;
+
+    //public class CustomEvent: UnityEvent<char>{}
+
+    public UnityEvent onReStartEvent = new UnityEvent();
+    public UnityEvent onShootPinballEvent = new UnityEvent();
+    public UnityEvent onResetPlungerForceEvent = new UnityEvent();
+
+    private void Update()
+    {
+        GetInput();
+    }
+
+    private void GetInput()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            onReStartEvent.Invoke();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            onResetPlungerForceEvent.Invoke();
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            onShootPinballEvent.Invoke();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        onReStartEvent.RemoveAllListeners();
+        onShootPinballEvent.RemoveAllListeners();
+        onResetPlungerForceEvent.RemoveAllListeners();
+    }
 }

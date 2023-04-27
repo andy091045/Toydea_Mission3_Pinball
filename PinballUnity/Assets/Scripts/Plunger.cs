@@ -22,22 +22,28 @@ public class Plunger : CollisionObject
 
     void Start()
     {
+        GameInput.Instance.onShootPinballEvent.AddListener(TryShootPinball);
+        GameInput.Instance.onResetPlungerForceEvent.AddListener(ResetPlungerForce);
         ball_ = null;
     }
 
     void Update()
     {
         totalForce_ += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Space))
+    }
+
+    private void ResetPlungerForce()
+    {
+        totalForce_ = 0;
+    }
+
+    private void TryShootPinball()
+    {        
+        if (ball_ != null)
         {
-            totalForce_ = 0;            
+            ball_.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, Mathf.Clamp(totalForce_, fMin_, fMax_) * force_));            
         }
-        if (Input.GetKeyUp(KeyCode.Space) && ball_ != null)
-        {
-            ball_.GetComponent<Rigidbody>().AddForce(new Vector3(0,0, Mathf.Clamp(totalForce_, fMin_, fMax_) * force_));
-            totalForce_ = 0;
-        }
-        //Debug.Log(totalForce_);
+        totalForce_ = 0;
     }
 
     protected override void onCollisionEnterTag(Collision collision)
