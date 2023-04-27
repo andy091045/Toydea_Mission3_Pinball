@@ -20,7 +20,6 @@ namespace StateManagerNamespace
         [SerializeField] private bool isStage2Trigger_ = false;
         [SerializeField] private bool isStage3Trigger_ = false;
         [SerializeField] private bool isFinishTrigger_ = false;
-        [SerializeField] private bool isWeddingTrigger_ = false;
 
         private void Start()
         {
@@ -28,7 +27,6 @@ namespace StateManagerNamespace
             status_.Add(State_Enum.stage2, new Stage2(this));
             status_.Add(State_Enum.stage3, new Stage3(this));
             status_.Add(State_Enum.finish, new Finish(this));
-            status_.Add(State_Enum.wedding, new Wedding(this));
             //start from stage1
             TransitionState(State_Enum.stage1);
         }
@@ -46,13 +44,10 @@ namespace StateManagerNamespace
             {
                 TryTransitionState(State_Enum.stage2);
             }
-            else if (score >= ChanegeStateScore[1] && score < ChanegeStateScore[2] && lifeTimes_ != 0)
+            else if (score >= ChanegeStateScore[1] && lifeTimes_ != 0)
             {
                 //Debug.Log("‰Áã“ï“xŒn“");
                 TryTransitionState(State_Enum.stage3);
-            }else if (score >= ChanegeStateScore[2] && lifeTimes_ != 0)
-            {
-                TryTransitionState(State_Enum.wedding);
             }
             else if (lifeTimes_ == 0)
             {
@@ -101,17 +96,6 @@ namespace StateManagerNamespace
                         TransitionState(type);
                     }
                     break;
-                case State_Enum.wedding:
-                    if (isWeddingTrigger_)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        isWeddingTrigger_ = true;
-                        TransitionState(type);
-                    }
-                    break;
                 case State_Enum.finish:
                     if (isFinishTrigger_)
                     {
@@ -150,7 +134,7 @@ namespace StateManagerNamespace
 
         public enum State_Enum
         {
-            stage1, stage2, stage3, finish, wedding
+            stage1, stage2, stage3, finish
         }
     }
 }

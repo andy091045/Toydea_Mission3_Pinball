@@ -28,4 +28,6 @@ public class GameInput : TSingletonMonoBehavior<GameInput>
     public bool BallCanMove = true;
 
     public bool IsHeartMissionStart = false;
+
+    public int HiddenEndingScore = 20000;
 }

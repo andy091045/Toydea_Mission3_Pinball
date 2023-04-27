@@ -131,3 +131,26 @@ namespace HD.Singleton
         }
     }
 }
+
+namespace HD.FindObject
+{
+    public class Find    
+    {
+        //前面放入要找的物件名字，後面放入要指到物件底下類別的已宣告類別
+        public void FindObject<T>(string name, out T component) where T : Component
+        {
+            GameObject target = GameObject.Find(name);
+            if (target != null)
+            {
+                component = target.GetComponent<T>();
+            }
+            else
+            {
+                Debug.LogError($"Can't find {name}");
+                component = null;
+            }
+        }
+    }
+
+    
+}

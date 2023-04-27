@@ -8,7 +8,7 @@ using MissionManagerNamespace;
 using ScoreManagerNamespace;
 using LifeManagerNamespace;
 using DG.Tweening;
-using UnityEditor.SceneManagement;
+using HD.FindObject;
 
 public class UIManager : TSingletonMonoBehavior<UIManager>
 {
@@ -19,14 +19,23 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
 
     public GameObject[] MickeyIcon;
     public Transform EndUI;
+    
 
     public Text Score;
     public Text Des;
     public Text Life;
     private bool isAllComplete_ = false;
 
+    [Header("EndのUI設定")]
+    public GameObject[] EndingImage;
+    Text EndScore;
+
     private void Awake()
     {
+        Find find = new Find();
+        //Find "EndScore GameObject"
+        find.FindObject("EndScore", out EndScore);
+
         ScoreManager.OccurAddScore += ChangeScoreText;        
         LifeManager.OccurLifeChange += ChangeLifeText;
         MissionManager.OccurMissionExecute += ChangeMissionText;
@@ -39,7 +48,7 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
     private void Start()
     {        
         MissionManager.AllMissionCompleted += AllMissionCompleted;
-        //DoTweenStageImageMoveIn(Stage1Bar);       
+        //DoTweenStageImageMoveIn(Stage1Bar);        
     }
 
     private void AllMissionCompleted()
@@ -51,6 +60,12 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
     private void ChangeScoreText(int score)
     {
         Score.text = score + " ";
+        EndScore.text = "ついに積分: " + score ;
+        if(score >= GameInput.Instance.HiddenEndingScore)
+        {
+            EndingImage[0].SetActive(false);
+            EndingImage[1].SetActive(true);
+        }
     }
 
     private void ChangeLifeText(int life)
@@ -106,7 +121,7 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
     {
         if(state == "OnEnter")
         {
-            EndUI.DOMove(new Vector3(1000, 600, 0), 1f).SetEase(Ease.OutBounce);
+            EndUI.DOMove(new Vector3(950, 530, 0), 1f).SetEase(Ease.OutBounce);
         }        
     }
 
