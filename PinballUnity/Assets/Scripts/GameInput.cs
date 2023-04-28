@@ -37,6 +37,8 @@ public class GameInput : TSingletonMonoBehavior<GameInput>
     public UnityEvent onReStartEvent = new UnityEvent();
     public UnityEvent onShootPinballEvent = new UnityEvent();
     public UnityEvent onResetPlungerForceEvent = new UnityEvent();
+    public UnityEvent onControlLeftArmEvent = new UnityEvent();
+    public UnityEvent onControlRightArmEvent = new UnityEvent();
 
     private void Update()
     {
@@ -59,6 +61,16 @@ public class GameInput : TSingletonMonoBehavior<GameInput>
         {
             onShootPinballEvent.Invoke();
         }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            onControlLeftArmEvent.Invoke();
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            onControlRightArmEvent.Invoke();
+        }
     }
 
     private void OnDestroy()
@@ -66,5 +78,7 @@ public class GameInput : TSingletonMonoBehavior<GameInput>
         onReStartEvent.RemoveAllListeners();
         onShootPinballEvent.RemoveAllListeners();
         onResetPlungerForceEvent.RemoveAllListeners();
+        onControlLeftArmEvent.RemoveAllListeners();
+        onControlRightArmEvent.RemoveAllListeners();
     }
 }

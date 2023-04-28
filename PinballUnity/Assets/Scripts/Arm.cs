@@ -9,13 +9,15 @@ namespace ArmNamespace
 {
     public class Arm : MonoBehaviour
     {
-        public ArmType armtype;
 
         [Label("Arm‚Ì’e«")]
-        [SerializeField] private float damper_ = 1000000;
+        [SerializeField] private float damper_ = 1000000;        
 
-        [Label("Arm‚Ì‰ñ“]”ÍˆÍ")]
-        [SerializeField] private float rotateAngle_ = 45;       
+        public bool KeyDown;
+
+        public float TargetAngle;
+
+        public float StartAngle;
 
         private Rigidbody rb_;
 
@@ -24,8 +26,7 @@ namespace ArmNamespace
         private JointSpring jointSpring_;
         float gravity_ => GameInput.Instance.Gravity;
 
-        private const float START_ANGLE = 30.0f;
-
+        
         void Start()
         {
             rb_ = GetComponent<Rigidbody>();
@@ -43,30 +44,15 @@ namespace ArmNamespace
         private void FixedUpdate()
         {
             rb_.AddForce(new Vector3(0, 0, gravity_ * Time.deltaTime));
-        }
-
-        public enum ArmType
-        {
-            LeftArm, RightArm
-        }
+        }       
 
         void ControllArm()
         {
-            if (TypeIsLeftArm(armtype))
-            {
-                jointSpring_.targetPosition = Input.GetKey(KeyCode.A) ? -(rotateAngle_ - START_ANGLE) : START_ANGLE;
-            }
-            else
-            {
-                jointSpring_.targetPosition = Input.GetKey(KeyCode.D) ? rotateAngle_ - START_ANGLE : -START_ANGLE;
-            }
+            jointSpring_.targetPosition = KeyDown ? TargetAngle : StartAngle;
             hingeJoint_.spring = jointSpring_;
+            KeyDown = false;
         }
 
-        public bool TypeIsLeftArm(ArmType armtype)
-        {
-            return armtype == ArmType.LeftArm ? true : false;
-        }
     }
 }
 

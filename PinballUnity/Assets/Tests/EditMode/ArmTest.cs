@@ -5,21 +5,24 @@ using ArmNamespace;
 using NUnit.Framework;
 using Unity.IO.LowLevel.Unsafe;
 
+
 public class ArmTest
 {
     [Test]
     //tag
     [TestCase()]
 
-    public void Arm_Test()
-    {
+
+    public void ArmType_LeftArm_Test()
+    {        
         var gameObject = new GameObject();
-        var arm_ = gameObject.AddComponent<Arm>();
-        var leftArm_ = Arm.ArmType.LeftArm;
-        var rightArm_ = Arm.ArmType.RightArm;
+        var gameInput = gameObject.AddComponent<GameInput>();
+        var arm = gameObject.AddComponent<Arm>();
+        var armType = gameObject.AddComponent<ArmType>();
+        
 
-        Assert.IsTrue(arm_.TypeIsLeftArm(leftArm_));
-        Assert.IsFalse(arm_.TypeIsLeftArm(rightArm_));
+        armType.chooseArmType = ArmType.ChooseArmType.LeftArm;
+
+        Assert.That(armType.chooseArmType, Is.EqualTo(ArmType.ChooseArmType.LeftArm));        
     }
-
 }
