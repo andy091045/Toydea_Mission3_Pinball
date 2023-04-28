@@ -16,10 +16,7 @@ public class ArmTest
     public void ArmType_LeftArm_Test()
     {        
         var gameObject = new GameObject();
-        var gameInput = gameObject.AddComponent<GameInput>();
-        var arm = gameObject.AddComponent<Arm>();
-        var armType = gameObject.AddComponent<ArmType>();
-        
+        var armType = gameObject.AddComponent<ArmType>();        
 
         armType.chooseArmType = ArmType.ChooseArmType.LeftArm;
 

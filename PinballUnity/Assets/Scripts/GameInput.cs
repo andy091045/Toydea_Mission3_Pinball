@@ -26,11 +26,15 @@ public class GameInput : TSingletonMonoBehavior<GameInput>
 
     public int Lifetimes = 5;
 
+    public int HiddenEndingScore = 20000;
+
+    public float AccelerateForce = 500.0f;
+
     public bool BallCanMove = true;
 
     public bool IsHeartMissionStart = false;
 
-    public int HiddenEndingScore = 20000;
+    
 
     //public class CustomEvent: UnityEvent<char>{}
 

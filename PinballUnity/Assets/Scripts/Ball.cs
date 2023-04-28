@@ -29,18 +29,12 @@ namespace BallNamespace
         /// </summary>
         private const float BALL_PLUS = 130;
 
-        /// <summary>
-        /// BALL_PLUS * gravity_
-        /// </summary>
-        private float ballForce_;
-
         void Start()
         {
             AccelerateObject.OccurAccelerate += GetAccelerateForce;
             BounceObject.OccurBouncePhysic += BounceAddForce;
             rb_ = GetComponent<Rigidbody>();
-            startPosition_ = transform.position;
-            ballForce_ = BALL_PLUS * gravity_;            
+            startPosition_ = transform.position;                      
         }
 
         void Update()
@@ -52,7 +46,7 @@ namespace BallNamespace
 
         private void FixedUpdate()
         {
-            rb_.AddForce(new Vector3(0, 0, ballForce_ * Time.deltaTime));
+            rb_.AddForce(new Vector3(0, 0, BALL_PLUS * gravity_ * Time.deltaTime));
             normalize_ = rb_.velocity.normalized;
         }        
 
@@ -75,12 +69,9 @@ namespace BallNamespace
             rb_.velocity = newVelocity;
         }
 
-        private void GetAccelerateForce(AccelerateObject obj)
+        private void GetAccelerateForce(float addForce)
         {
-            if (obj.isInAccelerateRegion_)
-            {
-                rb_.AddForce(rb_.velocity.normalized * obj.accelerateAddForce_, ForceMode.Force);
-            }
+            rb_.AddForce(rb_.velocity.normalized * addForce, ForceMode.Force);
         }
 
         private void BallTryMove() {
