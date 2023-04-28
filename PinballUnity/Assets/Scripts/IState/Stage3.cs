@@ -26,13 +26,13 @@ public class Stage3 : StateBase
         Debug.Log("進入stage3");
         //所有的力變大一點
         recordOriginGravity_ = GameInput.Instance.Gravity;
-        GameInput.Instance.Gravity = recordOriginGravity_ * 2.0f;
+        GameInput.Instance.Gravity = recordOriginGravity_ * 1.5f;
 
         recordOriginBounceMaxForce_ = GameInput.Instance.BounceMaxForce;
-        GameInput.Instance.BounceMaxForce = recordOriginBounceMaxForce_ * 1.3f;
+        GameInput.Instance.BounceMaxForce = recordOriginBounceMaxForce_ * 1.2f;
 
         recordOriginBounceMinForce_ = GameInput.Instance.BounceMinForce;
-        GameInput.Instance.BounceMinForce = recordOriginBounceMinForce_ * 1.3f;
+        GameInput.Instance.BounceMinForce = recordOriginBounceMinForce_ * 1.2f;
 
         //天氣開始下雨了，加上下雨天特效
 

@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class GameInput : TSingletonMonoBehavior<GameInput>
 {
-    public float Gravity = -75.0f;
+    public float Gravity = -150.0f;
 
     /// <summary>
     /// tag = "bounceObject_" MaxSpeed

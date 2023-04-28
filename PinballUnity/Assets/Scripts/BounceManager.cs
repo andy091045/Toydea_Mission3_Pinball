@@ -27,6 +27,9 @@ public class BounceManager : MonoBehaviour
             {
                 Renderer renderer = item.GetComponent<Renderer>();
                 renderer.sharedMaterial = materials[1];
+               
+                BounceObject bounceObject = item.GetComponent<BounceObject>();                
+                bounceObject.OriginColor = materials[1].color;
             }
         }
     }
@@ -39,6 +42,9 @@ public class BounceManager : MonoBehaviour
             {
                 Renderer renderer = item.GetComponent<Renderer>();
                 renderer.sharedMaterial = materials[2];
+
+                BounceObject bounceObject = item.GetComponent<BounceObject>();
+                bounceObject.OriginColor = materials[2].color;
             }
         }
     }
