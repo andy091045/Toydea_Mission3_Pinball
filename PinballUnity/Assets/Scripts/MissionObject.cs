@@ -27,5 +27,5 @@ public class MissionObject : TriggerObject
     {
         OccurTriggerMissionObject(this);       
         Destroy(gameObject);
-    }    
+    }
 }

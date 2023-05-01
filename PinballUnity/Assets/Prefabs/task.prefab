@@ -116,6 +116,7 @@ MonoBehaviour:
   NextNumber: 0
   Score: 0
   Position: {x: 0, y: 0, z: 0}
+  effect: {fileID: 4544653006876005164, guid: c57f92ca2bc5c56429ea06b914b8fe85, type: 3}
 --- !u!1 &7953457723487136660
 GameObject:
   m_ObjectHideFlags: 0
