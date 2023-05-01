@@ -28,7 +28,7 @@ namespace GameManagerNamespace
         {
             GameInput.Instance.TotalScore = 0;
             GameInput.Instance.Lifetimes = 5;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
 
     }

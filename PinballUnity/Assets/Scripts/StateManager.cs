@@ -125,12 +125,7 @@ namespace StateManagerNamespace
             CurrentState = status_[type];
             CurrentState.OnEnter();
         }
-        public void ReStart()
-        {
-            GameInput.Instance.TotalScore = 0;
-            GameInput.Instance.Lifetimes = 5;
-            SceneManager.LoadScene(0);
-        }
+
 
         public enum State_Enum
         {

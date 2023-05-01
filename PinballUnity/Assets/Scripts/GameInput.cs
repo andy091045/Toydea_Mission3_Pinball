@@ -4,6 +4,7 @@ using UnityEngine;
 using HD.Singleton;
 using NaughtyAttributes;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameInput : TSingletonMonoBehavior<GameInput>
 {
@@ -75,6 +76,11 @@ public class GameInput : TSingletonMonoBehavior<GameInput>
         {
             onControlRightArmEvent.Invoke();
         }
+    }
+
+    public void LoadScene(int i)
+    {
+        SceneManager.LoadScene(i);
     }
 
     private void OnDestroy()
