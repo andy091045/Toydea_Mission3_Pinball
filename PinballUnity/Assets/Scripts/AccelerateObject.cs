@@ -5,7 +5,7 @@ using GameManagerNamespace;
 
 public class AccelerateObject : TriggerObject
 {
-    public delegate void OccurAccelerateEventHandler(float addforce);
+    public delegate void OccurAccelerateEventHandler(Vector3 addforce);
     public static OccurAccelerateEventHandler OccurAccelerate;
 
     public float AccelerateAddForce
@@ -13,12 +13,9 @@ public class AccelerateObject : TriggerObject
         get => GameInput.Instance.AccelerateForce;
     }
 
-    protected override void onTriggerStayTag(Collider other)
+    protected override void onTriggerEnterTag(Collider other)
     {
-        OccurAccelerate(AccelerateAddForce);
+        Vector3 addForce = other.attachedRigidbody.velocity.normalized * AccelerateAddForce;
+        OccurAccelerate(addForce);
     }
-    protected override void onTriggerExitTag(Collider other)
-    {
-        OccurAccelerate(0);
-    }  
 }

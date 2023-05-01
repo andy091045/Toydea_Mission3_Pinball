@@ -8,7 +8,7 @@ public class BounceObject : CollisionObject
     public delegate void BounceAddScoreEventHandler(int score);
     public static BounceAddScoreEventHandler OccurBounceAddScore;
 
-    public delegate void BouncePhysicEventHandler(Collision collision);
+    public delegate void BouncePhysicEventHandler(Vector3 addForce);
     public static BouncePhysicEventHandler OccurBouncePhysic;
     [SerializeField] private int OneBounceScore_ => GameInput.Instance.BounceScore;
     [SerializeField] private AudioClip soundEffect_;
@@ -23,6 +23,8 @@ public class BounceObject : CollisionObject
     [SerializeField] private int FlashingTimes = 2;
     private float originIntensity_;
     private int times = 0;
+    private float bounceMinForce_ => GameInput.Instance.BounceMinForce;
+    private float bounceMaxForce_ => GameInput.Instance.BounceMinForce;
 
     private void Start()
     {
@@ -60,7 +62,15 @@ public class BounceObject : CollisionObject
     {
         audioSource.PlayOneShot(soundEffect_);
         OccurBounceAddScore(OneBounceScore_ );
-        OccurBouncePhysic(collision);
+        OccurBouncePhysic(ComputeForce(collision));
         IsFlashing = true;
+    }
+
+    private Vector3 ComputeForce(Collision collision)
+    {
+        Vector3 normal = collision.contacts[0].normal;
+        Vector3 bounceDirection = Vector3.Reflect(collision.relativeVelocity.normalized, normal);
+        float bounceSpeed = Mathf.Clamp(collision.relativeVelocity.magnitude, bounceMinForce_, bounceMaxForce_);
+        return bounceDirection * bounceSpeed;
     }
 }

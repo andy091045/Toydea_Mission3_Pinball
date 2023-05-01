@@ -14,11 +14,7 @@ namespace BallNamespace
 
         [Label("Pinball fall out pinball table")]
         [SerializeField] private Vector3 ballLeaveTable_ = new Vector3(0, 0, -35);
-        private float gravity_ => GameInput.Instance.Gravity;
-
-        private float bounceMinForce_ => GameInput.Instance.BounceMinForce;
-
-        private float bounceMaxForce_ => GameInput.Instance.BounceMinForce;
+        private float gravity_ => GameInput.Instance.Gravity;       
         
         private Rigidbody rb_;
         private Vector3 startPosition_;
@@ -31,8 +27,8 @@ namespace BallNamespace
 
         void Start()
         {
-            AccelerateObject.OccurAccelerate += GetAccelerateForce;
-            BounceObject.OccurBouncePhysic += BounceAddForce;
+            AccelerateObject.OccurAccelerate += GetAddForce;
+            BounceObject.OccurBouncePhysic += GetAddForce;
             rb_ = GetComponent<Rigidbody>();
             startPosition_ = transform.position;                      
         }
@@ -59,20 +55,12 @@ namespace BallNamespace
                 rb_.Sleep();
             }
         }
-
-        private void BounceAddForce(Collision collision)
+        
+        private void GetAddForce(Vector3 addForce)
         {
-            Vector3 normal = collision.contacts[0].normal;
-            Vector3 bounceDirection = Vector3.Reflect(normalize_, normal);
-            float bounceSpeed = Mathf.Clamp(rb_.velocity.magnitude, bounceMinForce_, bounceMaxForce_);
-            Vector3 newVelocity = bounceDirection * bounceSpeed;
-            rb_.velocity = newVelocity;
+            rb_.velocity = addForce;
         }
-
-        private void GetAccelerateForce(float addForce)
-        {
-            rb_.AddForce(rb_.velocity.normalized * addForce, ForceMode.Force);
-        }
+        
 
         private void BallTryMove() {
             if(GameInput.Instance.BallCanMove) { 
@@ -86,8 +74,8 @@ namespace BallNamespace
 
         private void OnDestroy()
         {
-            AccelerateObject.OccurAccelerate -= GetAccelerateForce;
-            BounceObject.OccurBouncePhysic -= BounceAddForce;
+            AccelerateObject.OccurAccelerate -= GetAddForce;
+            BounceObject.OccurBouncePhysic -= GetAddForce;
         }
     }
 }

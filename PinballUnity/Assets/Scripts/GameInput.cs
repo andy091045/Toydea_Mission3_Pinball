@@ -28,7 +28,7 @@ public class GameInput : TSingletonMonoBehavior<GameInput>
 
     public int HiddenEndingScore = 20000;
 
-    public float AccelerateForce = 500.0f;
+    public float AccelerateForce = 300.0f;
 
     public bool BallCanMove = true;
 
