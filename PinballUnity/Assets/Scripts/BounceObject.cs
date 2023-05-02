@@ -13,6 +13,8 @@ public class BounceObject : CollisionObject
     [SerializeField] private int OneBounceScore_ => GameInput.Instance.BounceScore;
     [SerializeField] private AudioClip soundEffect_;
     private AudioSource audioSource;
+    private float bounceMinForce_ => GameInput.Instance.BounceMinForce;
+    private float bounceMaxForce_ => GameInput.Instance.BounceMinForce;
 
     [Header("Flashing")]
     public Color OriginColor;
@@ -23,8 +25,7 @@ public class BounceObject : CollisionObject
     [SerializeField] private int FlashingTimes = 2;
     private float originIntensity_;
     private int times = 0;
-    private float bounceMinForce_ => GameInput.Instance.BounceMinForce;
-    private float bounceMaxForce_ => GameInput.Instance.BounceMinForce;
+
 
     private void Start()
     {

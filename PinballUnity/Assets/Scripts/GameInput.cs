@@ -13,12 +13,14 @@ public class GameInput : TSingletonMonoBehavior<GameInput>
     /// <summary>
     /// tag = "bounceObject_" MaxSpeed
     /// </summary>
-    public float BounceMaxForce = 200;
+    public float BounceMaxForce = 200.0f;
 
     /// <summary>
     /// tag = "bounceObject_" MinSpeed
     /// </summary>
-    public float BounceMinForce = 150;
+    public float BounceMinForce = 150.0f;
+
+    public float AccelerateForce = 300.0f;
 
     [Label("バウンススコア")]
     public int BounceScore = 10;
@@ -27,9 +29,7 @@ public class GameInput : TSingletonMonoBehavior<GameInput>
 
     public int Lifetimes = 5;
 
-    public int HiddenEndingScore = 20000;
-
-    public float AccelerateForce = 300.0f;
+    public int HiddenEndingScore = 20000;    
 
     public bool BallCanMove = true;
 

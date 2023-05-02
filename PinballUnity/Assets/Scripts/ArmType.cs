@@ -8,14 +8,14 @@ public class ArmType : MonoBehaviour
     public ChooseArmType chooseArmType;
 
     public float startAngle_ = 30.0f;
-    [SerializeField] private float rotateAngle_ = 45.0f;
+    public float rotateAngle_ = 45.0f;
 
-    Arm arm_;
+    public Arm ArmScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        arm_ = gameObject.GetComponent<Arm>();
+        ArmScript = gameObject.GetComponent<Arm>();
         SetStartAngle();
         GameInput.Instance.onControlLeftArmEvent.AddListener(TryControllLeftArm);
         GameInput.Instance.onControlRightArmEvent.AddListener(TryControllRightArm);
@@ -25,29 +25,29 @@ public class ArmType : MonoBehaviour
     {
         if(chooseArmType == ChooseArmType.LeftArm)
         {
-            arm_.StartAngle = startAngle_;
+            ArmScript.StartAngle = startAngle_;
         }
         else
         {
-            arm_.StartAngle = -startAngle_;
+            ArmScript.StartAngle = -startAngle_;
         }
     }
 
-    private void TryControllLeftArm()
+    public void TryControllLeftArm()
     {
         if(chooseArmType == ChooseArmType.LeftArm)
         {
-            arm_.KeyDown = true;
-            arm_.TargetAngle = -(rotateAngle_ - startAngle_);
+            ArmScript.KeyDown = true;
+            ArmScript.TargetAngle = -(rotateAngle_ - startAngle_);
         }        
     }
 
-    private void TryControllRightArm()
+    public void TryControllRightArm()
     {
         if(chooseArmType == ChooseArmType.RightArm)
         {
-            arm_.KeyDown = true;
-            arm_.TargetAngle = (rotateAngle_ - startAngle_);
+            ArmScript.KeyDown = true;
+            ArmScript.TargetAngle = (rotateAngle_ - startAngle_);
         }            
     }
 
