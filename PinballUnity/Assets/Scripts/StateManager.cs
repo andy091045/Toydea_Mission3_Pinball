@@ -8,8 +8,9 @@ namespace StateManagerNamespace
 {
     public class StateManager : MonoBehaviour
     {
-        public StateBase CurrentState;
-        private Dictionary<State_Enum, StateBase> status_ = new Dictionary<State_Enum, StateBase>();
+        [SerializeField] private StateBase CurrentState;
+
+        [SerializeField] private Dictionary<State_Enum, StateBase> status_ = new Dictionary<State_Enum, StateBase>();
         [SerializeField] private int score_ => GameInput.Instance.TotalScore;
         [SerializeField] private int lifeTimes_ => GameInput.Instance.Lifetimes;
 

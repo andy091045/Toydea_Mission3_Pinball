@@ -18,8 +18,7 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
     public Image[] Stage3Bar;
 
     public GameObject[] MickeyIcon;
-    public Transform EndUI;
-    
+    public Transform EndUI;    
 
     public Text Score;
     public Text Des;
