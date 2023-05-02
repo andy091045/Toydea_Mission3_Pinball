@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using StateManagerNamespace;
+using GameManagerNamespace;
+
 public class Finish : StateBase
 {
-    public delegate void FinishEventHandler(string state);
-    public static FinishEventHandler OccurFinish;
+    private string name = "Finish";
     public Finish(StateManager m) : base(m)
     {
     }
 
     public override void OnEnter()
     {
-        OccurFinish("OnEnter");
+        GameManager.Instance.AnnounceState(name, "OnEnter");
         GameInput.Instance.BallCanMove = false;
         Debug.Log("i“üŒ‹Z");
     }

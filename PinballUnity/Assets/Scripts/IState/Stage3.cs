@@ -6,8 +6,7 @@ using GameManagerNamespace;
 
 public class Stage3 : StateBase
 {
-    public delegate void Stage3EventHandler(string state);
-    public static Stage3EventHandler OccurStage3;
+    private string name = "Stage3";
 
     private float recordOriginGravity_;
 
@@ -21,8 +20,8 @@ public class Stage3 : StateBase
 
     public override void OnEnter()
     {
+        GameManager.Instance.AnnounceState(name, "OnEnter");
         GameInput.Instance.BallCanMove = false;
-        OccurStage3("OnEnter");
         Debug.Log("進入stage3");
         //所有的力變大一點
         recordOriginGravity_ = GameInput.Instance.Gravity;
@@ -41,7 +40,7 @@ public class Stage3 : StateBase
 
     public override void OnExit()
     {
-        OccurStage3("OnExit");
+        GameManager.Instance.AnnounceState(name, "OnExit");
         //還原所有的力
         GameInput.Instance.Gravity = recordOriginGravity_;
 

@@ -38,10 +38,7 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
         ScoreManager.OccurAddScore += ChangeScoreText;        
         LifeManager.OccurLifeChange += ChangeLifeText;
         MissionManager.OccurMissionExecute += ChangeMissionText;
-        Stage1.OccurStage1 += Stage1State;
-        Stage2.OccurStage2 += Stage2State;
-        Stage3.OccurStage3 += Stage3State;
-        Finish.OccurFinish += FinishState;
+        GameManager.Instance.onChangeStateStateEvent.AddListener(ListenStateChange);
     }
 
     private void Start()
@@ -80,49 +77,53 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
         }        
     }
 
-    private void Stage1State(string state)
+    private void ListenStateChange(string name, string state)
     {
-        if (state == "OnEnter")
+        switch (name)
         {
-            DoTweenStageImageMoveIn(Stage1Bar);
-            MickeyIcon[0].SetActive(true);
-        }else if(state == "OnExit")
-        {
-            MickeyIcon[0].SetActive(false);
+            case "Stage1":
+                if (state == "OnEnter")
+                {
+                    DoTweenStageImageMoveIn(Stage1Bar);
+                    MickeyIcon[0].SetActive(true);
+                }
+                else if (state == "OnExit")
+                {
+                    MickeyIcon[0].SetActive(false);
+                }
+                break;
+            case "Stage2":
+                if (state == "OnEnter")
+                {
+                    DoTweenStageImageMoveIn(Stage2Bar);
+                    MickeyIcon[1].SetActive(true);
+                }
+                else if (state == "OnExit")
+                {
+                    MickeyIcon[1].SetActive(false);
+                }
+                break;
+            case "Stage3":
+                if (state == "OnEnter")
+                {
+                    DoTweenStageImageMoveIn(Stage3Bar);
+                    MickeyIcon[2].SetActive(true);
+                }
+                else if (state == "OnExit")
+                {
+                    MickeyIcon[2].SetActive(false);
+                }
+                break;
+            case "Finish":
+                if (state == "OnEnter")
+                {
+                    EndUI.DOMove(new Vector3(950, 530, 0), 1f).SetEase(Ease.OutBounce);
+                }
+                break;
+            default: 
+                break;
         }
-    }
-    private void Stage2State(string state)
-    {
-        if (state == "OnEnter")
-        {
-            DoTweenStageImageMoveIn(Stage2Bar);
-            MickeyIcon[1].SetActive(true);
-        }
-        else if (state == "OnExit")
-        {
-            MickeyIcon[1].SetActive(false);
-        }
-    }
-    private void Stage3State(string state)
-    {
-        if (state == "OnEnter")
-        {
-            DoTweenStageImageMoveIn(Stage3Bar);
-            MickeyIcon[2].SetActive(true);
-        }
-        else if (state == "OnExit")
-        {
-            MickeyIcon[2].SetActive(false);
-        }
-    }
-
-    private void FinishState(string state)
-    {
-        if(state == "OnEnter")
-        {
-            EndUI.DOMove(new Vector3(950, 530, 0), 1f).SetEase(Ease.OutBounce);
-        }        
-    }
+    }  
 
     private void DoTweenStageImageMoveIn(Image[] stage)
     {
@@ -149,10 +150,6 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
         LifeManager.OccurLifeChange -= ChangeLifeText;
         MissionManager.OccurMissionExecute -= ChangeMissionText;
         MissionManager.AllMissionCompleted -= AllMissionCompleted;
-        Stage1.OccurStage1 -= Stage1State;
-        Stage2.OccurStage2 -= Stage2State;
-        Stage3.OccurStage3 -= Stage3State;
-        Finish.OccurFinish -= FinishState;
     }
 
 

@@ -1,3 +1,6 @@
+using DG.Tweening;
+using GameManagerNamespace;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,49 +12,39 @@ public class BounceManager : MonoBehaviour
 
     void Start()
     {
-        Stage2.OccurStage2 += ChangeColor2;
-        Stage3.OccurStage3 += ChangeColor3;
+        GameManager.Instance.onChangeStateStateEvent.AddListener(ListenStateChange);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ListenStateChange(string name, string state)
     {
-        
-    }
-
-    private void ChangeColor2(string state)
-    {
-        if (state == "OnEnter")
-        {
-            foreach (var item in bounceObjects)
-            {
-                Renderer renderer = item.GetComponent<Renderer>();
-                renderer.sharedMaterial = materials[1];
-               
-                BounceObject bounceObject = item.GetComponent<BounceObject>();                
-                bounceObject.OriginColor = materials[1].color;
-            }
+        switch (name)
+        {            
+            case "Stage2":
+                if (state == "OnEnter")
+                {
+                    ChangeBounceObjectsMaterial(1);
+                }
+                break;
+            case "Stage3":
+                if (state == "OnEnter")
+                {
+                    ChangeBounceObjectsMaterial(2);
+                }
+                break;
+            default:
+                break;
         }
-    }
+    }   
 
-    private void ChangeColor3(string state)
+    private void ChangeBounceObjectsMaterial(int i)
     {
-        if (state == "OnEnter")
+        foreach (var item in bounceObjects)
         {
-            foreach (var item in bounceObjects)
-            {
-                Renderer renderer = item.GetComponent<Renderer>();
-                renderer.sharedMaterial = materials[2];
+            Renderer renderer = item.GetComponent<Renderer>();
+            renderer.sharedMaterial = materials[i];
 
-                BounceObject bounceObject = item.GetComponent<BounceObject>();
-                bounceObject.OriginColor = materials[2].color;
-            }
+            BounceObject bounceObject = item.GetComponent<BounceObject>();
+            bounceObject.OriginColor = materials[i].color;
         }
-    }
-
-    private void OnDestroy()
-    {
-        Stage2.OccurStage2 -= ChangeColor2;
-        Stage3.OccurStage3 -= ChangeColor3;
     }
 }
