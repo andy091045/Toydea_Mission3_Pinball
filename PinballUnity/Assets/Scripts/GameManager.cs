@@ -10,8 +10,6 @@ namespace GameManagerNamespace
 {
     public class GameManager : TSingletonMonoBehavior<GameManager>
     {        
-        public int MissionScore = 1000;
-
         public GameObject PositionData;              
 
         public List<Vector3> GetPositionVector3()
