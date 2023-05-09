@@ -122,7 +122,8 @@ namespace HD.Singleton
         {
             if (instance == null) instance = this as T;
             if (instance == this) DontDestroyOnLoad(this);
-            else { 
+            else
+            {
                 DestroyImmediate(gameObject);
                 return;
             }
@@ -139,7 +140,7 @@ namespace HD.Singleton
 
 namespace HD.FindObject
 {
-    public class Find    
+    public class Find
     {
         //前面放入要找的物件名字，後面放入要指到物件底下類別的已宣告類別
         public void FindObject<T>(string name, out T component) where T : Component
@@ -155,12 +156,13 @@ namespace HD.FindObject
                 component = null;
             }
         }
-    }    
+    }
 }
 
 namespace HD.FrameworkDesign
 {
-    public class Event<T> where T : Event<T> {
+    public class Event<T> where T : Event<T>
+    {
         private static Action mOnEvent;
 
         public static void Register(Action onEvent)
@@ -177,6 +179,25 @@ namespace HD.FrameworkDesign
         {
             mOnEvent?.Invoke();
         }
+    }
+
+    public class BindableProperty<T> where T : IEquatable<T>
+    {
+        private T mValue = default(T);
+
+        public T Value
+        {
+            get { return mValue; }
+            set
+            {
+                if (!value.Equals(mValue))
+                {
+                    mValue = value;
+                    OnValueChanged?.Invoke(value);
+                }
+            }
+        }
+        public Action<T> OnValueChanged;
     }
 
 }
