@@ -6085,6 +6085,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 115185596}
+  - component: {fileID: 115185597}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -6109,6 +6110,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &115185597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115185595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 778b8af0fab5fd4419967fe9a4ede23f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &119883997
 GameObject:
   m_ObjectHideFlags: 0
@@ -15737,9 +15750,6 @@ MonoBehaviour:
   onChangeStateStateEvent:
     m_PersistentCalls:
       m_Calls: []
-  OccurAccelerateEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!4 &1076846296
 Transform:
   m_ObjectHideFlags: 0
@@ -21937,7 +21947,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh35902
+  m_Name: pb_Mesh57778
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

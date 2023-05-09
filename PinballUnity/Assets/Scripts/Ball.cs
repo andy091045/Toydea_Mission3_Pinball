@@ -9,9 +9,6 @@ namespace BallNamespace
 {
     public class Ball : MonoBehaviour
     {
-        public delegate void BallFallOutEventHandler(int num, char pointer);
-        public static BallFallOutEventHandler OccurBallFallOut;
-
         [Label("Pinball fall out pinball table")]
         [SerializeField] private Vector3 ballLeaveTable_ = new Vector3(0, 0, -35);
         private float gravity_ => GameInput.Instance.Gravity;       
@@ -27,7 +24,7 @@ namespace BallNamespace
 
         void Start()
         {
-            GameManager.Instance.OccurAccelerateEvent.AddListener(GetAddForce);
+            GameEvent.OccurAccelerate += GetAddForce;
             BounceObject.OccurBouncePhysic += GetAddForce;
             rb_ = GetComponent<Rigidbody>();
             startPosition_ = transform.position;                      
@@ -51,7 +48,7 @@ namespace BallNamespace
             if (transform.position.z <= ballLeaveTable_.z)
             {                               
                 transform.position = startPosition_;
-                OccurBallFallOut(1, '-');
+                GameEvent.OccurBallFallOut(1, '-');
                 rb_.Sleep();
             }
         }
@@ -74,6 +71,7 @@ namespace BallNamespace
 
         private void OnDestroy()
         {
+            GameEvent.OccurAccelerate -= GetAddForce;
             BounceObject.OccurBouncePhysic -= GetAddForce;
         }
     }

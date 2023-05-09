@@ -21,7 +21,7 @@ namespace LifeManagerNamespace
         private void Awake()
         {
             MissionManager.OccurHeartCompleted += LifeAdd;
-            Ball.OccurBallFallOut += LifeDecrease;
+            GameEvent.OccurBallFallOut += LifeDecrease;
         }
 
 
@@ -55,7 +55,7 @@ namespace LifeManagerNamespace
         private void OnDestroy()
         {
             MissionManager.OccurHeartCompleted -= LifeAdd;
-            Ball.OccurBallFallOut -= LifeDecrease;
+            GameEvent.OccurBallFallOut -= LifeDecrease;
         }
     }
 }

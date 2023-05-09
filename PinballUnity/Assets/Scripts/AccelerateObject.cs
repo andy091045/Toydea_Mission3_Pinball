@@ -22,6 +22,6 @@ public class AccelerateObject : TriggerObject
     {
         audioSource.PlayOneShot(soundEffect_);
         Vector3 addForce = other.attachedRigidbody.velocity.normalized * AccelerateAddForce;
-        GameManager.Instance.OccurAccelerateEvent.Invoke(addForce);
+        GameEvent.OccurAccelerate(addForce);
     }
 }
