@@ -35,15 +35,15 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
         //Find "EndScore GameObject"
         find.FindObject("EndScore", out EndScore);
 
-        ScoreManager.OccurAddScore += ChangeScoreText;        
-        LifeManager.OccurLifeChange += ChangeLifeText;
-        MissionManager.OccurMissionExecute += ChangeMissionText;
+        GameEvent.OccurAddScore += ChangeScoreText;        
+        GameEvent.OccurLifeChange += ChangeLifeText;
+        GameEvent.OccurMissionExecute += ChangeMissionText;
         GameManager.Instance.onChangeStateStateEvent.AddListener(ListenStateChange);
     }
 
     private void Start()
     {        
-        MissionManager.AllMissionCompleted += AllMissionCompleted;
+        GameEvent.AllMissionCompleted += AllMissionCompleted;
         //DoTweenStageImageMoveIn(Stage1Bar);        
     }
 
@@ -146,10 +146,10 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
 
     private void OnDestroy()
     {
-        ScoreManager.OccurAddScore -= ChangeScoreText;
-        LifeManager.OccurLifeChange -= ChangeLifeText;
-        MissionManager.OccurMissionExecute -= ChangeMissionText;
-        MissionManager.AllMissionCompleted -= AllMissionCompleted;
+        GameEvent.OccurAddScore -= ChangeScoreText;
+        GameEvent.OccurLifeChange -= ChangeLifeText;
+        GameEvent.OccurMissionExecute -= ChangeMissionText;
+        GameEvent.AllMissionCompleted -= AllMissionCompleted;
     }
 
 

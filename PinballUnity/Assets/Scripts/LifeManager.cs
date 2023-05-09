@@ -13,14 +13,11 @@ namespace LifeManagerNamespace
         {
             get => GameInput.Instance.Lifetimes;
             set => GameInput.Instance.Lifetimes = value;
-        } 
-
-        public delegate void MissionLifeEventHandler(int life);
-        public static MissionLifeEventHandler OccurLifeChange;
+        }         
 
         private void Awake()
         {
-            MissionManager.OccurHeartCompleted += LifeAdd;
+            GameEvent.OccurHeartCompleted += LifeAdd;
             GameEvent.OccurBallFallOut += LifeDecrease;
         }
 
@@ -48,13 +45,13 @@ namespace LifeManagerNamespace
                 default:
                     break;
             }
-            OccurLifeChange(Lifetimes);
+            GameEvent.OccurLifeChange(Lifetimes);
             Debug.Log("ê∂ñΩôîâ∫" + Lifetimes + "éü");
         }
 
         private void OnDestroy()
         {
-            MissionManager.OccurHeartCompleted -= LifeAdd;
+            GameEvent.OccurHeartCompleted -= LifeAdd;
             GameEvent.OccurBallFallOut -= LifeDecrease;
         }
     }

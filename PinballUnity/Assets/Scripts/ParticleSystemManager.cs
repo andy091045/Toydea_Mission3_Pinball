@@ -9,7 +9,7 @@ public class ParticleSystemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MissionObject.OccurTriggerMissionObject += PlayExplosionEffect;
+        GameEvent.OccurTriggerMissionObject += PlayExplosionEffect;
     }
 
     private void PlayExplosionEffect(MissionObject missionObject)
@@ -20,7 +20,7 @@ public class ParticleSystemManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        MissionObject.OccurTriggerMissionObject -= PlayExplosionEffect;
+        GameEvent.OccurTriggerMissionObject -= PlayExplosionEffect;
     }
 
 }

@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class MissionObject : TriggerObject
 {
-    public delegate void OccurTriggerMissionObjectEventHandler(MissionObject obj);
-    public static OccurTriggerMissionObjectEventHandler OccurTriggerMissionObject;
-
     [Label("タスクコード")]
     public int Number = 0;
 
@@ -25,7 +22,7 @@ public class MissionObject : TriggerObject
 
     protected override void onTriggerEnterTag(Collider other)
     {
-        OccurTriggerMissionObject(this);       
+        GameEvent.OccurTriggerMissionObject(this);       
         Destroy(gameObject);
     }
 }

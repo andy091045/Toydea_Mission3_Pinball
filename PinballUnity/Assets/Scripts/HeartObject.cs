@@ -7,12 +7,10 @@ using UnityEngine.UIElements;
 
 public class HeartObject : TriggerObject
 {
-    public delegate void OccurTriggerHeartEventHandler(GameObject obj);
-    public static OccurTriggerHeartEventHandler OccurTriggerHeart;
 
     protected override void onTriggerEnterTag(Collider other)
     {
-        OccurTriggerHeart(this.gameObject);
+        GameEvent.OccurTriggerHeart(this.gameObject);
         Destroy(gameObject);
     }
 

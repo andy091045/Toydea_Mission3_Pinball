@@ -12,8 +12,8 @@ public class AudioSourceManager : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        HeartObject.OccurTriggerHeart += GetHeartSound;
-        MissionObject.OccurTriggerMissionObject += GetMissionSound;
+        GameEvent.OccurTriggerHeart += GetHeartSound;
+        GameEvent.OccurTriggerMissionObject += GetMissionSound;
     }
 
     private void GetHeartSound(GameObject obj)
@@ -28,7 +28,7 @@ public class AudioSourceManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        HeartObject.OccurTriggerHeart -= GetHeartSound;
-        MissionObject.OccurTriggerMissionObject -= GetMissionSound;
+        GameEvent.OccurTriggerHeart -= GetHeartSound;
+        GameEvent.OccurTriggerMissionObject -= GetMissionSound;
     }
 }

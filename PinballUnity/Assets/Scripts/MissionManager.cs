@@ -15,20 +15,7 @@ namespace MissionManagerNamespace
         public GameObject TaskPrefab;
         public MissionData MissionData;
         public bool IsHeartMissionStart => GameInput.Instance.IsHeartMissionStart ;
-        public bool IsStage3MissionStart = false;        
-
-        public delegate void MissionCompleteEventHandler(int score);
-        public static MissionCompleteEventHandler OccurMissionCompleted;
-
-        public delegate void HeartCompleteEventHandler(int number, char pointer);
-        public static HeartCompleteEventHandler OccurHeartCompleted;
-
-        public delegate void MissionExecuteEventHandler(int number, string des, int nextNumber, int score);
-        public static MissionExecuteEventHandler OccurMissionExecute;
-
-        public delegate void AllMissionCompletedEventHandler();
-        public static AllMissionCompletedEventHandler AllMissionCompleted;
-
+        public bool IsStage3MissionStart = false;    
         public bool isAllMissionComplete = false;        
 
         //public List<Mission> completedMissions_ = new List<Mission>();
@@ -57,8 +44,8 @@ namespace MissionManagerNamespace
 
         void Start()
         {
-            HeartObject.OccurTriggerHeart += TriggerHeart;
-            MissionObject.OccurTriggerMissionObject += TriggerMissionObject;
+            GameEvent.OccurTriggerHeart += TriggerHeart;
+            GameEvent.OccurTriggerMissionObject += TriggerMissionObject;
             positionsIsNotCreated_ = positions_;
 
             // ≈™®ÅEMissionData §§™∫•Ù∞»∏ÅE∆
@@ -92,7 +79,7 @@ namespace MissionManagerNamespace
             MissionClass.Score = mission_[number].Score;
             MissionClass.Position = mission_[number].Position;
         
-            OccurMissionExecute(MissionClass.Number, MissionClass.Description, MissionClass.NextNumber, MissionClass.Score);
+            GameEvent.OccurMissionExecute(MissionClass.Number, MissionClass.Description, MissionClass.NextNumber, MissionClass.Score);
             
             // ±N•Ù∞»•[§J•Ù∞»≤M≥ÅE
             //missions.Add(mission);
@@ -118,16 +105,16 @@ namespace MissionManagerNamespace
             if (activeMissions_.Count == 0)
             {
                 // ©“¶≥•Ù∞»≥£§wßπ¶®
-                AllMissionCompleted();
+                GameEvent.AllMissionCompleted();
                 Debug.Log("All missions completed!");
             }
         }
 
         public void TriggerMissionObject(MissionObject obj)
         {
-            if (OccurMissionCompleted != null)
+            if (GameEvent.OccurMissionCompleted != null)
             {
-                OccurMissionCompleted(obj.Score);
+                GameEvent.OccurMissionCompleted(obj.Score);
             }
             if (obj.Number != COMPLETE_NUMBER)
             {
@@ -137,9 +124,9 @@ namespace MissionManagerNamespace
 
         public void TriggerHeart(GameObject obj)
         {
-            if(OccurHeartCompleted != null)
+            if(GameEvent.OccurHeartCompleted != null)
             {
-                OccurHeartCompleted(1, '+');
+                GameEvent.OccurHeartCompleted(1, '+');
             }
             ReturnPosition(obj.transform.position);
         }
@@ -182,8 +169,8 @@ namespace MissionManagerNamespace
 
         private void OnDestroy()
         {
-            MissionObject.OccurTriggerMissionObject -= TriggerMissionObject;
-            HeartObject.OccurTriggerHeart -= TriggerHeart;
+            GameEvent.OccurTriggerMissionObject -= TriggerMissionObject;
+            GameEvent.OccurTriggerHeart -= TriggerHeart;
         }
     }
 }
