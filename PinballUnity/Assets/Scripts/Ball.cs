@@ -27,7 +27,7 @@ namespace BallNamespace
 
         void Start()
         {
-            AccelerateObject.OccurAccelerate += GetAddForce;
+            GameManager.Instance.OccurAccelerateEvent.AddListener(GetAddForce);
             BounceObject.OccurBouncePhysic += GetAddForce;
             rb_ = GetComponent<Rigidbody>();
             startPosition_ = transform.position;                      
@@ -74,7 +74,6 @@ namespace BallNamespace
 
         private void OnDestroy()
         {
-            AccelerateObject.OccurAccelerate -= GetAddForce;
             BounceObject.OccurBouncePhysic -= GetAddForce;
         }
     }

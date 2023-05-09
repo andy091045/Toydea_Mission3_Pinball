@@ -5,9 +5,6 @@ using GameManagerNamespace;
 
 public class AccelerateObject : TriggerObject
 {
-    public delegate void OccurAccelerateEventHandler(Vector3 addforce);
-    public static OccurAccelerateEventHandler OccurAccelerate;
-
     [SerializeField] private AudioClip soundEffect_;
     private AudioSource audioSource;
 
@@ -25,6 +22,6 @@ public class AccelerateObject : TriggerObject
     {
         audioSource.PlayOneShot(soundEffect_);
         Vector3 addForce = other.attachedRigidbody.velocity.normalized * AccelerateAddForce;
-        OccurAccelerate(addForce);
+        GameManager.Instance.OccurAccelerateEvent.Invoke(addForce);
     }
 }

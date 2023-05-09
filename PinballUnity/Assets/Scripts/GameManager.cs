@@ -17,7 +17,8 @@ namespace GameManagerNamespace
             return PositionData.GetComponent<SaveLocationList>().PositionsVector3;
         }
 
-        public UnityEvent<string, string> onChangeStateStateEvent = new UnityEvent<string, string>();        
+        public UnityEvent<string, string> onChangeStateStateEvent = new UnityEvent<string, string>();
+        public UnityEvent<Vector3> OccurAccelerateEvent = new UnityEvent<Vector3>();
 
         public void AnnounceState(string name, string state)
         {
@@ -27,6 +28,7 @@ namespace GameManagerNamespace
         private void OnDestroy()
         {
             onChangeStateStateEvent.RemoveAllListeners();
+            OccurAccelerateEvent.RemoveAllListeners();
         }
 
     }
