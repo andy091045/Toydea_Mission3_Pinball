@@ -5,7 +5,6 @@ using ScoreManagerNamespace;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GameManagerNamespace;
 
 public class MouthMove : MonoBehaviour
 {
@@ -14,7 +13,7 @@ public class MouthMove : MonoBehaviour
 
     void Start()
     {
-        GameManager.Instance.onChangeStateStateEvent.AddListener(ListenStateChange);        
+        GameEvent.OnChangeStateStateEvent += ListenStateChange;        
     }
 
     private void ListenStateChange(string name, string state)
@@ -37,5 +36,10 @@ public class MouthMove : MonoBehaviour
 
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        GameEvent.OnChangeStateStateEvent -= ListenStateChange;
     }
 }

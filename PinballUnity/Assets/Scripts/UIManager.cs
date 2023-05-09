@@ -1,5 +1,4 @@
-﻿using GameManagerNamespace;
-using HD.Singleton;
+﻿using HD.Singleton;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,7 +37,7 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
         GameEvent.OccurAddScore += ChangeScoreText;        
         GameEvent.OccurLifeChange += ChangeLifeText;
         GameEvent.OccurMissionExecute += ChangeMissionText;
-        GameManager.Instance.onChangeStateStateEvent.AddListener(ListenStateChange);
+        GameEvent.OnChangeStateStateEvent += ListenStateChange;
     }
 
     private void Start()
@@ -150,6 +149,7 @@ public class UIManager : TSingletonMonoBehavior<UIManager>
         GameEvent.OccurLifeChange -= ChangeLifeText;
         GameEvent.OccurMissionExecute -= ChangeMissionText;
         GameEvent.AllMissionCompleted -= AllMissionCompleted;
+        GameEvent.OnChangeStateStateEvent -= ListenStateChange;
     }
 
 

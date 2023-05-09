@@ -48,4 +48,13 @@ public class GameEvent : MonoBehaviour
     //ScoreManager.cs
     public delegate void MissionScoreEventHandler(int score);
     public static MissionScoreEventHandler OccurAddScore;
+
+    //State
+    public delegate void OnChangeStateStateEventHandler(string name, string state);
+    public static OnChangeStateStateEventHandler OnChangeStateStateEvent;
+
+    public static void AnnounceState(string name, string state)
+    {
+        OnChangeStateStateEvent(name, state);
+    }
 }

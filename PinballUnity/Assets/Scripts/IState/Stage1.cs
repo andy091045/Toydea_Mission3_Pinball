@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using StateManagerNamespace;
-using GameManagerNamespace;
 public class Stage1 : StateBase
 {
     private string name = "Stage1";
@@ -13,13 +12,13 @@ public class Stage1 : StateBase
 
     public override void OnEnter()
     {
-        GameManager.Instance.AnnounceState(name, "OnEnter");
+        GameEvent.AnnounceState(name, "OnEnter");
         GameInput.Instance.BallCanMove = false;        
     }
 
     public override void OnExit()
     {
-        GameManager.Instance.AnnounceState(name, "OnExit");
+        GameEvent.AnnounceState(name, "OnExit");
     }
 
     public override void OnUpdate()

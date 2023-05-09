@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using StateManagerNamespace;
-using GameManagerNamespace;
 
 public class Stage3 : StateBase
 {
@@ -20,7 +19,7 @@ public class Stage3 : StateBase
 
     public override void OnEnter()
     {
-        GameManager.Instance.AnnounceState(name, "OnEnter");
+        GameEvent.AnnounceState(name, "OnEnter");
         GameInput.Instance.BallCanMove = false;
         Debug.Log("進入stage3");
         //所有的力變大一點
@@ -40,7 +39,7 @@ public class Stage3 : StateBase
 
     public override void OnExit()
     {
-        GameManager.Instance.AnnounceState(name, "OnExit");
+        GameEvent.AnnounceState(name, "OnExit");
         //還原所有的力
         GameInput.Instance.Gravity = recordOriginGravity_;
 

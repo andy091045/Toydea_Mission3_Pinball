@@ -4,7 +4,6 @@ using System.Reflection;
 using UnityEngine;
 using MissionNamespace;
 using HD.Singleton;
-using GameManagerNamespace;
 using NaughtyAttributes;
 using UnityEngine.UIElements;
 
@@ -27,7 +26,7 @@ namespace MissionManagerNamespace
         [Label("Å‘åƒrƒ‹ƒhŠÔ")]
         [SerializeField] private const float CREATE_TIME_MAX = 20.0f;
 
-        private List<Vector3> positions_ => GameManager.Instance.GetPositionVector3();
+        private List<Vector3> positions_ => SaveLocationList.Instance.PositionsVector3;
 
         private List<Vector3> positionsIsNotCreated_ = new List<Vector3>();
 

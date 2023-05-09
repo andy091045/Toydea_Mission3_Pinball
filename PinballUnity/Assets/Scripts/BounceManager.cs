@@ -1,5 +1,4 @@
 using DG.Tweening;
-using GameManagerNamespace;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +11,7 @@ public class BounceManager : MonoBehaviour
 
     void Start()
     {
-        GameManager.Instance.onChangeStateStateEvent.AddListener(ListenStateChange);
+        GameEvent.OnChangeStateStateEvent += ListenStateChange;
     }
 
     private void ListenStateChange(string name, string state)
@@ -46,5 +45,10 @@ public class BounceManager : MonoBehaviour
             BounceObject bounceObject = item.GetComponent<BounceObject>();
             bounceObject.OriginColor = materials[i].color;
         }
+    }
+
+    private void OnDestroy()
+    {
+        GameEvent.OnChangeStateStateEvent -= ListenStateChange;
     }
 }

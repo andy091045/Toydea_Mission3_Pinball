@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using StateManagerNamespace;
-using GameManagerNamespace;
 
 public class Finish : StateBase
 {
@@ -13,7 +12,7 @@ public class Finish : StateBase
 
     public override void OnEnter()
     {
-        GameManager.Instance.AnnounceState(name, "OnEnter");
+        GameEvent.AnnounceState(name, "OnEnter");
         GameInput.Instance.BallCanMove = false;
         Debug.Log("i“üŒ‹Z");
     }
