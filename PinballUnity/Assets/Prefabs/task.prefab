@@ -116,7 +116,6 @@ MonoBehaviour:
   NextNumber: 0
   Score: 0
   Position: {x: 0, y: 0, z: 0}
-  effect: {fileID: 4544653006876005164, guid: c57f92ca2bc5c56429ea06b914b8fe85, type: 3}
 --- !u!1 &7953457723487136660
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,6 +126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4042589339482345850}
   - component: {fileID: 2049667609735015621}
+  - component: {fileID: 5379878977367203674}
   m_Layer: 0
   m_Name: "\u2014Pngtree\u2014gift icon_4436024"
   m_TagString: Untagged
@@ -201,3 +201,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5379878977367203674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7953457723487136660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9601a1c6bf9bed4eb2ff4bbb4f2f6df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginColor: {r: 1, g: 1, b: 1, a: 0}
+  DesiredIntensity: 10
+  NowIntensity: 1
+  Increase: 0.01

@@ -6,44 +6,24 @@ using UnityEngine;
 public class emissionObject : MonoBehaviour
 {
     [Header("Flashing")]
-    [SerializeField] private Color originColor_;
-    [SerializeField] private float DesiredIntensity = 10.0f;
-    [SerializeField] private float NowIntensity = 1.0f;
-    [SerializeField] private float Increase = 0.3f;
-    [SerializeField] private bool IsFlashing = false;
-    [SerializeField] private int FlashingTimes = 2;
-    private float originIntensity_;    
-    private int times = 0;
+    public Color OriginColor;
+    [SerializeField] private float desiredIntensity_ = 5.0f;
+    [SerializeField] private float originIntensity_ = 1.0f;
+    [SerializeField] private float nowIntensity_ = 2.0f;
+    [SerializeField] private float increase_ = 0.004f;
 
-    private void Start()
+    private void Update()
     {
-        originColor_ = this.transform.GetComponent<MeshRenderer>().material.color;
-        originIntensity_ = NowIntensity;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        TryFlashing();        
+        TryFlashing();
     }
 
     private void TryFlashing()
     {
-        if (IsFlashing)
+        this.transform.GetComponent<SpriteRenderer>().material.SetVector("_EmissionColor", OriginColor * nowIntensity_);
+        nowIntensity_ = nowIntensity_ + increase_;
+        if (nowIntensity_ > desiredIntensity_ || nowIntensity_ < originIntensity_)
         {
-            this.transform.GetComponent<MeshRenderer>().material.SetVector("_EmissionColor", originColor_ * NowIntensity);
-            NowIntensity = NowIntensity + Increase;
-            if (NowIntensity > DesiredIntensity)
-            {
-                NowIntensity = originIntensity_;
-                this.transform.GetComponent<MeshRenderer>().material.SetVector("_EmissionColor", originColor_ * NowIntensity);
-                times++;
-                if(times > FlashingTimes)
-                {
-                    IsFlashing = false;
-                    times = 0;
-                }
-            }
-        }        
+            increase_ = -increase_;
+        }
     }
 }

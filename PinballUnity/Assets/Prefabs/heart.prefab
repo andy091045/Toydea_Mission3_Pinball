@@ -137,6 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8705103711029958701}
   - component: {fileID: 5544005013281366903}
+  - component: {fileID: 8709349256712095447}
   m_Layer: 0
   m_Name: "\u6211\u7684\u5C08\u6848 (1)"
   m_TagString: Untagged
@@ -179,7 +180,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4e5bd2a950a49b143bb9ea83326580fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -211,3 +212,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8709349256712095447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8143678582277538532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9601a1c6bf9bed4eb2ff4bbb4f2f6df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginColor: {r: 1, g: 0, b: 0, a: 0}
+  desiredIntensity_: 10
+  originIntensity_: 1
+  nowIntensity_: 2
+  increase_: 0.008
