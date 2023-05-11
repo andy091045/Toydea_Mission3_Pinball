@@ -10,6 +10,7 @@ public class ParticleSystemManager : MonoBehaviour
     void Start()
     {
         GameEvent.OccurTriggerMissionObject += PlayExplosionEffect;
+        GameEvent.OccurTriggerHeart += GameObjectPlayExplosionEffect;
     }
 
     private void PlayExplosionEffect(MissionObject missionObject)
@@ -18,9 +19,16 @@ public class ParticleSystemManager : MonoBehaviour
         newEffect.Play();
     }
 
+    private void GameObjectPlayExplosionEffect(GameObject gameObject)
+    {
+        ParticleSystem newEffect = Instantiate(effect, gameObject.transform.position, Quaternion.identity);
+        newEffect.Play();
+    }
+
     private void OnDestroy()
     {
         GameEvent.OccurTriggerMissionObject -= PlayExplosionEffect;
+        GameEvent.OccurTriggerHeart -= GameObjectPlayExplosionEffect;
     }
 
 }
